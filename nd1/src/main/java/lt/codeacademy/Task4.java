@@ -20,9 +20,11 @@ public class Task4 {
         System.out.println(text.substring(paskutinisTarpas+1));
 
         System.out.println("---------iv--------");
-        System.out.println(text.replace("a","W"));
+        System.out.println(text.replace('a','W'));
 
         System.out.println("---------v---------");
+        System.out.println(text.replaceAll("e", "RAIDE"));
+
         System.out.println("---------vi--------");
     }
 }
