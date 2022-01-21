@@ -4,10 +4,9 @@ import java.util.Scanner;
 
 public class Task4 {
     public static void main(String[] args) {
-//        Scanner sc = new Scanner(System.in);
-//        System.out.println("Iveskite sakini");
-//        String text = sc.nextLine();
-        String text = "Vienas, du, trys";
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Iveskite sakini");
+        String text = sc.nextLine();
 
         System.out.println("---------i---------");
         System.out.println(text.toUpperCase());
@@ -26,5 +25,9 @@ public class Task4 {
         System.out.println(text.replaceAll("e", "RAIDE"));
 
         System.out.println("---------vi--------");
+        int pirmasTarpas = text.indexOf(" ");
+        System.out.println( text.substring(paskutinisTarpas+1) +
+                            text.substring(pirmasTarpas,paskutinisTarpas+1) +
+                            text.substring(0,pirmasTarpas));
     }
 }
