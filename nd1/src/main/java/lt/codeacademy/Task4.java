@@ -13,6 +13,8 @@ public class Task4 {
         System.out.println(text.toUpperCase());
 
         System.out.println("---------ii--------");
+        System.out.println(text.length());
+
         System.out.println("---------iii-------");
         System.out.println("---------iv--------");
         System.out.println("---------v---------");
