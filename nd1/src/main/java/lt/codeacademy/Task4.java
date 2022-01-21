@@ -16,6 +16,9 @@ public class Task4 {
         System.out.println(text.length());
 
         System.out.println("---------iii-------");
+        int paskutinisTarpas = text.lastIndexOf(" ");
+        System.out.println(text.substring(paskutinisTarpas+1));
+
         System.out.println("---------iv--------");
         System.out.println("---------v---------");
         System.out.println("---------vi--------");
