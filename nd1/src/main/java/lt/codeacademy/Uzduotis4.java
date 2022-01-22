@@ -15,5 +15,31 @@ public class Uzduotis4 {
         if(b4) System.out.println("b4");
         if(b5) System.out.println("b5");
         if(b6) System.out.println("b6");
+
+        System.out.println("*************************");
+
+        int sk1 = 10;
+        int sk2 = 12;
+
+        float fl1 = 3.5f;
+        float fl2 = 3.4f;
+
+        System.out.println("int skaiciu tikrinimas");
+        if(sk1 == sk2){
+            System.out.println("Lygios");
+        }else if(sk1 > sk2){
+            System.out.println("Pirma didesne");
+        }else {
+            System.out.println("Pirma mazesne");
+        }
+
+        System.out.println("float skaiciu tikrinimas");
+        if(fl1 == fl2){
+            System.out.println("Lygios");
+        }else if(fl1 > fl2){
+            System.out.println("Pirma didesne");
+        }else {
+            System.out.println("Pirma mazesne");
+        }
     }
 }
