@@ -26,14 +26,19 @@ public class Uzduotis6 {
     public static void colour(){
         System.out.println("Choose between four colours: black, white, red, or blue.");
         String colour = sc.next().toUpperCase();
-        if(colour.equals("BLACK")){
-            System.out.println("BLACK \"You must be a Goth!\"");
-        }else if(colour.equals("WHITE")){
-            System.out.println("WHITE \"You are a very pure person\"");
-        }else if(colour.equals("RED")){
-            System.out.println("RED \"You are fun and outgoing\"");
-        }else if(colour.equals("BLUE")){
-            System.out.println("BLUE \"You're not a Chelsea fan, are you?\"");
+        switch (colour) {
+            case "BLACK":
+                System.out.println("BLACK \"You must be a Goth!\"");
+                break;
+            case "WHITE":
+                System.out.println("WHITE \"You are a very pure person\"");
+                break;
+            case "RED":
+                System.out.println("RED \"You are fun and outgoing\"");
+                break;
+            case "BLUE":
+                System.out.println("BLUE \"You're not a Chelsea fan, are you?\"");
+                break;
         }
     }
 }
