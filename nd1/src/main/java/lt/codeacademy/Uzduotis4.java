@@ -41,5 +41,21 @@ public class Uzduotis4 {
         }else {
             System.out.println("Pirma mazesne");
         }
+
+        System.out.println("*************************");
+
+        System.out.println("int skaiciu tikrinimas");
+        if(sk1 <= sk2){
+            System.out.println("Pirma mazesne arba lygios");
+        }else {
+            System.out.println("Pirma didesne arba lygios");
+        }
+
+        System.out.println("float skaiciu tikrinimas");
+        if(fl1 <= fl2){
+            System.out.println("Pirma mazesne arba lygios");
+        }else {
+            System.out.println("Pirma didesne arba lygios");
+        }
     }
 }
