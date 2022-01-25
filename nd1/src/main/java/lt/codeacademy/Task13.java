@@ -20,25 +20,25 @@ import java.util.Scanner;
 
 public class Task13 {
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
+//        Scanner sc = new Scanner(System.in);
+//        System.out.println("Iveskite skaiciu seka:");
 
-        System.out.println("Iveskite zodi:");
-        String text = sc.next().toUpperCase();
+        String text = "555,2,22,2,7777";
+        String[] digits = text.split(",");
         String[] phoneAlphabetMapping = {"ABC", "DEF", "GHI", "JKL", "MNO", "PQRS", "TUV", "WXYZ"};
         String result = "";
 
-        for (int i = 0; i < text.length(); i++) {
-            for(int j = 0; j < phoneAlphabetMapping.length; j++){
-                int indeksasTelefonoKeypadSekoje = phoneAlphabetMapping[j].indexOf(text.charAt(i));
-                if(indeksasTelefonoKeypadSekoje!=-1){
-                    for (int k = 0; k < indeksasTelefonoKeypadSekoje+1; k++) {
-                        result += j+2;
-                    }
-                    result += ",";
+        for(String digit : digits){
+            int paspaustasSkaicius = Integer.parseInt(digit.substring(0,1));
+            int paspaudimuSkaicius = digit.length();
+
+            for (int i = 0; i < phoneAlphabetMapping.length; i++) {
+                if(i+2 == paspaustasSkaicius){
+                    result += phoneAlphabetMapping[i].charAt(paspaudimuSkaicius-1);
                 }
             }
         }
-        result+="\b";
+
         System.out.println(result);
     }
 }
