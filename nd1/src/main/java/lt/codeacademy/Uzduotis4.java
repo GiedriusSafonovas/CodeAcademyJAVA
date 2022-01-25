@@ -25,6 +25,18 @@ public class Uzduotis4 {
         float fl2 = 3.4f;
 
         System.out.println("int skaiciu tikrinimas");
+        kurisDidesnis(sk1, sk2);
+        System.out.println("float skaiciu tikrinimas");
+        kurisDidesnis(fl1, fl2);
+
+        System.out.println("*************************");
+        System.out.println("int skaiciu tikrinimas");
+        kurisDidesnisArLygus(sk1,sk2);
+        System.out.println("float skaiciu tikrinimas");
+        kurisDidesnisArLygus(fl1,fl2);
+    }
+
+    public static void kurisDidesnis(float sk1, float sk2){
         if(sk1 == sk2){
             System.out.println("Lygios");
         }else if(sk1 > sk2){
@@ -32,30 +44,14 @@ public class Uzduotis4 {
         }else {
             System.out.println("Pirma mazesne");
         }
+    }
 
-        System.out.println("float skaiciu tikrinimas");
-        if(fl1 == fl2){
-            System.out.println("Lygios");
-        }else if(fl1 > fl2){
-            System.out.println("Pirma didesne");
-        }else {
-            System.out.println("Pirma mazesne");
-        }
-
-        System.out.println("*************************");
-
-        System.out.println("int skaiciu tikrinimas");
+    public static void kurisDidesnisArLygus(float sk1, float sk2){
         if(sk1 <= sk2){
             System.out.println("Pirma mazesne arba lygios");
         }else {
             System.out.println("Pirma didesne arba lygios");
         }
-
-        System.out.println("float skaiciu tikrinimas");
-        if(fl1 <= fl2){
-            System.out.println("Pirma mazesne arba lygios");
-        }else {
-            System.out.println("Pirma didesne arba lygios");
-        }
     }
+
 }
