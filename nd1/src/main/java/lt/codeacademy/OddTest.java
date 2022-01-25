@@ -7,10 +7,6 @@ public class OddTest {
     }
 
     public static boolean isOdd(int sk){
-        if(sk%2 == 0){
-            return true;
-        }else {
-            return false;
-        }
+        return sk % 2 != 0;
     }
 }
