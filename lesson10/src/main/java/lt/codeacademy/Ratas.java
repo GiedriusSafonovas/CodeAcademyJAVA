@@ -9,4 +9,13 @@ public class Ratas {
 
     public String publicRatasLaukas1;
     public String publicRatasLaukas2;
+
+    protected void protectedRatasMetodas1(){}
+    protected void protectedRatasMetodas2(){}
+
+    void defaultRatasMetodas1(){}
+    void defaultRatasMetodas2(){}
+
+    public void publicRatasMetodas1(){}
+    public void publicRatasMetodas2(){}
 }

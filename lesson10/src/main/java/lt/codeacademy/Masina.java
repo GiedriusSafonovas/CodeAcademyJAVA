@@ -10,4 +10,13 @@ public class Masina {
     public String publicMasinaLaukas1;
     public String publicMasinaLaukas2;
 
+    protected void protectedMasinaMetodas1(){}
+    protected void protectedMasinaMetodas2(){}
+
+    void defaultMasinaMetodas1(){}
+    void defaultMasinaMetodas2(){}
+
+    public void publicMasinaMetodas1(){}
+    public void publicMasinaMetodas2(){}
+
 }
