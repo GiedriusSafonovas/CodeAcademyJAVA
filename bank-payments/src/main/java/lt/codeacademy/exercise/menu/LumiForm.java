@@ -2,14 +2,16 @@ package lt.codeacademy.exercise.menu;
 
 import lt.codeacademy.exercise.bank.data.LumiData;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Date;
+
 
 public class LumiForm {
     private ArrayList<String> headers = new ArrayList<>();
     private ArrayList<String> name = new ArrayList<>();;
-    private ArrayList<Date> date = new ArrayList<>();;
+    private ArrayList<LocalDate> date = new ArrayList<>();;
     private ArrayList<String> iban = new ArrayList<>();;
     private ArrayList<Float> amount = new ArrayList<>();;
 
@@ -28,7 +30,10 @@ public class LumiForm {
         }
     }
 
-
+    public LocalDate parseDate(String date){
+        DateTimeFormatter bankFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        return LocalDate.parse(date, bankFormat);
+    }
 
     public float parseAmount(String amount){
         amount = amount.replace(',','.');
