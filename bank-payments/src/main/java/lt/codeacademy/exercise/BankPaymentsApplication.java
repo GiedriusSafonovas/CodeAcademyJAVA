@@ -1,5 +1,6 @@
 package lt.codeacademy.exercise;
 
+import lt.codeacademy.exercise.menu.LumiForm;
 import lt.codeacademy.exercise.menu.console.ConsoleMenu;
 import lt.codeacademy.exercise.menu.console.MainMenu;
 
@@ -13,6 +14,9 @@ public class BankPaymentsApplication {
 
     public void run() {
         String selectedOption = mainMenu.printAndRead();
-        //TODO: your implementation here
+        switch (selectedOption){
+            case "1":
+                System.out.println(new LumiForm());
+        }
     }
 }
