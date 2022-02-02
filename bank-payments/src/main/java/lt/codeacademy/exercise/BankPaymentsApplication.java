@@ -12,10 +12,25 @@ public class BankPaymentsApplication {
     }
 
     public void run() {
-        String selectedOption = mainMenu.printAndRead();
-        switch (selectedOption){
-            case "1":
-                System.out.println(new LumiForm());
+        while(true) {
+            String selectedOption = mainMenu.printAndRead();
+            if(selectedOption.equals("0")){
+                break;
+            }
+            switch (selectedOption) {
+                case "1":
+                    System.out.println("**************LUMI DATA**************");
+                    System.out.println(new LumiForm());
+                    break;
+                case "2":
+                    System.out.println("**************SEP DATA**************");
+                    System.out.println(new SepForm());
+                    break;
+                case "3":
+                    System.out.println("**************SHVED DATA**************");
+                    System.out.println(new ShvedForm());
+                    break;
+            }
         }
     }
 }
