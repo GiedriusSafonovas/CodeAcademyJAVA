@@ -1,6 +1,5 @@
 package lt.codeacademy.exercise;
 
-import lt.codeacademy.exercise.menu.LumiForm;
 import lt.codeacademy.exercise.menu.console.ConsoleMenu;
 import lt.codeacademy.exercise.menu.console.MainMenu;
 
