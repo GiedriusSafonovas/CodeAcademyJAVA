@@ -42,4 +42,5 @@ public class Form {
   public ArrayList<Float> getAmount() {
     return amount;
   }
+
 }

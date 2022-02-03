@@ -26,13 +26,13 @@ public class SepForm extends Form {
     StringBuilder result = new StringBuilder();
 
     for (int i = 0; i < this.getHeaders().size(); i++) {
-      result.append(String.format("%-25s|", this.getHeaders().get(i)));
+      result.append(String.format("%25s|", this.getHeaders().get(i)));
     }
     result.append("\n");
     for (int i = 0; i < this.getIban().size(); i++) {
       result.append(
           String.format(
-              "%-25s|%-25s|%-25s|%-25f|",
+              "%25s|%25s|%25s|%25f|",
               this.getDate().get(i),
               this.getName().get(i),
               this.getIban().get(i),

@@ -30,6 +30,10 @@ public class BankPaymentsApplication {
           System.out.println("**************SHVED DATA**************");
           System.out.println(new ShvedForm());
           break;
+        case "4":
+          System.out.println("**************ALL DATA**************");
+          System.out.println(new AllBanksForm());
+          break;
       }
     }
   }

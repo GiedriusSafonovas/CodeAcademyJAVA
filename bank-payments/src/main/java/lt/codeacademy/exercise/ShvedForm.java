@@ -15,6 +15,7 @@ public class ShvedForm extends Form {
         this.getDate().add(this.parseDate(duomenys[i][0], "dd.MM.yyyy"));
         this.getIban().add(duomenys[i][1]);
         this.getAmount().add(this.parseAmount(duomenys[i][2]));
+        this.getName().add(null);
       }
     }
   }
@@ -24,13 +25,13 @@ public class ShvedForm extends Form {
     StringBuilder result = new StringBuilder();
 
     for (int i = 0; i < this.getHeaders().size(); i++) {
-      result.append(String.format("%-25s|", this.getHeaders().get(i)));
+      result.append(String.format("%25s|", this.getHeaders().get(i)));
     }
     result.append("\n");
     for (int i = 0; i < this.getIban().size(); i++) {
       result.append(
           String.format(
-              "%-25s|%-25s|%-25f|",
+              "%25s|%25s|%25f|",
               this.getDate().get(i), this.getIban().get(i), this.getAmount().get(i)));
       result.append("\n");
     }
