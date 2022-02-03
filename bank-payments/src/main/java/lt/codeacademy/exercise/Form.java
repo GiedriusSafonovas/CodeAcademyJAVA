@@ -2,6 +2,8 @@ package lt.codeacademy.exercise;
 
 import lt.codeacademy.exercise.bank.data.LumiData;
 
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -43,4 +45,27 @@ public class Form {
     return amount;
   }
 
+  @Override
+  public String toString() {
+    StringBuilder result = new StringBuilder();
+
+    DecimalFormatSymbols decimalSeparator = new DecimalFormatSymbols();
+    decimalSeparator.setDecimalSeparator('.');
+    DecimalFormat df = new DecimalFormat(".00", decimalSeparator);
+
+    result.append(
+        String.format("%s|%10s|%7s|%25s|%25s|\n", "Eilės nr.", "Date", "Amount", "Name", "Iban"));
+    for (int i = 0; i < this.getIban().size(); i++) {
+      int eilNr = i + 1;
+      result.append(
+          String.format(
+              "%9d|%s|%7s|%25s|%25s|\n",
+              eilNr,
+              this.getDate().get(i),
+              df.format(this.getAmount().get(i)),
+              this.getName().get(i),
+              this.getIban().get(i)));
+    }
+    return result.toString();
+  }
 }

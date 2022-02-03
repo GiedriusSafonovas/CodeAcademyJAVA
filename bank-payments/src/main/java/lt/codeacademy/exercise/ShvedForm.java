@@ -20,22 +20,4 @@ public class ShvedForm extends Form {
     }
   }
 
-  @Override
-  public String toString() {
-    StringBuilder result = new StringBuilder();
-
-    for (int i = 0; i < this.getHeaders().size(); i++) {
-      result.append(String.format("%25s|", this.getHeaders().get(i)));
-    }
-    result.append("\n");
-    for (int i = 0; i < this.getIban().size(); i++) {
-      result.append(
-          String.format(
-              "%25s|%25s|%25f|",
-              this.getDate().get(i), this.getIban().get(i), this.getAmount().get(i)));
-      result.append("\n");
-    }
-
-    return result.toString();
-  }
 }

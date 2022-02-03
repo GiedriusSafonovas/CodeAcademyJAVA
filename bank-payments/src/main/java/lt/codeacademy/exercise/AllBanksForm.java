@@ -31,17 +31,4 @@ public class AllBanksForm extends Form {
     this.getAmount().addAll(shved.getAmount());
   }
 
-  @Override
-  public String toString() {
-    StringBuilder result = new StringBuilder();
-    result.append(String.format("%25s|%25s|%25s|%25s|\n", "Name", "Date", "Iban", "Amount"));
-    for (int i = 0; i < this.getIban().size(); i++) {
-      result.append(
-              String.format(
-                      "%25s|%25s|%25s|%25f|",
-                      this.getName().get(i),this.getDate().get(i), this.getIban().get(i), this.getAmount().get(i)));
-      result.append("\n");
-    }
-    return result.toString();
-  }
 }
