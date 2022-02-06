@@ -1,5 +1,7 @@
 package lt.codeacademy;
 
+import java.time.LocalDate;
+
 public class Biudzetas {
   PajamuIrasas[] pajamos = new PajamuIrasas[100];
   IslaiduIrasas[] islaidos = new IslaiduIrasas[100];
@@ -22,5 +24,25 @@ public class Biudzetas {
     }
   }
 
+  public PajamuIrasas gautiPajamuIrasa(String kategorija, String data){
+    for(PajamuIrasas irasas : pajamos){
+      boolean kategorijosSutampa = irasas.getKategorija().equals(kategorija);
+      boolean datosSutampa = irasas.getData() == irasas.stringToDate(data);
+      if(kategorijosSutampa && datosSutampa){
+        return irasas;
+      }
+    }
+    return null;
+  }
 
+  public IslaiduIrasas gautiIslaiduIrasa(String kategorija, String data){
+    for(IslaiduIrasas irasas : islaidos){
+      boolean kategorijosSutampa = irasas.getKategorija().equals(kategorija);
+      boolean datosSutampa = irasas.getDataSuLaiku() == irasas.stringToDate(data);
+      if(kategorijosSutampa && datosSutampa){
+        return irasas;
+      }
+    }
+    return null;
+  }
 }

@@ -43,4 +43,6 @@ public class PajamuIrasas {
   public String getPapildomaInfo() {
     return papildomaInfo;
   }
+
+
 }
