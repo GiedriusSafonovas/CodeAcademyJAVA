@@ -44,5 +44,14 @@ public class PajamuIrasas {
     return papildomaInfo;
   }
 
-
+  @Override
+  public String toString() {
+    return String.format("==PAJAMU IRASAS==\n" +
+            "Suma: %.2f\n" +
+            "Data: %s\n" +
+            "Kategorija: %s\n" +
+            "Ar pinigai gauti i banka: %b\n" +
+            "Papildoma info: %s",
+            getSuma(),getData(),getKategorija(),isPozymisArIBanka(),getPapildomaInfo());
+  }
 }

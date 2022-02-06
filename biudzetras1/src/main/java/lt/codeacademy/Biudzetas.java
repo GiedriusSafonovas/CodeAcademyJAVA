@@ -1,24 +1,22 @@
 package lt.codeacademy;
 
-import java.time.LocalDate;
-
 public class Biudzetas {
   PajamuIrasas[] pajamos = new PajamuIrasas[100];
   IslaiduIrasas[] islaidos = new IslaiduIrasas[100];
 
   public void pridetiPajamuIrasa(PajamuIrasas pajamuIrasas){
-    for(PajamuIrasas irasas : pajamos){
-      if(irasas == null){
-        irasas = pajamuIrasas;
+    for(int i = 0; i < pajamos.length; i++){
+      if(pajamos[i] == null){
+        pajamos[i] = pajamuIrasas;
         break;
       }
     }
   }
 
   public void pridetiIslaiduIrasa(IslaiduIrasas islaiduIrasas){
-    for(IslaiduIrasas irasas : islaidos){
-      if(irasas == null){
-        irasas = islaiduIrasas;
+    for(int i = 0; i < islaidos.length; i++){
+      if(islaidos[i] == null){
+        islaidos[i] = islaiduIrasas;
         break;
       }
     }
@@ -27,7 +25,7 @@ public class Biudzetas {
   public PajamuIrasas gautiPajamuIrasa(String kategorija, String data){
     for(PajamuIrasas irasas : pajamos){
       boolean kategorijosSutampa = irasas.getKategorija().equals(kategorija);
-      boolean datosSutampa = irasas.getData() == irasas.stringToDate(data);
+      boolean datosSutampa = irasas.getData().equals(irasas.stringToDate(data));
       if(kategorijosSutampa && datosSutampa){
         return irasas;
       }
@@ -38,7 +36,7 @@ public class Biudzetas {
   public IslaiduIrasas gautiIslaiduIrasa(String kategorija, String data){
     for(IslaiduIrasas irasas : islaidos){
       boolean kategorijosSutampa = irasas.getKategorija().equals(kategorija);
-      boolean datosSutampa = irasas.getDataSuLaiku() == irasas.stringToDate(data);
+      boolean datosSutampa = irasas.getDataSuLaiku().equals(irasas.stringToDate(data));
       if(kategorijosSutampa && datosSutampa){
         return irasas;
       }

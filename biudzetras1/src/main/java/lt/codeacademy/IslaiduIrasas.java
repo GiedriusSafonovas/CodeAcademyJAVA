@@ -42,4 +42,15 @@ public class IslaiduIrasas {
   public String getPapildomaInfo() {
     return papildomaInfo;
   }
+
+  @Override
+  public String toString() {
+    return String.format("==ISLAIDU IRASAS==\n" +
+            "Suma: %.2f\n" +
+            "Data su laiku: %s\n" +
+            "Kategorija: %s\n" +
+            "Atsiskaitymo budas: %s\n" +
+            "Papildoma info: %s",
+            getSuma(),getDataSuLaiku(),getKategorija(),getAtsiskaitymoBudas(),getPapildomaInfo());
+  }
 }
