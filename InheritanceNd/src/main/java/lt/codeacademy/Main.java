@@ -6,23 +6,23 @@ public class Main {
     }
 
     public static void initTransportas(){
-        Automobilis a1 = new Automobilis(KuroTipas.Benzinas, 3,3);
-        Automobilis a2 = new Automobilis(4, "Juoda",KuroTipas.Benzinas, 3,3);
-        Dviratis d1 = new Dviratis(21);
-        Dviratis d2 = new Dviratis(2, "Geltona",21);
-        Sunkvezimis s1 = new Sunkvezimis(KuroTipas.Benzinas, 3,3,4,5);
-        Sunkvezimis s2 = new Sunkvezimis(6, "Juoda",KuroTipas.Benzinas, 3,3,4,5);
+        Automobilis automobilis1 = new Automobilis(KuroTipas.Benzinas, 3,3);
+        Automobilis automobilis2 = new Automobilis(4, "Juoda",KuroTipas.Benzinas, 3,3);
+        Dviratis dviratis1 = new Dviratis(21);
+        Dviratis dviratis2 = new Dviratis(2, "Geltona",21);
+        Sunkvezimis sunkvezimis1 = new Sunkvezimis(KuroTipas.Benzinas, 3,3,4,5);
+        Sunkvezimis sunkvezimis2 = new Sunkvezimis(6, "Juoda",KuroTipas.Benzinas, 3,3,4,5);
 
-        a1.spausdinti();
+        automobilis1.spausdinti();
         System.out.println("----------------");
-        a2.spausdinti();
+        automobilis2.spausdinti();
         System.out.println("----------------");
-        d1.spausdinti();
+        dviratis1.spausdinti();
         System.out.println("----------------");
-        d2.spausdinti();
+        dviratis2.spausdinti();
         System.out.println("----------------");
-        s1.spausdinti();
+        sunkvezimis1.spausdinti();
         System.out.println("----------------");
-        s2.spausdinti();
+        sunkvezimis2.spausdinti();
     }
 }
