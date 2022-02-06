@@ -22,4 +22,24 @@ public class IslaiduIrasas {
     DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
     return LocalDateTime.parse(data,format);
   }
+
+  public float getSuma() {
+    return suma;
+  }
+
+  public LocalDateTime getDataSuLaiku() {
+    return dataSuLaiku;
+  }
+
+  public String getKategorija() {
+    return kategorija;
+  }
+
+  public String getAtsiskaitymoBudas() {
+    return atsiskaitymoBudas;
+  }
+
+  public String getPapildomaInfo() {
+    return papildomaInfo;
+  }
 }

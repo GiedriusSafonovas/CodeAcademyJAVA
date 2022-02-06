@@ -23,4 +23,24 @@ public class PajamuIrasas {
     DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     return LocalDate.parse(data,format);
   }
+
+  public float getSuma() {
+    return suma;
+  }
+
+  public LocalDate getData() {
+    return data;
+  }
+
+  public String getKategorija() {
+    return kategorija;
+  }
+
+  public boolean isPozymisArIBanka() {
+    return pozymisArIBanka;
+  }
+
+  public String getPapildomaInfo() {
+    return papildomaInfo;
+  }
 }
