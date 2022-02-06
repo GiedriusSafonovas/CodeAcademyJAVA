@@ -9,7 +9,7 @@ public class PirmaKlase {
     String b = variklis.defaultVariklisLaukas1;
     String c = variklis.publicVariklisLaukas1;
 
-    void metodas(){
+    void metodas() {
         variklis.protectedVariklisMetodas1();
         variklis.defaultVariklisMetodas1();
         variklis.publicVariklisMetodas1();
