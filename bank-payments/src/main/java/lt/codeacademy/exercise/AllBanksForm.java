@@ -1,14 +1,13 @@
 package lt.codeacademy.exercise;
 
-import java.util.ArrayList;
-import java.util.Collections;
+import java.util.Arrays;
+import java.util.List;
 
 public class AllBanksForm extends Form {
-  private ArrayList<Form> banks;
+  private List<Form> banks;
 
   public AllBanksForm() {
-    banks = new ArrayList<>();
-    Collections.addAll(banks, new LumiForm(), new SepForm(), new ShvedForm());
+    banks = Arrays.asList(new LumiForm(), new SepForm(), new ShvedForm());
     mergeForms();
   }
 
