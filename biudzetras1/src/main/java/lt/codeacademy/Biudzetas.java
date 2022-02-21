@@ -46,4 +46,12 @@ public class Biudzetas {
     }
     return sum;
   }
+
+  public ArrayList<PajamuIrasas> getPajamos() {
+    return pajamos;
+  }
+
+  public ArrayList<IslaiduIrasas> getIslaidos() {
+    return islaidos;
+  }
 }

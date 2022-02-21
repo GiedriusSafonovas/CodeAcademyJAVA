@@ -25,6 +25,9 @@ public class Programa {
         case "5":
           System.out.println("Balansas: " + biudzetas.balansas());
           break;
+        case "6":
+          Meniu.spausdintiVisusIrasus(biudzetas);
+          break;
         default:
           System.out.println("Neteisinga komanda");
       }

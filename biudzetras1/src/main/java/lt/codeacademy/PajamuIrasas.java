@@ -13,7 +13,8 @@ public class PajamuIrasas {
   private boolean pozymisArIBanka;
   private String papildomaInfo;
 
-  public PajamuIrasas(float suma, String data, String kategorija, boolean pozymisArIBanka, String papildomaInfo) {
+  public PajamuIrasas(
+      float suma, String data, String kategorija, boolean pozymisArIBanka, String papildomaInfo) {
     counter++;
     this.unikalusNr = "P" + counter;
     this.suma = suma;
@@ -23,9 +24,9 @@ public class PajamuIrasas {
     this.papildomaInfo = papildomaInfo;
   }
 
-  public LocalDate stringToDate(String data){
+  public LocalDate stringToDate(String data) {
     DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-    return LocalDate.parse(data,format);
+    return LocalDate.parse(data, format);
   }
 
   public float getSuma() {
@@ -58,12 +59,19 @@ public class PajamuIrasas {
 
   @Override
   public String toString() {
-    return String.format("==PAJAMU IRASAS==\n" +
-            "Suma: %.2f\n" +
-            "Data: %s\n" +
-            "Kategorija: %s\n" +
-            "Ar pinigai gauti i banka: %b\n" +
-            "Papildoma info: %s",
-            getSuma(),getData(),getKategorija(),isPozymisArIBanka(),getPapildomaInfo());
+    return String.format(
+        "==PAJAMU IRASAS==\n"
+            + "Unikalus numeris: %s\n"
+            + "Suma: %.2f\n"
+            + "Data: %s\n"
+            + "Kategorija: %s\n"
+            + "Ar pinigai gauti i banka: %b\n"
+            + "Papildoma info: %s",
+        getUnikalusNr(),
+        getSuma(),
+        getData(),
+        getKategorija(),
+        isPozymisArIBanka(),
+        getPapildomaInfo());
   }
 }

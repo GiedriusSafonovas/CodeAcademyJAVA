@@ -5,8 +5,8 @@ public class Meniu {
 
   public static String pagrindinisMeniu() {
     System.out.println(
-        "[1] - prideti pajamas\n[2] - prideti islaidas\n[3] - gauti pajamas\n[4] - gauti islaidas\n" +
-                "[5] - balansas\n[x] - baigti");
+        "[1] - prideti pajamas\n[2] - prideti islaidas\n[3] - gauti pajamas\n[4] - gauti islaidas\n"
+            + "[5] - balansas\n[6] - visi irasai\n[x] - baigti");
     return Scan.scanLine();
   }
 
@@ -52,5 +52,15 @@ public class Meniu {
     System.out.println("Iveskite data su laiku (yyyy-MM-dd HH:mm)");
     String dataSuLaiku = Scan.scanLine();
     return biudzetas.gautiIslaiduIrasa(kategorija,dataSuLaiku);
+  }
+
+  public static void spausdintiVisusIrasus(Biudzetas biudzetas){
+    for (PajamuIrasas irasas : biudzetas.getPajamos()){
+      System.out.println(irasas);
+    }
+    System.out.println();
+    for (IslaiduIrasas irasas : biudzetas.getIslaidos()){
+      System.out.println(irasas);
+    }
   }
 }

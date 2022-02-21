@@ -12,7 +12,12 @@ public class IslaiduIrasas {
   private String atsiskaitymoBudas;
   private String papildomaInfo;
 
-  public IslaiduIrasas(float suma, String dataSuLaiku, String kategorija, String atsiskaitymoBudas, String papildomaInfo) {
+  public IslaiduIrasas(
+      float suma,
+      String dataSuLaiku,
+      String kategorija,
+      String atsiskaitymoBudas,
+      String papildomaInfo) {
     counter++;
     this.unikalusNr = "I" + counter;
     this.suma = suma;
@@ -22,9 +27,9 @@ public class IslaiduIrasas {
     this.papildomaInfo = papildomaInfo;
   }
 
-  public LocalDateTime stringToDate(String data){
+  public LocalDateTime stringToDate(String data) {
     DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-    return LocalDateTime.parse(data,format);
+    return LocalDateTime.parse(data, format);
   }
 
   public float getSuma() {
@@ -47,14 +52,29 @@ public class IslaiduIrasas {
     return papildomaInfo;
   }
 
+  public static int getCounter() {
+    return counter;
+  }
+
+  public String getUnikalusNr() {
+    return unikalusNr;
+  }
+
   @Override
   public String toString() {
-    return String.format("==ISLAIDU IRASAS==\n" +
-            "Suma: %.2f\n" +
-            "Data su laiku: %s\n" +
-            "Kategorija: %s\n" +
-            "Atsiskaitymo budas: %s\n" +
-            "Papildoma info: %s",
-            getSuma(),getDataSuLaiku(),getKategorija(),getAtsiskaitymoBudas(),getPapildomaInfo());
+    return String.format(
+        "==ISLAIDU IRASAS==\n"
+            + "Unikalus numeris: %s\n"
+            + "Suma: %.2f\n"
+            + "Data su laiku: %s\n"
+            + "Kategorija: %s\n"
+            + "Atsiskaitymo budas: %s\n"
+            + "Papildoma info: %s",
+        getUnikalusNr(),
+        getSuma(),
+        getDataSuLaiku(),
+        getKategorija(),
+        getAtsiskaitymoBudas(),
+        getPapildomaInfo());
   }
 }
