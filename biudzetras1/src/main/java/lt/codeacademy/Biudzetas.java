@@ -3,8 +3,8 @@ package lt.codeacademy;
 import java.util.ArrayList;
 
 public class Biudzetas {
-  ArrayList<PajamuIrasas> pajamos = new ArrayList<>();
-  ArrayList<IslaiduIrasas> islaidos = new ArrayList<>();
+  private ArrayList<PajamuIrasas> pajamos = new ArrayList<>();
+  private ArrayList<IslaiduIrasas> islaidos = new ArrayList<>();
 
   public void pridetiPajamuIrasa(PajamuIrasas pajamuIrasas){
     pajamos.add(pajamuIrasas);
