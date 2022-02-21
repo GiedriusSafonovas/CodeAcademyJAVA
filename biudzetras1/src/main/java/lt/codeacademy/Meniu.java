@@ -5,9 +5,9 @@ public class Meniu {
 
   public static String pagrindinisMeniu() {
     System.out.println(
-        "[1] - prideti pajamas\n[2] - prideti islaidas\n[3] - gauti pajamas\n[4] - gauti islaidas\n[5] - baigti");
-    String selectedChoice = Scan.scanLine();
-    return selectedChoice;
+        "[1] - prideti pajamas\n[2] - prideti islaidas\n[3] - gauti pajamas\n[4] - gauti islaidas\n" +
+                "[5] - balansas\n[x] - baigti");
+    return Scan.scanLine();
   }
 
   public static PajamuIrasas pridetiPajamasMeniu() {
