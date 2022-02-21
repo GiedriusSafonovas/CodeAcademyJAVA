@@ -28,6 +28,9 @@ public class Programa {
         case "6":
           Meniu.spausdintiVisusIrasus(biudzetas);
           break;
+        case "7":
+          Meniu.trintiIrasaMeniu(biudzetas);
+          break;
         default:
           System.out.println("Neteisinga komanda");
       }

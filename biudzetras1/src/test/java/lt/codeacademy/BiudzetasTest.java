@@ -31,4 +31,12 @@ public class BiudzetasTest {
     float expected = 21.5f - 10;
     Assert.assertEquals(expected, result, 0);
   }
+
+  @Test
+  public void trintiIrasaTest(){
+    biudzetas.pridetiPajamuIrasa(pajamos);
+    biudzetas.trintiIrasa("P1");
+    Object result = biudzetas.gautiPajamuIrasa("Pardavimai", "2022-02-06");
+    Assert.assertNull(result);
+  }
 }

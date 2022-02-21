@@ -6,7 +6,7 @@ public class Meniu {
   public static String pagrindinisMeniu() {
     System.out.println(
         "[1] - prideti pajamas\n[2] - prideti islaidas\n[3] - gauti pajamas\n[4] - gauti islaidas\n"
-            + "[5] - balansas\n[6] - visi irasai\n[x] - baigti");
+            + "[5] - balansas\n[6] - visi irasai\n[7] - trinti irasa\n[x] - baigti");
     return Scan.scanLine();
   }
 
@@ -62,5 +62,11 @@ public class Meniu {
     for (IslaiduIrasas irasas : biudzetas.getIslaidos()){
       System.out.println(irasas);
     }
+  }
+
+  public static void trintiIrasaMeniu(Biudzetas biudzetas){
+    System.out.println("Iveskite iraso unikalu numeri");
+    String unikalusNr = Scan.scanLine();
+    biudzetas.trintiIrasa(unikalusNr);
   }
 }
