@@ -28,17 +28,17 @@ public class Programa {
     }
 
     // FOR TESTING
-    //    PajamuIrasas pajamos1 = new PajamuIrasas(10,"2022-02-06","Pardavimai",true,"nera");
-    //    IslaiduIrasas islaidos = new IslaiduIrasas(10,"2022-02-06 12:30","Pirkimai","Banko
-    // pavedimas","nera");
-    //
-    //    biudzetas.pridetiPajamuIrasa(pajamos1);
-    //    biudzetas.pridetiIslaiduIrasa(islaidos);
-    //
-    //    PajamuIrasas pi1 = biudzetas.gautiPajamuIrasa("Pardavimai","2022-02-06");
-    //    System.out.println(pi1);
-    //
-    //    IslaiduIrasas ii1 = biudzetas.gautiIslaiduIrasa("Pirkimai","2022-02-06 12:30");
-    //    System.out.println(ii1);
+//        PajamuIrasas pajamos1 = new PajamuIrasas(10,"2022-02-06","Pardavimai",true,"nera");
+//        IslaiduIrasas islaidos = new IslaiduIrasas(10,"2022-02-06 12:30","Pirkimai","Banko " +
+//                "pavedimas","nera");
+//
+//        biudzetas.pridetiPajamuIrasa(pajamos1);
+//        biudzetas.pridetiIslaiduIrasa(islaidos);
+//
+//        PajamuIrasas pi1 = biudzetas.gautiPajamuIrasa("Pardavimai","2022-02-06");
+//        System.out.println(pi1);
+//
+//        IslaiduIrasas ii1 = biudzetas.gautiIslaiduIrasa("Pirkimai","2022-02-06 12:30");
+//        System.out.println(ii1);
   }
 }

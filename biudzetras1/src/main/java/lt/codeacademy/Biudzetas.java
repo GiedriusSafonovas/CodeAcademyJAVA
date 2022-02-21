@@ -1,25 +1,17 @@
 package lt.codeacademy;
 
+import java.util.ArrayList;
+
 public class Biudzetas {
-  PajamuIrasas[] pajamos = new PajamuIrasas[100];
-  IslaiduIrasas[] islaidos = new IslaiduIrasas[100];
+  ArrayList<PajamuIrasas> pajamos = new ArrayList<>();
+  ArrayList<IslaiduIrasas> islaidos = new ArrayList<>();
 
   public void pridetiPajamuIrasa(PajamuIrasas pajamuIrasas){
-    for(int i = 0; i < pajamos.length; i++){
-      if(pajamos[i] == null){
-        pajamos[i] = pajamuIrasas;
-        break;
-      }
-    }
+    pajamos.add(pajamuIrasas);
   }
 
   public void pridetiIslaiduIrasa(IslaiduIrasas islaiduIrasas){
-    for(int i = 0; i < islaidos.length; i++){
-      if(islaidos[i] == null){
-        islaidos[i] = islaiduIrasas;
-        break;
-      }
-    }
+    islaidos.add(islaiduIrasas);
   }
 
   public PajamuIrasas gautiPajamuIrasa(String kategorija, String data){
