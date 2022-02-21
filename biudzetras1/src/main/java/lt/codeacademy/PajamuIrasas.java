@@ -5,6 +5,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.Formatter;
 
 public class PajamuIrasas {
+  private static int counter;
+  private final String unikalusNr;
   private float suma;
   private LocalDate data;
   private String kategorija;
@@ -12,6 +14,8 @@ public class PajamuIrasas {
   private String papildomaInfo;
 
   public PajamuIrasas(float suma, String data, String kategorija, boolean pozymisArIBanka, String papildomaInfo) {
+    counter++;
+    this.unikalusNr = "P" + counter;
     this.suma = suma;
     this.data = stringToDate(data);
     this.kategorija = kategorija;
@@ -42,6 +46,14 @@ public class PajamuIrasas {
 
   public String getPapildomaInfo() {
     return papildomaInfo;
+  }
+
+  public static int getCounter() {
+    return counter;
+  }
+
+  public String getUnikalusNr() {
+    return unikalusNr;
   }
 
   @Override

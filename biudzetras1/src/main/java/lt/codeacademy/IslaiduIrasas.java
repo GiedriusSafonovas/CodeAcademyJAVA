@@ -4,6 +4,8 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class IslaiduIrasas {
+  private static int counter;
+  private final String unikalusNr;
   private float suma;
   private LocalDateTime dataSuLaiku;
   private String kategorija;
@@ -11,6 +13,8 @@ public class IslaiduIrasas {
   private String papildomaInfo;
 
   public IslaiduIrasas(float suma, String dataSuLaiku, String kategorija, String atsiskaitymoBudas, String papildomaInfo) {
+    counter++;
+    this.unikalusNr = "I" + counter;
     this.suma = suma;
     this.dataSuLaiku = stringToDate(dataSuLaiku);
     this.kategorija = kategorija;
