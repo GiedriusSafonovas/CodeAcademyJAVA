@@ -35,4 +35,15 @@ public class Biudzetas {
     }
     return null;
   }
+
+  public float balansas(){
+    float sum = 0;
+    for(PajamuIrasas irasas : pajamos){
+      sum += irasas.getSuma();
+    }
+    for(IslaiduIrasas irasas : islaidos){
+      sum -= irasas.getSuma();
+    }
+    return sum;
+  }
 }
