@@ -1,14 +1,12 @@
 package lt.codeacademy;
 
-//Baigta 2-a dalis
-
 public class Programa {
   public static void main(String[] args) {
     Biudzetas biudzetas = new Biudzetas();
 
     while (true) {
       String selectedChoice = Meniu.pagrindinisMeniu();
-      if(selectedChoice.equals("x")){
+      if (selectedChoice.equals("x")) {
         break;
       }
       switch (selectedChoice) {

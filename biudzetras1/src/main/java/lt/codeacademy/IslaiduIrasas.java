@@ -3,14 +3,9 @@ package lt.codeacademy;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-public class IslaiduIrasas {
-  private static int counter;
-  private final String unikalusNr;
-  private float suma;
+public class IslaiduIrasas extends Irasas {
   private LocalDateTime dataSuLaiku;
-  private String kategorija;
   private String atsiskaitymoBudas;
-  private String papildomaInfo;
 
   public IslaiduIrasas(
       float suma,
@@ -18,13 +13,10 @@ public class IslaiduIrasas {
       String kategorija,
       String atsiskaitymoBudas,
       String papildomaInfo) {
-    counter++;
-    this.unikalusNr = "I" + counter;
-    this.suma = suma;
+
+    super("I", suma, kategorija, papildomaInfo);
     this.dataSuLaiku = stringToDate(dataSuLaiku);
-    this.kategorija = kategorija;
     this.atsiskaitymoBudas = atsiskaitymoBudas;
-    this.papildomaInfo = papildomaInfo;
   }
 
   public LocalDateTime stringToDate(String data) {
@@ -32,49 +24,22 @@ public class IslaiduIrasas {
     return LocalDateTime.parse(data, format);
   }
 
-  public float getSuma() {
-    return suma;
-  }
-
   public LocalDateTime getDataSuLaiku() {
     return dataSuLaiku;
-  }
-
-  public String getKategorija() {
-    return kategorija;
   }
 
   public String getAtsiskaitymoBudas() {
     return atsiskaitymoBudas;
   }
 
-  public String getPapildomaInfo() {
-    return papildomaInfo;
-  }
-
-  public static int getCounter() {
-    return counter;
-  }
-
-  public String getUnikalusNr() {
-    return unikalusNr;
-  }
-
   @Override
   public String toString() {
     return String.format(
         "==ISLAIDU IRASAS==\n"
-            + "Unikalus numeris: %s\n"
-            + "Suma: %.2f\n"
-            + "Data su laiku: %s\n"
-            + "Kategorija: %s\n"
-            + "Atsiskaitymo budas: %s\n"
-            + "Papildoma info: %s",
-        getUnikalusNr(),
-        getSuma(),
+            + super.toString()
+            + "\nData su laiku: %s\n"
+            + "Atsiskaitymo budas: %s\n",
         getDataSuLaiku(),
-        getKategorija(),
-        getAtsiskaitymoBudas(),
-        getPapildomaInfo());
+        getAtsiskaitymoBudas());
   }
 }

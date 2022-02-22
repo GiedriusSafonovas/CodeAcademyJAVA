@@ -3,6 +3,7 @@ package lt.codeacademy;
 import java.util.ArrayList;
 
 public class Biudzetas {
+  private ArrayList<Irasas> irasai = new ArrayList<>();
   private ArrayList<PajamuIrasas> pajamos = new ArrayList<>();
   private ArrayList<IslaiduIrasas> islaidos = new ArrayList<>();
 

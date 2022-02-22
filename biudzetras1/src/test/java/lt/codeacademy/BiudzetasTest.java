@@ -34,8 +34,9 @@ public class BiudzetasTest {
 
   @Test
   public void trintiIrasaTest(){
-    biudzetas.pridetiPajamuIrasa(pajamos);
-    biudzetas.trintiIrasa("P1");
+    Biudzetas b = new Biudzetas();
+    b.pridetiPajamuIrasa(pajamos);
+    b.trintiIrasa("P1");
     Object result = biudzetas.gautiPajamuIrasa("Pardavimai", "2022-02-06");
     Assert.assertNull(result);
   }
