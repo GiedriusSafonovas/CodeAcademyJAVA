@@ -7,6 +7,10 @@ public class Irasas {
   private String kategorija;
   private String papildomaInfo;
 
+  public Irasas(String unikalusNr){
+    this.unikalusNr = unikalusNr;
+  }
+
   public Irasas(String irasoTipas, float suma, String kategorija, String papildomaInfo) {
     counter++;
     this.unikalusNr = irasoTipas + counter;

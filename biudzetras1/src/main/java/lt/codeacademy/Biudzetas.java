@@ -9,11 +9,11 @@ public class Biudzetas {
     irasai.add(irasas);
   }
 
-  public Irasas gautiIrasa(String unikalusNr){
-    for(Irasas irasas : irasai){
-      if(irasas.getUnikalusNr().equals(unikalusNr)){
-        return irasas;
-      }
+  public Irasas gautiIrasa(String unikalusNr) {
+    Irasas ieskomasIrasas = new Irasas(unikalusNr);
+    if (irasai.contains(ieskomasIrasas)) {
+      int irasoIndeksas = irasai.indexOf(ieskomasIrasas);
+      return irasai.get(irasoIndeksas);
     }
     return null;
   }
@@ -53,13 +53,8 @@ public class Biudzetas {
   }
 
   public void trintiIrasa(String trinamoIrasoUnikalusNr) {
-    for (int i = 0; i < irasai.size(); i++) {
-      String irasoSaraseNr = irasai.get(i).getUnikalusNr();
-      if (irasoSaraseNr.equals(trinamoIrasoUnikalusNr)) {
-        irasai.remove(i);
-        return;
-      }
-    }
+    Irasas trinamasIrasas = new Irasas(trinamoIrasoUnikalusNr);
+    irasai.remove(trinamasIrasas);
   }
 
   public ArrayList<Irasas> getIrasai() {
