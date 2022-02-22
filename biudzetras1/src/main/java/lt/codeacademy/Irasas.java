@@ -41,4 +41,12 @@ public class Irasas {
         "Unikalus numeris: %s\n" + "Suma: %.2f\n" + "Kategorija: %s\n" + "Papildoma info: %s",
         getUnikalusNr(), getSuma(), getKategorija(), getPapildomaInfo());
   }
+
+  @Override
+  public boolean equals(Object obj) {
+    if(obj instanceof Irasas){
+      return unikalusNr.equals(((Irasas) obj).getUnikalusNr());
+    }
+    return false;
+  }
 }
