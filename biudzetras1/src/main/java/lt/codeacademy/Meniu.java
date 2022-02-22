@@ -5,8 +5,8 @@ public class Meniu {
 
   public static String pagrindinisMeniu() {
     System.out.println(
-        "[1] - prideti pajamas\n[2] - prideti islaidas\n[3] - gauti pajamas\n[4] - gauti islaidas\n"
-            + "[5] - balansas\n[6] - visi irasai\n[7] - trinti irasa\n[x] - baigti");
+        "[1] - prideti pajamas\n[2] - prideti islaidas\n[3] - gauti irasa\n"
+            + "[4] - balansas\n[5] - visi irasai\n[6] - trinti irasa\n[x] - baigti");
     return Scan.scanLine();
   }
 
@@ -38,30 +38,14 @@ public class Meniu {
     return new IslaiduIrasas(suma, dataSuLaiku, kategorija, atsiskaitymoBudas, papildomaInfo);
   }
 
-  public static PajamuIrasas gautiPajamuIrasaMeniu(Biudzetas biudzetas){
-    System.out.println("Iveskite kategorija");
-    String kategorija = Scan.scanLine();
-    System.out.println("Iveskite data (yyyy-MM-dd)");
-    String data = Scan.scanLine();
-    return biudzetas.gautiPajamuIrasa(kategorija,data);
-  }
-
-  public static IslaiduIrasas gautiIslaiduIrasaMeniu(Biudzetas biudzetas){
-    System.out.println("Iveskite kategorija");
-    String kategorija = Scan.scanLine();
-    System.out.println("Iveskite data su laiku (yyyy-MM-dd HH:mm)");
-    String dataSuLaiku = Scan.scanLine();
-    return biudzetas.gautiIslaiduIrasa(kategorija,dataSuLaiku);
+  public static Irasas gautiIrasaMeniu(Biudzetas biudzetas){
+    System.out.println("Iveskite iraso numeri");
+    String unikalusNr = Scan.scanLine();
+    return biudzetas.gautiIrasa(unikalusNr);
   }
 
   public static void spausdintiVisusIrasus(Biudzetas biudzetas){
-    for (PajamuIrasas irasas : biudzetas.getPajamos()){
-      System.out.println(irasas);
-    }
-    System.out.println();
-    for (IslaiduIrasas irasas : biudzetas.getIslaidos()){
-      System.out.println(irasas);
-    }
+    System.out.println(biudzetas.getIrasai());
   }
 
   public static void trintiIrasaMeniu(Biudzetas biudzetas){

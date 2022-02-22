@@ -11,24 +11,21 @@ public class Programa {
       }
       switch (selectedChoice) {
         case "1":
-          biudzetas.pridetiPajamuIrasa(Meniu.pridetiPajamasMeniu());
+          biudzetas.pridetiIrasa(Meniu.pridetiPajamasMeniu());
           break;
         case "2":
-          biudzetas.pridetiIslaiduIrasa(Meniu.pridetiIslaidasMeniu());
+          biudzetas.pridetiIrasa(Meniu.pridetiIslaidasMeniu());
           break;
         case "3":
-          System.out.println(Meniu.gautiPajamuIrasaMeniu(biudzetas));
+          System.out.println(Meniu.gautiIrasaMeniu(biudzetas));
           break;
         case "4":
-          System.out.println(Meniu.gautiIslaiduIrasaMeniu(biudzetas));
-          break;
-        case "5":
           System.out.println("Balansas: " + biudzetas.balansas());
           break;
-        case "6":
+        case "5":
           Meniu.spausdintiVisusIrasus(biudzetas);
           break;
-        case "7":
+        case "6":
           Meniu.trintiIrasaMeniu(biudzetas);
           break;
         default:
