@@ -1,6 +1,7 @@
 package lt.codeacademy;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Formatter;
 
@@ -16,6 +17,9 @@ public class PajamuIrasas extends Irasas {
   }
 
   public LocalDate stringToDate(String data) {
+    if(data.equals("")){
+      return LocalDate.now();
+    }
     DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     return LocalDate.parse(data, format);
   }

@@ -20,6 +20,9 @@ public class IslaiduIrasas extends Irasas {
   }
 
   public LocalDateTime stringToDate(String data) {
+    if(data.equals("")){
+      return LocalDateTime.now();
+    }
     DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
     return LocalDateTime.parse(data, format);
   }
