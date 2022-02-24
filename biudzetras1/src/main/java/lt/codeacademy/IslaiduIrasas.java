@@ -35,11 +35,18 @@ public class IslaiduIrasas extends Irasas {
     return atsiskaitymoBudas;
   }
 
+  public void setDataSuLaiku(String dataSuLaiku) {
+    this.dataSuLaiku = stringToDate(dataSuLaiku);
+  }
+
+  public void setAtsiskaitymoBudas(String atsiskaitymoBudas) {
+    this.atsiskaitymoBudas = atsiskaitymoBudas;
+  }
+
   @Override
   public String toString() {
     return String.format(
-        "==ISLAIDU IRASAS==\n"
-            + super.toString()
+        super.toString()
             + "\nData su laiku: %s\n"
             + "Atsiskaitymo budas: %s\n",
         getDataSuLaiku(),

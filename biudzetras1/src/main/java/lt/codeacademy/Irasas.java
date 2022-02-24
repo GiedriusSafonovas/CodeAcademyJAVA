@@ -39,6 +39,22 @@ public class Irasas {
     return papildomaInfo;
   }
 
+  public static void setCounter(int counter) {
+    Irasas.counter = counter;
+  }
+
+  public void setSuma(float suma) {
+    this.suma = suma;
+  }
+
+  public void setKategorija(String kategorija) {
+    this.kategorija = kategorija;
+  }
+
+  public void setPapildomaInfo(String papildomaInfo) {
+    this.papildomaInfo = papildomaInfo;
+  }
+
   @Override
   public String toString() {
     return String.format(

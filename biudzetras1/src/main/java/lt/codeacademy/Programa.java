@@ -3,6 +3,8 @@ package lt.codeacademy;
 public class Programa {
   public static void main(String[] args) {
     Biudzetas biudzetas = new Biudzetas();
+    PajamuIrasas pajamos = new PajamuIrasas(21.5f, "2022-02-06", "Pardavimai", true, "nera");
+    biudzetas.pridetiIrasa(pajamos);
 
     while (true) {
       String selectedChoice = Meniu.pagrindinisMeniu();
@@ -27,6 +29,9 @@ public class Programa {
           break;
         case "6":
           Meniu.trintiIrasaMeniu(biudzetas);
+          break;
+        case "7":
+          Meniu.redaguotiIrasaMeniu(biudzetas);
           break;
         default:
           System.out.println("Neteisinga komanda");

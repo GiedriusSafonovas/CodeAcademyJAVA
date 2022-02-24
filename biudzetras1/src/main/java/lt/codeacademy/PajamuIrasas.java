@@ -32,10 +32,18 @@ public class PajamuIrasas extends Irasas {
     return pozymisArIBanka;
   }
 
+  public void setData(String data) {
+    this.data = stringToDate(data);
+  }
+
+  public void setPozymisArIBanka(boolean pozymisArIBanka) {
+    this.pozymisArIBanka = pozymisArIBanka;
+  }
+
   @Override
   public String toString() {
     return String.format(
-        "==PAJAMU IRASAS==\n" + super.toString() + "\nData: %s\n" + "Ar pinigai gauti i banka: %b\n",
+        super.toString() + "\nData: %s\n" + "Ar pinigai gauti i banka: %b\n",
         getData(),
         isPozymisArIBanka());
   }

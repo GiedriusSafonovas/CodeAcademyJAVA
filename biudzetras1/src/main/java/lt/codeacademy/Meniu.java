@@ -2,11 +2,10 @@ package lt.codeacademy;
 
 public class Meniu {
 
-
   public static String pagrindinisMeniu() {
     System.out.println(
         "[1] - prideti pajamas\n[2] - prideti islaidas\n[3] - gauti irasa\n"
-            + "[4] - balansas\n[5] - visi irasai\n[6] - trinti irasa\n[x] - baigti");
+            + "[4] - balansas\n[5] - visi irasai\n[6] - trinti irasa\n[7] - redaguoti irasa\n[x] - baigti");
     return Scan.scanLine();
   }
 
@@ -38,19 +37,42 @@ public class Meniu {
     return new IslaiduIrasas(suma, dataSuLaiku, kategorija, atsiskaitymoBudas, papildomaInfo);
   }
 
-  public static Irasas gautiIrasaMeniu(Biudzetas biudzetas){
-    System.out.println("Iveskite iraso numeri");
-    String unikalusNr = Scan.scanLine();
+  private static String gautiIrasoNumeriIsVartotojo() {
+    System.out.println("Iveskite iraso unikalu numeri");
+    return Scan.scanLine();
+  }
+
+  public static Irasas gautiIrasaMeniu(Biudzetas biudzetas) {
+    String unikalusNr = gautiIrasoNumeriIsVartotojo();
     return biudzetas.gautiIrasa(unikalusNr);
   }
 
-  public static void spausdintiVisusIrasus(Biudzetas biudzetas){
+  public static void spausdintiVisusIrasus(Biudzetas biudzetas) {
     System.out.println(biudzetas.getIrasai());
   }
 
-  public static void trintiIrasaMeniu(Biudzetas biudzetas){
-    System.out.println("Iveskite iraso unikalu numeri");
-    String unikalusNr = Scan.scanLine();
+  public static void trintiIrasaMeniu(Biudzetas biudzetas) {
+    String unikalusNr = gautiIrasoNumeriIsVartotojo();
     biudzetas.trintiIrasa(unikalusNr);
+  }
+
+  public static void redaguotiIrasaMeniu(Biudzetas biudzetas) {
+    String unikalusNr = gautiIrasoNumeriIsVartotojo();
+    biudzetas.redaguotiIrasa(unikalusNr);
+  }
+
+  public static boolean arRedaguoti(String duomenys) {
+    while (true) {
+      System.out.println(duomenys);
+      System.out.println("[1] - redaguoti, [2] - toliau");
+      String atsakymas = Scan.scanLine();
+      if(atsakymas.equals("1")){
+        return true;
+      }else if(atsakymas.equals("2")){
+        return false;
+      }else {
+        System.out.println("Nezinoma komanda");
+      }
+    }
   }
 }
