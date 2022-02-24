@@ -1,5 +1,7 @@
 package lt.codeacademy;
 
+//3-ia dalis baigta
+
 public class Programa {
   public static void main(String[] args) {
     Biudzetas biudzetas = new Biudzetas();
