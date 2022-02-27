@@ -41,6 +41,9 @@ public class Programa {
         case "7":
           Meniu.redaguotiIrasaMeniu(biudzetas);
           break;
+        case "8":
+          Meniu.irasytiCSVMeniu(biudzetas);
+          break;
         default:
           System.out.println("Neteisinga komanda");
       }

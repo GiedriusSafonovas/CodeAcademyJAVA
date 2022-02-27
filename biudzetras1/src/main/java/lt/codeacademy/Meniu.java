@@ -8,7 +8,8 @@ public class Meniu {
   public static String pagrindinisMeniu() {
     System.out.println(
         "[1] - prideti pajamas\n[2] - prideti islaidas\n[3] - gauti irasa\n"
-            + "[4] - balansas\n[5] - visi irasai\n[6] - trinti irasa\n[7] - redaguoti irasa\n[x] - baigti");
+            + "[4] - balansas\n[5] - visi irasai\n[6] - trinti irasa\n[7] - redaguoti irasa\n"
+            + "[8] - irasyti i CSV\n[x] - baigti");
     return Scan.scanLine();
   }
 
@@ -56,18 +57,18 @@ public class Meniu {
 
   public static void trintiIrasaMeniu(Biudzetas biudzetas) {
     String unikalusNr = gautiIrasoNumeriIsVartotojo();
-    if(biudzetas.trintiIrasa(unikalusNr)){
+    if (biudzetas.trintiIrasa(unikalusNr)) {
       System.out.println("Irasas " + unikalusNr + " istrintas");
-    }else {
+    } else {
       System.out.println("Tokio iraso nera");
     }
   }
 
   public static void redaguotiIrasaMeniu(Biudzetas biudzetas) {
     String unikalusNr = gautiIrasoNumeriIsVartotojo();
-    if(biudzetas.redaguotiIrasa(unikalusNr)){
+    if (biudzetas.redaguotiIrasa(unikalusNr)) {
       System.out.println("Iraso duomenys pakeisti");
-    }else {
+    } else {
       System.out.println("Tokio iraso nera");
     }
   }
@@ -77,13 +78,17 @@ public class Meniu {
       System.out.println(duomenys);
       System.out.println("[1] - redaguoti, [2] - toliau");
       String atsakymas = Scan.scanLine();
-      if(atsakymas.equals("1")){
+      if (atsakymas.equals("1")) {
         return true;
-      }else if(atsakymas.equals("2")){
+      } else if (atsakymas.equals("2")) {
         return false;
-      }else {
+      } else {
         System.out.println("Nezinoma komanda");
       }
     }
+  }
+
+  public static void irasytiCSVMeniu(Biudzetas biudzetas) {
+    CSVHandler.writeToCsv(biudzetas.gautiPajamuIrasus(), biudzetas.gautiIslaiduIrasus());
   }
 }
