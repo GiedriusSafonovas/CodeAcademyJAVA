@@ -56,12 +56,20 @@ public class Meniu {
 
   public static void trintiIrasaMeniu(Biudzetas biudzetas) {
     String unikalusNr = gautiIrasoNumeriIsVartotojo();
-    biudzetas.trintiIrasa(unikalusNr);
+    if(biudzetas.trintiIrasa(unikalusNr)){
+      System.out.println("Irasas " + unikalusNr + " istrintas");
+    }else {
+      System.out.println("Tokio iraso nera");
+    }
   }
 
   public static void redaguotiIrasaMeniu(Biudzetas biudzetas) {
     String unikalusNr = gautiIrasoNumeriIsVartotojo();
-    biudzetas.redaguotiIrasa(unikalusNr);
+    if(biudzetas.redaguotiIrasa(unikalusNr)){
+      System.out.println("Iraso duomenys pakeisti");
+    }else {
+      System.out.println("Tokio iraso nera");
+    }
   }
 
   public static boolean arRedaguoti(String duomenys) {

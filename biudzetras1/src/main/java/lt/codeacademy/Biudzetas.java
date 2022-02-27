@@ -62,15 +62,23 @@ public class Biudzetas {
     return sum;
   }
 
-  public void trintiIrasa(String trinamoIrasoUnikalusNr) {
+  public boolean trintiIrasa(String trinamoIrasoUnikalusNr) {
     Irasas trinamasIrasas = new Irasas(trinamoIrasoUnikalusNr);
-    irasai.remove(trinamasIrasas);
+    if(irasai.contains(trinamasIrasas)){
+      irasai.remove(trinamasIrasas);
+      return true;
+    }
+    return false;
   }
 
   // TODO: sugalvoti geresni metoda redagavimui
-  public void redaguotiIrasa(String unikalusNr) {
+  public boolean redaguotiIrasa(String unikalusNr) {
 
     Irasas redaguojamasIrasas = gautiIrasa(unikalusNr);
+    if(!irasai.contains(redaguojamasIrasas)){
+      return false;
+    }
+
     String[] duomenys = redaguojamasIrasas.toString().split("\n");
     List<Field> tevinesKlasesLaukai =
         List.of(redaguojamasIrasas.getClass().getSuperclass().getDeclaredFields());
@@ -93,6 +101,7 @@ public class Biudzetas {
         }
       }
     }
+    return true;
   }
 
   public Irasas redaguotiIrasoLaukus(int laukas, Irasas irasas) {
