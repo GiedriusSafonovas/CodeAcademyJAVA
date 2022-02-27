@@ -1,12 +1,18 @@
 package lt.codeacademy;
 
-//3-ia dalis baigta
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class Programa {
   public static void main(String[] args) {
     Biudzetas biudzetas = new Biudzetas();
-    PajamuIrasas pajamos = new PajamuIrasas(21.5f, "2022-02-06", "Pardavimai", true, "nera");
+
+    //FOR Testing
+    DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    LocalDate data = LocalDate.parse("2022-02-06", format);
+    PajamuIrasas pajamos = new PajamuIrasas(21.5f, data, "Pardavimai", true, "nera");
     biudzetas.pridetiIrasa(pajamos);
+    //
 
     while (true) {
       String selectedChoice = Meniu.pagrindinisMeniu();

@@ -2,6 +2,7 @@ package lt.codeacademy;
 
 import java.lang.reflect.Field;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -123,7 +124,7 @@ public class Biudzetas {
         // data
       case 4:
         System.out.println("Iveskite nauja data (yyyy-MM-dd)");
-        String data = Scan.scanLine();
+        LocalDate data = Scan.scanDate();
         irasas.setData(data);
         break;
         // ar gauta i banka
@@ -141,7 +142,7 @@ public class Biudzetas {
         // data su laiku
       case 4:
         System.out.println("Iveskite nauja data su laiku (yyyy-MM-dd hh:mm)");
-        String data = Scan.scanLine();
+        LocalDateTime data = Scan.scanDateTime();
         irasas.setDataSuLaiku(data);
         break;
         // atsiskaitymo budas

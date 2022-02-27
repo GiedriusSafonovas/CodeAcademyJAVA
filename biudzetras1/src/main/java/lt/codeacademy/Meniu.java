@@ -1,5 +1,8 @@
 package lt.codeacademy;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+
 public class Meniu {
 
   public static String pagrindinisMeniu() {
@@ -13,7 +16,7 @@ public class Meniu {
     System.out.println("Iveskite suma");
     float suma = Scan.scanFloat();
     System.out.println("Iveskite data (yyyy-MM-dd)");
-    String data = Scan.scanLine();
+    LocalDate data = Scan.scanDate();
     System.out.println("Iveskite kategorija");
     String kategorija = Scan.scanLine();
     System.out.println("Iveskite ar pinigai gauti i banka (true/false)");
@@ -27,7 +30,7 @@ public class Meniu {
     System.out.println("Iveskite suma");
     float suma = Scan.scanFloat();
     System.out.println("Iveskite data su laiku (yyyy-MM-dd HH:mm)");
-    String dataSuLaiku = Scan.scanLine();
+    LocalDateTime dataSuLaiku = Scan.scanDateTime();
     System.out.println("Iveskite kategorija");
     String kategorija = Scan.scanLine();
     System.out.println("Iveskite atsiskaitymo buda");
