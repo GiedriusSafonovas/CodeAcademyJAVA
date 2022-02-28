@@ -47,8 +47,7 @@ public class Scan {
         if (data.equals("")) {
           return LocalDate.now();
         }
-        DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        return LocalDate.parse(data, format);
+        return stringToDate(data);
       } catch (DateTimeParseException e) {
         System.out.println(
             "Klaida! Ivestas neteisingas datos formatas (yyyy-MM-dd), bandykite dar karta");
@@ -63,12 +62,25 @@ public class Scan {
         if (data.equals("")) {
           return LocalDateTime.now();
         }
-        DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm");
-        return LocalDateTime.parse(data, format);
+        return stringToDateTime(data);
       } catch (DateTimeParseException e) {
         System.out.println(
-            "Klaida! Ivestas neteisingas datos formatas (yyyy-MM-dd hh:mm), bandykite dar karta");
+            "Klaida! Ivestas neteisingas datos formatas (yyyy-MM-dd HH:mm), bandykite dar karta");
       }
+    }
+  }
+
+  public static LocalDate stringToDate(String data) throws DateTimeParseException {
+    DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    return LocalDate.parse(data, format);
+  }
+
+  public static LocalDateTime stringToDateTime(String data) throws DateTimeParseException {
+    try {
+      DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+      return LocalDateTime.parse(data, format);
+    } catch (DateTimeParseException e) {
+      return LocalDateTime.parse(data);
     }
   }
 }

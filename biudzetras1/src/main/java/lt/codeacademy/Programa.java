@@ -6,13 +6,7 @@ import java.time.format.DateTimeFormatter;
 public class Programa {
   public static void main(String[] args) {
     Biudzetas biudzetas = new Biudzetas();
-
-    //FOR Testing
-    DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-    LocalDate data = LocalDate.parse("2022-02-06", format);
-    PajamuIrasas pajamos = new PajamuIrasas(21.5f, data, "Pardavimai", true, "nera");
-    biudzetas.pridetiIrasa(pajamos);
-    //
+    CSVHandler.readFromCSV(biudzetas);
 
     while (true) {
       String selectedChoice = Meniu.pagrindinisMeniu();
