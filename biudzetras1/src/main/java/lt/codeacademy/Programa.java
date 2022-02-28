@@ -1,8 +1,5 @@
 package lt.codeacademy;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-
 public class Programa {
   public static void main(String[] args) {
     Biudzetas biudzetas = new Biudzetas();

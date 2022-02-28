@@ -1,16 +1,17 @@
 package lt.codeacademy;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.Formatter;
 
 public class PajamuIrasas extends Irasas {
   private LocalDate data;
   private boolean pozymisArIBanka;
 
   public PajamuIrasas(
-      float suma, LocalDate data, String kategorija, boolean pozymisArIBanka, String papildomaInfo) {
+      float suma,
+      LocalDate data,
+      String kategorija,
+      boolean pozymisArIBanka,
+      String papildomaInfo) {
     super("P", suma, kategorija, papildomaInfo);
     this.data = data;
     this.pozymisArIBanka = pozymisArIBanka;

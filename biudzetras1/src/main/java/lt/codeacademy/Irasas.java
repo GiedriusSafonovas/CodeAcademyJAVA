@@ -7,7 +7,7 @@ public class Irasas {
   private String kategorija;
   private String papildomaInfo;
 
-  public Irasas(String unikalusNr){
+  public Irasas(String unikalusNr) {
     this.unikalusNr = unikalusNr;
   }
 
@@ -64,7 +64,7 @@ public class Irasas {
 
   @Override
   public boolean equals(Object obj) {
-    if(obj instanceof Irasas){
+    if (obj instanceof Irasas) {
       return unikalusNr.equals(((Irasas) obj).getUnikalusNr());
     }
     return false;

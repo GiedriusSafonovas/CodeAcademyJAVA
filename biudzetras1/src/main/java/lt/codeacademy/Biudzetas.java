@@ -64,7 +64,7 @@ public class Biudzetas {
 
   public boolean trintiIrasa(String trinamoIrasoUnikalusNr) {
     Irasas trinamasIrasas = new Irasas(trinamoIrasoUnikalusNr);
-    if(irasai.contains(trinamasIrasas)){
+    if (irasai.contains(trinamasIrasas)) {
       irasai.remove(trinamasIrasas);
       return true;
     }
@@ -75,7 +75,7 @@ public class Biudzetas {
   public boolean redaguotiIrasa(String unikalusNr) {
 
     Irasas redaguojamasIrasas = gautiIrasa(unikalusNr);
-    if(!irasai.contains(redaguojamasIrasas)){
+    if (!irasai.contains(redaguojamasIrasas)) {
       return false;
     }
 
