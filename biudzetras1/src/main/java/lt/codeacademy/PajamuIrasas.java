@@ -21,7 +21,7 @@ public class PajamuIrasas extends Irasas {
     return data;
   }
 
-  public boolean isPozymisArIBanka() {
+  public boolean getPozymisArIBanka() {
     return pozymisArIBanka;
   }
 
@@ -38,6 +38,6 @@ public class PajamuIrasas extends Irasas {
     return String.format(
         super.toString() + "\nData: %s\n" + "Ar pinigai gauti i banka: %b\n",
         getData(),
-        isPozymisArIBanka());
+        getPozymisArIBanka());
   }
 }

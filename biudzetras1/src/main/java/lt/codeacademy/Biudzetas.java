@@ -1,10 +1,13 @@
 package lt.codeacademy;
 
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class Biudzetas {
   private ArrayList<Irasas> irasai = new ArrayList<>();
@@ -71,97 +74,69 @@ public class Biudzetas {
     return false;
   }
 
-  // TODO: sugalvoti geresni metoda redagavimui
   public boolean redaguotiIrasa(String unikalusNr) {
-
     Irasas redaguojamasIrasas = gautiIrasa(unikalusNr);
     if (!irasai.contains(redaguojamasIrasas)) {
       return false;
     }
 
-    String[] duomenys = redaguojamasIrasas.toString().split("\n");
-    List<Field> tevinesKlasesLaukai =
-        List.of(redaguojamasIrasas.getClass().getSuperclass().getDeclaredFields());
-    int tevinesKlasesLaukuSkaicius = tevinesKlasesLaukai.size() - 2; // be counter ir ID
+    Class klase = redaguojamasIrasas.getClass();
+    Class superKlase = klase.getSuperclass();
 
-    for (int i = 0; i < duomenys.length; i++) {
-      boolean tevinesKlasesDuomenys = (i <= tevinesKlasesLaukuSkaicius);
+    redaguotiIrasaPagalKlase(redaguojamasIrasas, superKlase);
+    redaguotiIrasaPagalKlase(redaguojamasIrasas, klase);
 
-      if (i == 0) { // skip ID, nes nekoreguojamas
-        continue;
-      }
-
-      if (Meniu.arRedaguoti(duomenys[i])) {
-        if (tevinesKlasesDuomenys) {
-          redaguojamasIrasas = redaguotiIrasoLaukus(i, redaguojamasIrasas);
-        } else if (redaguojamasIrasas instanceof PajamuIrasas) {
-          redaguojamasIrasas = redaguotiIrasoLaukus(i, (PajamuIrasas) redaguojamasIrasas);
-        } else {
-          redaguojamasIrasas = redaguotiIrasoLaukus(i, (IslaiduIrasas) redaguojamasIrasas);
-        }
-      }
-    }
+    atnaujintiIrasa(redaguojamasIrasas);
     return true;
   }
 
-  public Irasas redaguotiIrasoLaukus(int laukas, Irasas irasas) {
-    switch (laukas) {
-        // suma
-      case 1:
-        System.out.println("Iveskite nauja suma");
-        float suma = Scan.scanFloat();
-        irasas.setSuma(suma);
-        break;
-        // kategorija
-      case 2:
-        System.out.println("Iveskite nauja kategorija");
-        String kategorija = Scan.scanLine();
-        irasas.setKategorija(kategorija);
-        break;
-        // papildoma info
-      case 3:
-        System.out.println("Iveskite nauja papildoma info");
-        String papildomaInfo = Scan.scanLine();
-        irasas.setPapildomaInfo(papildomaInfo);
-        break;
+  public void redaguotiIrasaPagalKlase(Irasas redaguojamasIrasas, Class klase) {
+    List<Field> klasesLaukai = List.of(klase.getDeclaredFields());
+    List<Class> setteriuParametruTipai = new ArrayList<>();
+    for (Field laukas : klasesLaukai) {
+      setteriuParametruTipai.add(laukas.getType());
     }
-    return irasas;
+
+    for (Field laukas : klasesLaukai) {
+      String laukoPavadinimas = laukas.getName();
+      if (laukoPavadinimas.equals("counter") || laukoPavadinimas.equals("unikalusNr")) {
+        continue;
+      }
+      try {
+        String geterioPavadinimas =
+            "get"
+                + laukoPavadinimas.substring(0, 1).toUpperCase(Locale.ROOT)
+                + laukoPavadinimas.substring(1);
+        Object laukoReiksme = klase.getMethod(geterioPavadinimas).invoke(redaguojamasIrasas);
+
+        if (Meniu.arRedaguoti(laukoPavadinimas.toUpperCase(Locale.ROOT) + " = " + laukoReiksme)) {
+          String setterioPavadinimas =
+              "set"
+                  + laukoPavadinimas.substring(0, 1).toUpperCase(Locale.ROOT)
+                  + laukoPavadinimas.substring(1);
+          System.out.println("Iveskite nauja reiksme");
+
+          List<Method> scannerioMetodai = List.of(Scan.class.getDeclaredMethods());
+          Object naujaVerte = null;
+          for (Method scanneris : scannerioMetodai) {
+            if (scanneris.getReturnType() == laukas.getType()
+                && scanneris.getParameterTypes().length == 0) {
+              naujaVerte = scanneris.invoke(null);
+            }
+          }
+          setNewValue(klase, redaguojamasIrasas, laukas.getType(), setterioPavadinimas, naujaVerte);
+        }
+
+      } catch (NoSuchMethodException | InvocationTargetException | IllegalAccessException e) {
+        e.printStackTrace();
+      }
+    }
   }
 
-  public Irasas redaguotiIrasoLaukus(int laukas, PajamuIrasas irasas) {
-    switch (laukas) {
-        // data
-      case 4:
-        System.out.println("Iveskite nauja data (yyyy-MM-dd)");
-        LocalDate data = Scan.scanDate();
-        irasas.setData(data);
-        break;
-        // ar gauta i banka
-      case 5:
-        System.out.println("Iveskite ar pinigai gauti i banka (true/false)");
-        boolean arGautiIBanka = Scan.scanBoolean();
-        irasas.setPozymisArIBanka(arGautiIBanka);
-        break;
-    }
-    return irasas;
-  }
-
-  public Irasas redaguotiIrasoLaukus(int laukas, IslaiduIrasas irasas) {
-    switch (laukas) {
-        // data su laiku
-      case 4:
-        System.out.println("Iveskite nauja data su laiku (yyyy-MM-dd hh:mm)");
-        LocalDateTime data = Scan.scanDateTime();
-        irasas.setDataSuLaiku(data);
-        break;
-        // atsiskaitymo budas
-      case 5:
-        System.out.println("Iveskite nauja atsiskaitymo buda");
-        String atsiskaitymoBudas = Scan.scanLine();
-        irasas.setAtsiskaitymoBudas(atsiskaitymoBudas);
-        break;
-    }
-    return irasas;
+  public void setNewValue(
+      Class klase, Irasas irasas, Class duomenuTipas, String setteris, Object naujaVerte)
+      throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+    klase.getMethod(setteris, duomenuTipas).invoke(irasas, naujaVerte);
   }
 
   public void atnaujintiIrasa(Irasas irasas) {

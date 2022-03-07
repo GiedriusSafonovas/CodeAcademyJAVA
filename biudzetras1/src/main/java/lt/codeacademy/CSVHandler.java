@@ -29,7 +29,7 @@ public class CSVHandler {
         writer.append(DELIMITER);
         writer.append(String.valueOf(irasas.getData()));
         writer.append(DELIMITER);
-        writer.append(String.valueOf(irasas.isPozymisArIBanka()));
+        writer.append(String.valueOf(irasas.getPozymisArIBanka()));
         writer.append("\n");
       }
       for (IslaiduIrasas irasas : islaiduDuomenys) {
@@ -86,5 +86,4 @@ public class CSVHandler {
     }
   }
 }
-// "ID,1suma,2kategorija,3papildoma info,4data,5pozymis ar i banka,6data su laiku,atsiskaitymo
-// budas";
+
