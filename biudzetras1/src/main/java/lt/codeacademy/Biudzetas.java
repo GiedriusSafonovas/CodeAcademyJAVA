@@ -3,8 +3,6 @@ package lt.codeacademy;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -90,12 +88,8 @@ public class Biudzetas {
     return true;
   }
 
-  public void redaguotiIrasaPagalKlase(Irasas redaguojamasIrasas, Class klase) {
+  private void redaguotiIrasaPagalKlase(Irasas redaguojamasIrasas, Class klase) {
     List<Field> klasesLaukai = List.of(klase.getDeclaredFields());
-    List<Class> setteriuParametruTipai = new ArrayList<>();
-    for (Field laukas : klasesLaukai) {
-      setteriuParametruTipai.add(laukas.getType());
-    }
 
     for (Field laukas : klasesLaukai) {
       String laukoPavadinimas = laukas.getName();
@@ -103,28 +97,11 @@ public class Biudzetas {
         continue;
       }
       try {
-        String geterioPavadinimas =
-            "get"
-                + laukoPavadinimas.substring(0, 1).toUpperCase(Locale.ROOT)
-                + laukoPavadinimas.substring(1);
+        String geterioPavadinimas = gautiGetterioPavadinima(laukoPavadinimas);
         Object laukoReiksme = klase.getMethod(geterioPavadinimas).invoke(redaguojamasIrasas);
 
         if (Meniu.arRedaguoti(laukoPavadinimas.toUpperCase(Locale.ROOT) + " = " + laukoReiksme)) {
-          String setterioPavadinimas =
-              "set"
-                  + laukoPavadinimas.substring(0, 1).toUpperCase(Locale.ROOT)
-                  + laukoPavadinimas.substring(1);
-          System.out.println("Iveskite nauja reiksme");
-
-          List<Method> scannerioMetodai = List.of(Scan.class.getDeclaredMethods());
-          Object naujaVerte = null;
-          for (Method scanneris : scannerioMetodai) {
-            if (scanneris.getReturnType() == laukas.getType()
-                && scanneris.getParameterTypes().length == 0) {
-              naujaVerte = scanneris.invoke(null);
-            }
-          }
-          setNewValue(klase, redaguojamasIrasas, laukas.getType(), setterioPavadinimas, naujaVerte);
+          redaguotiLauka(laukoPavadinimas, laukas, klase, redaguojamasIrasas);
         }
 
       } catch (NoSuchMethodException | InvocationTargetException | IllegalAccessException e) {
@@ -133,10 +110,45 @@ public class Biudzetas {
     }
   }
 
+  private void redaguotiLauka(
+      String laukoPavadinimas, Field laukas, Class klase, Irasas redaguojamasIrasas)
+      throws IllegalAccessException, InvocationTargetException, NoSuchMethodException {
+    String setterioPavadinimas = gautiSetterioPavadinima(laukoPavadinimas);
+    System.out.println("Iveskite nauja reiksme");
+
+    List<Method> scannerioMetodai = List.of(Scan.class.getDeclaredMethods());
+    Object naujaVerte = gautiNaujaLaukoReiksme(scannerioMetodai, laukas);
+
+    setNewValue(klase, redaguojamasIrasas, laukas.getType(), setterioPavadinimas, naujaVerte);
+  }
+
+  private Object gautiNaujaLaukoReiksme(List<Method> scannerioMetodai, Field laukas)
+      throws IllegalAccessException, InvocationTargetException {
+    for (Method scanneris : scannerioMetodai) {
+      if (scanneris.getReturnType() == laukas.getType()
+          && scanneris.getParameterTypes().length == 0) {
+        return scanneris.invoke(null);
+      }
+    }
+    return null;
+  }
+
   public void setNewValue(
       Class klase, Irasas irasas, Class duomenuTipas, String setteris, Object naujaVerte)
       throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
     klase.getMethod(setteris, duomenuTipas).invoke(irasas, naujaVerte);
+  }
+
+  private String gautiGetterioPavadinima(String laukoPavadinimas) {
+    return "get"
+            + laukoPavadinimas.substring(0, 1).toUpperCase(Locale.ROOT)
+            + laukoPavadinimas.substring(1);
+  }
+
+  private String gautiSetterioPavadinima(String laukoPavadinimas) {
+    return "set"
+            + laukoPavadinimas.substring(0, 1).toUpperCase(Locale.ROOT)
+            + laukoPavadinimas.substring(1);
   }
 
   public void atnaujintiIrasa(Irasas irasas) {
