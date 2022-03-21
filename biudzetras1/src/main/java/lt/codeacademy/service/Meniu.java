@@ -1,6 +1,6 @@
 package lt.codeacademy.service;
 
-import lt.codeacademy.biudzetas.Biudzetas;
+import lt.codeacademy.repository.Biudzetas;
 import lt.codeacademy.irasai.Irasas;
 import lt.codeacademy.irasai.IslaiduIrasas;
 import lt.codeacademy.irasai.PajamuIrasas;
@@ -46,13 +46,13 @@ public class Meniu {
     return new IslaiduIrasas(suma, dataSuLaiku, kategorija, atsiskaitymoBudas, papildomaInfo);
   }
 
-  private static String gautiIrasoNumeriIsVartotojo() {
+  private static long gautiIrasoNumeriIsVartotojo() {
     System.out.println("Iveskite iraso unikalu numeri");
-    return Scan.scanLine();
+    return Scan.scanLong();
   }
 
   public static Irasas gautiIrasaMeniu(Biudzetas biudzetas) {
-    String unikalusNr = gautiIrasoNumeriIsVartotojo();
+    long unikalusNr = gautiIrasoNumeriIsVartotojo();
     return IrasaiHandler.gautiIrasa(unikalusNr, biudzetas);
   }
 
@@ -61,7 +61,7 @@ public class Meniu {
   }
 
   public static void trintiIrasaMeniu(Biudzetas biudzetas) {
-    String unikalusNr = gautiIrasoNumeriIsVartotojo();
+    long unikalusNr = gautiIrasoNumeriIsVartotojo();
     if (IrasaiHandler.trintiIrasa(unikalusNr, biudzetas)) {
       System.out.println("Irasas " + unikalusNr + " istrintas");
     } else {
@@ -70,7 +70,7 @@ public class Meniu {
   }
 
   public static void redaguotiIrasaMeniu(Biudzetas biudzetas) {
-    String unikalusNr = gautiIrasoNumeriIsVartotojo();
+    long unikalusNr = gautiIrasoNumeriIsVartotojo();
     if (IrasaiHandler.redaguotiIrasa(unikalusNr, biudzetas)) {
       System.out.println("Iraso duomenys pakeisti");
     } else {

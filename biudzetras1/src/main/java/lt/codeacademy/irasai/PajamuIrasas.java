@@ -1,9 +1,19 @@
 package lt.codeacademy.irasai;
 
+import lombok.NoArgsConstructor;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import java.time.LocalDate;
 
+@Entity
+@NoArgsConstructor
+@Table(schema = "biudzetas")
 public class PajamuIrasas extends Irasas {
+  @Column
   private LocalDate data;
+  @Column
   private boolean pozymisArIBanka;
 
   public PajamuIrasas(
@@ -12,7 +22,7 @@ public class PajamuIrasas extends Irasas {
       String kategorija,
       boolean pozymisArIBanka,
       String papildomaInfo) {
-    super("P", suma, kategorija, papildomaInfo);
+    super(suma, kategorija, papildomaInfo);
     this.data = data;
     this.pozymisArIBanka = pozymisArIBanka;
   }

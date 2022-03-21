@@ -1,6 +1,6 @@
 package lt.codeacademy.service;
 
-import lt.codeacademy.biudzetas.Biudzetas;
+import lt.codeacademy.repository.Biudzetas;
 import lt.codeacademy.irasai.Irasas;
 
 import java.lang.reflect.Field;

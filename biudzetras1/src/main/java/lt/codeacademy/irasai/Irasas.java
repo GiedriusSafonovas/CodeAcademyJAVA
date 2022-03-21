@@ -1,29 +1,45 @@
 package lt.codeacademy.irasai;
 
+import lombok.NoArgsConstructor;
+import lt.codeacademy.utils.UniqueNumberTracker;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.Table;
+
+@NoArgsConstructor
+@Entity
+@Inheritance(strategy = InheritanceType.JOINED)
+@Table(schema = "biudzetas")
 public class Irasas {
-  private static int counter;
-  private final String unikalusNr;
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @Id
+  @Column
+  private long unikalusNr;
+  @Column
   private float suma;
+  @Column
   private String kategorija;
+  @Column
   private String papildomaInfo;
 
-  public Irasas(String unikalusNr) {
+  public Irasas(long unikalusNr) {
     this.unikalusNr = unikalusNr;
   }
 
-  public Irasas(String irasoTipas, float suma, String kategorija, String papildomaInfo) {
-    counter++;
-    this.unikalusNr = irasoTipas + counter;
+  public Irasas(float suma, String kategorija, String papildomaInfo) {
+    this.unikalusNr = UniqueNumberTracker.getCounter();
     this.suma = suma;
     this.kategorija = kategorija;
     this.papildomaInfo = papildomaInfo;
   }
 
-  public static int getCounter() {
-    return counter;
-  }
-
-  public String getUnikalusNr() {
+  public long getUnikalusNr() {
     return unikalusNr;
   }
 
@@ -39,8 +55,8 @@ public class Irasas {
     return papildomaInfo;
   }
 
-  public static void setCounter(int counter) {
-    Irasas.counter = counter;
+  public void setUnikalusNr(long unikalusNr) {
+    this.unikalusNr = unikalusNr;
   }
 
   public void setSuma(float suma) {
@@ -65,7 +81,7 @@ public class Irasas {
   @Override
   public boolean equals(Object obj) {
     if (obj instanceof Irasas) {
-      return unikalusNr.equals(((Irasas) obj).getUnikalusNr());
+      return (unikalusNr == (((Irasas) obj).getUnikalusNr()));
     }
     return false;
   }

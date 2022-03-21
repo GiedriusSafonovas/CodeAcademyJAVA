@@ -1,6 +1,6 @@
 package lt.codeacademy.service;
 
-import lt.codeacademy.biudzetas.Biudzetas;
+import lt.codeacademy.repository.Biudzetas;
 import lt.codeacademy.irasai.IslaiduIrasas;
 import lt.codeacademy.irasai.PajamuIrasas;
 
@@ -23,7 +23,7 @@ public class CSVHandler {
       writer.append(HEADER);
       writer.append("\n");
       for (PajamuIrasas irasas : pajamuDuomenys) {
-        writer.append(irasas.getUnikalusNr());
+        writer.append(String.valueOf(irasas.getUnikalusNr()));
         writer.append(DELIMITER);
         writer.append(String.valueOf(irasas.getSuma()));
         writer.append(DELIMITER);
@@ -37,7 +37,7 @@ public class CSVHandler {
         writer.append("\n");
       }
       for (IslaiduIrasas irasas : islaiduDuomenys) {
-        writer.append(irasas.getUnikalusNr());
+        writer.append(String.valueOf(irasas.getUnikalusNr()));
         writer.append(DELIMITER);
         writer.append(String.valueOf(irasas.getSuma()));
         writer.append(DELIMITER);

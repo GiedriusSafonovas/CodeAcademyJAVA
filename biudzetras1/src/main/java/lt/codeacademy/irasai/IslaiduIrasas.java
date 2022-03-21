@@ -1,9 +1,19 @@
 package lt.codeacademy.irasai;
 
+import lombok.NoArgsConstructor;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import java.time.LocalDateTime;
 
+@Entity
+@NoArgsConstructor
+@Table(schema = "biudzetas")
 public class IslaiduIrasas extends Irasas {
+  @Column
   private LocalDateTime dataSuLaiku;
+  @Column
   private String atsiskaitymoBudas;
 
   public IslaiduIrasas(
@@ -13,7 +23,7 @@ public class IslaiduIrasas extends Irasas {
       String atsiskaitymoBudas,
       String papildomaInfo) {
 
-    super("I", suma, kategorija, papildomaInfo);
+    super(suma, kategorija, papildomaInfo);
     this.dataSuLaiku = dataSuLaiku;
     this.atsiskaitymoBudas = atsiskaitymoBudas;
   }

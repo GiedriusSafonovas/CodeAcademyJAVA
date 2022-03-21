@@ -1,6 +1,6 @@
 package lt.codeacademy;
 
-import lt.codeacademy.biudzetas.Biudzetas;
+import lt.codeacademy.repository.Biudzetas;
 import lt.codeacademy.service.CSVHandler;
 import lt.codeacademy.service.IrasaiHandler;
 import lt.codeacademy.service.Meniu;
