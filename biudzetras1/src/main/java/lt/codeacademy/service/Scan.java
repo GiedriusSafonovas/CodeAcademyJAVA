@@ -1,4 +1,4 @@
-package lt.codeacademy;
+package lt.codeacademy.service;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;

@@ -1,4 +1,4 @@
-package lt.codeacademy;
+package lt.codeacademy.irasai;
 
 import java.time.LocalDateTime;
 

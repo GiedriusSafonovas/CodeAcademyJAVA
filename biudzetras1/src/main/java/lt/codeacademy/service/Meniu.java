@@ -1,4 +1,9 @@
-package lt.codeacademy;
+package lt.codeacademy.service;
+
+import lt.codeacademy.biudzetas.Biudzetas;
+import lt.codeacademy.irasai.Irasas;
+import lt.codeacademy.irasai.IslaiduIrasas;
+import lt.codeacademy.irasai.PajamuIrasas;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -48,7 +53,7 @@ public class Meniu {
 
   public static Irasas gautiIrasaMeniu(Biudzetas biudzetas) {
     String unikalusNr = gautiIrasoNumeriIsVartotojo();
-    return biudzetas.gautiIrasa(unikalusNr);
+    return IrasaiHandler.gautiIrasa(unikalusNr, biudzetas);
   }
 
   public static void spausdintiVisusIrasus(Biudzetas biudzetas) {
@@ -57,7 +62,7 @@ public class Meniu {
 
   public static void trintiIrasaMeniu(Biudzetas biudzetas) {
     String unikalusNr = gautiIrasoNumeriIsVartotojo();
-    if (biudzetas.trintiIrasa(unikalusNr)) {
+    if (IrasaiHandler.trintiIrasa(unikalusNr, biudzetas)) {
       System.out.println("Irasas " + unikalusNr + " istrintas");
     } else {
       System.out.println("Tokio iraso nera");
@@ -66,7 +71,7 @@ public class Meniu {
 
   public static void redaguotiIrasaMeniu(Biudzetas biudzetas) {
     String unikalusNr = gautiIrasoNumeriIsVartotojo();
-    if (biudzetas.redaguotiIrasa(unikalusNr)) {
+    if (IrasaiHandler.redaguotiIrasa(unikalusNr, biudzetas)) {
       System.out.println("Iraso duomenys pakeisti");
     } else {
       System.out.println("Tokio iraso nera");
@@ -89,6 +94,6 @@ public class Meniu {
   }
 
   public static void irasytiCSVMeniu(Biudzetas biudzetas) {
-    CSVHandler.writeToCsv(biudzetas.gautiPajamuIrasus(), biudzetas.gautiIslaiduIrasus());
+    CSVHandler.writeToCsv(IrasaiHandler.gautiPajamuIrasus(biudzetas), IrasaiHandler.gautiIslaiduIrasus(biudzetas));
   }
 }

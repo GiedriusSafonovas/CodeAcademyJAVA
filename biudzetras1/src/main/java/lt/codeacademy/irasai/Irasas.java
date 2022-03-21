@@ -1,4 +1,4 @@
-package lt.codeacademy;
+package lt.codeacademy.irasai;
 
 public class Irasas {
   private static int counter;

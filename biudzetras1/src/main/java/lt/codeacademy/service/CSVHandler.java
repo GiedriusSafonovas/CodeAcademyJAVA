@@ -1,4 +1,8 @@
-package lt.codeacademy;
+package lt.codeacademy.service;
+
+import lt.codeacademy.biudzetas.Biudzetas;
+import lt.codeacademy.irasai.IslaiduIrasas;
+import lt.codeacademy.irasai.PajamuIrasas;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -13,7 +17,7 @@ public class CSVHandler {
   private static final String DELIMITER = ",";
 
   public static void writeToCsv(
-      List<PajamuIrasas> pajamuDuomenys, List<IslaiduIrasas> islaiduDuomenys) {
+          List<PajamuIrasas> pajamuDuomenys, List<IslaiduIrasas> islaiduDuomenys) {
 
     try (FileWriter writer = new FileWriter("Biudzeto irasai.csv")) {
       writer.append(HEADER);
@@ -62,21 +66,21 @@ public class CSVHandler {
       while ((line = reader.readLine()) != null) {
         String[] duomenys = line.split(DELIMITER);
         if (duomenys[0].charAt(0) == 'P') {
-          biudzetas.pridetiIrasa(
+          IrasaiHandler.pridetiIrasa(
               new PajamuIrasas(
                   Float.parseFloat(duomenys[1]),
                   Scan.stringToDate(duomenys[4]),
                   duomenys[2],
                   Boolean.getBoolean(duomenys[5]),
-                  duomenys[3]));
+                  duomenys[3]), biudzetas);
         } else {
-          biudzetas.pridetiIrasa(
+          IrasaiHandler.pridetiIrasa(
               new IslaiduIrasas(
                   Float.parseFloat(duomenys[1]),
                   Scan.stringToDateTime(duomenys[6]),
                   duomenys[2],
                   duomenys[7],
-                  duomenys[3]));
+                  duomenys[3]), biudzetas);
         }
       }
     } catch (FileNotFoundException e) {

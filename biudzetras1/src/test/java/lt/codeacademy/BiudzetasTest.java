@@ -1,5 +1,11 @@
 package lt.codeacademy;
 
+import lt.codeacademy.biudzetas.Biudzetas;
+import lt.codeacademy.irasai.Irasas;
+import lt.codeacademy.irasai.IslaiduIrasas;
+import lt.codeacademy.irasai.PajamuIrasas;
+import lt.codeacademy.service.IrasaiHandler;
+import lt.codeacademy.service.LocalIrasuRedaguotojas;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -16,8 +22,8 @@ public class BiudzetasTest {
     LocalDateTime dataSuLaiku = LocalDateTime.now();
     PajamuIrasas pajamos = new PajamuIrasas(20.5F, data, "Pardavimai", true, "nera");
     IslaiduIrasas islaidos = new IslaiduIrasas(10.5F, dataSuLaiku, "Pirkimai", "kortele", "nera");
-    biudzetas.pridetiIrasa(pajamos);
-    biudzetas.pridetiIrasa(islaidos);
+    IrasaiHandler.pridetiIrasa(pajamos, biudzetas);
+    IrasaiHandler.pridetiIrasa(islaidos, biudzetas);
 
     float result = biudzetas.balansas();
     Assert.assertEquals(10.0F, result, 0);
@@ -30,11 +36,11 @@ public class BiudzetasTest {
     LocalDateTime dataSuLaiku = LocalDateTime.now();
     PajamuIrasas pajamos = new PajamuIrasas(20.5F, data, "Pardavimai", true, "nera");
     IslaiduIrasas islaidos = new IslaiduIrasas(10.5F, dataSuLaiku, "Pirkimai", "kortele", "nera");
-    biudzetas.pridetiIrasa(pajamos);
-    biudzetas.pridetiIrasa(islaidos);
+    IrasaiHandler.pridetiIrasa(pajamos, biudzetas);
+    IrasaiHandler.pridetiIrasa(islaidos, biudzetas);
 
     try {
-      biudzetas.setNewValue(Irasas.class, biudzetas.gautiIrasa("P1"), float.class, "setSuma", 300F);
+      LocalIrasuRedaguotojas.setNewValue(Irasas.class, IrasaiHandler.gautiIrasa("P1", biudzetas), float.class, "setSuma", 300F);
     } catch (NoSuchMethodException e) {
       e.printStackTrace();
     } catch (InvocationTargetException e) {
@@ -42,6 +48,6 @@ public class BiudzetasTest {
     } catch (IllegalAccessException e) {
       e.printStackTrace();
     }
-    Assert.assertEquals(300F, biudzetas.gautiIrasa("P1").getSuma(), 0);
+    Assert.assertEquals(300F, IrasaiHandler.gautiIrasa("P1", biudzetas).getSuma(), 0);
   }
 }

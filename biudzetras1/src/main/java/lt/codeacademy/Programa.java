@@ -1,5 +1,10 @@
 package lt.codeacademy;
 
+import lt.codeacademy.biudzetas.Biudzetas;
+import lt.codeacademy.service.CSVHandler;
+import lt.codeacademy.service.IrasaiHandler;
+import lt.codeacademy.service.Meniu;
+
 public class Programa {
   public static void start() {
     Biudzetas biudzetas = new Biudzetas();
@@ -12,10 +17,10 @@ public class Programa {
       }
       switch (selectedChoice) {
         case "1":
-          biudzetas.pridetiIrasa(Meniu.pridetiPajamasMeniu());
+          IrasaiHandler.pridetiIrasa(Meniu.pridetiPajamasMeniu(), biudzetas);
           break;
         case "2":
-          biudzetas.pridetiIrasa(Meniu.pridetiIslaidasMeniu());
+          IrasaiHandler.pridetiIrasa(Meniu.pridetiIslaidasMeniu(), biudzetas);
           break;
         case "3":
           System.out.println(Meniu.gautiIrasaMeniu(biudzetas));
