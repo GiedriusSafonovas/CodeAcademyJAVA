@@ -4,6 +4,7 @@ import lt.codeacademy.repository.Biudzetas;
 import lt.codeacademy.irasai.Irasas;
 import lt.codeacademy.irasai.IslaiduIrasas;
 import lt.codeacademy.irasai.PajamuIrasas;
+import lt.codeacademy.repository.DBHandler;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -54,6 +55,11 @@ public class Meniu {
   public static Irasas gautiIrasaMeniu(Biudzetas biudzetas) {
     long unikalusNr = gautiIrasoNumeriIsVartotojo();
     return IrasaiHandler.gautiIrasa(unikalusNr, biudzetas);
+  }
+
+  public static Irasas gautiIrasaMeniu(DBHandler dbHandler) {
+    long unikalusNr = gautiIrasoNumeriIsVartotojo();
+    return dbHandler.gautiIrasa(unikalusNr);
   }
 
   public static void spausdintiVisusIrasus(Biudzetas biudzetas) {

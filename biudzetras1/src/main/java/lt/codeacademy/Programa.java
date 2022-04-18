@@ -1,14 +1,15 @@
 package lt.codeacademy;
 
 import lt.codeacademy.repository.Biudzetas;
+import lt.codeacademy.repository.DBHandler;
 import lt.codeacademy.service.CSVHandler;
-import lt.codeacademy.service.IrasaiHandler;
 import lt.codeacademy.service.Meniu;
 
 public class Programa {
   public static void start() {
     Biudzetas biudzetas = new Biudzetas();
     CSVHandler.readFromCSV(biudzetas);
+    DBHandler dbHandler = new DBHandler();
 
     while (true) {
       String selectedChoice = Meniu.pagrindinisMeniu();
@@ -17,13 +18,16 @@ public class Programa {
       }
       switch (selectedChoice) {
         case "1":
-          IrasaiHandler.pridetiIrasa(Meniu.pridetiPajamasMeniu(), biudzetas);
+//          IrasaiHandler.pridetiIrasa(Meniu.pridetiPajamasMeniu(), biudzetas);
+          dbHandler.pridetiPajamuIrasa(Meniu.pridetiPajamasMeniu());
           break;
         case "2":
-          IrasaiHandler.pridetiIrasa(Meniu.pridetiIslaidasMeniu(), biudzetas);
+//          IrasaiHandler.pridetiIrasa(Meniu.pridetiIslaidasMeniu(), biudzetas);
+          dbHandler.pridetiIslaiduIrasa(Meniu.pridetiIslaidasMeniu());
           break;
         case "3":
-          System.out.println(Meniu.gautiIrasaMeniu(biudzetas));
+//          System.out.println(Meniu.gautiIrasaMeniu(biudzetas));
+          System.out.println(Meniu.gautiIrasaMeniu(dbHandler));
           break;
         case "4":
           System.out.println("Balansas: " + biudzetas.balansas());
