@@ -30,7 +30,8 @@ public class Programa {
           System.out.println(Meniu.gautiIrasaMeniu(dbHandler));
           break;
         case "4":
-          System.out.println("Balansas: " + biudzetas.balansas());
+//          System.out.println("Balansas: " + biudzetas.balansas());
+          System.out.println(dbHandler.gautiBalansa());
           break;
         case "5":
           Meniu.spausdintiVisusIrasus(biudzetas);
