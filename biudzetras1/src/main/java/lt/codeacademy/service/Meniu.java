@@ -66,6 +66,10 @@ public class Meniu {
     System.out.println(biudzetas.getIrasai());
   }
 
+  public static void spausdintiVisusIrasus(DBHandler dbHandler) {
+    System.out.println(dbHandler.gautiVisusIrasus());
+  }
+
   public static void trintiIrasaMeniu(Biudzetas biudzetas) {
     long unikalusNr = gautiIrasoNumeriIsVartotojo();
     if (IrasaiHandler.trintiIrasa(unikalusNr, biudzetas)) {

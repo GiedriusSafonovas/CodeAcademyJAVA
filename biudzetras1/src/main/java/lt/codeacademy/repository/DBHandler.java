@@ -4,8 +4,11 @@ import lt.codeacademy.irasai.Irasas;
 import lt.codeacademy.irasai.IslaiduIrasas;
 import lt.codeacademy.irasai.PajamuIrasas;
 import lt.codeacademy.utils.HibernateUtil;
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 
+import javax.persistence.criteria.CriteriaBuilder;
+import java.util.ArrayList;
 import java.util.List;
 
 public class DBHandler {
@@ -43,4 +46,13 @@ public class DBHandler {
         session.close();
         return balansas;
     }
+
+    public List<Irasas> gautiVisusIrasus(){
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        List<Irasas> irasuSarasas = session.createQuery("from Irasas", Irasas.class).getResultList();
+        session.close();
+        return irasuSarasas;
+    }
+
+
 }

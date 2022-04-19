@@ -34,7 +34,8 @@ public class Programa {
           System.out.println(dbHandler.gautiBalansa());
           break;
         case "5":
-          Meniu.spausdintiVisusIrasus(biudzetas);
+//          Meniu.spausdintiVisusIrasus(biudzetas);
+          Meniu.spausdintiVisusIrasus(dbHandler);
           break;
         case "6":
           Meniu.trintiIrasaMeniu(biudzetas);
