@@ -5,7 +5,7 @@ import lt.codeacademy.irasai.Irasas;
 import lt.codeacademy.irasai.IslaiduIrasas;
 import lt.codeacademy.irasai.PajamuIrasas;
 import lt.codeacademy.service.IrasaiHandler;
-import lt.codeacademy.service.LocalIrasuRedaguotojas;
+import lt.codeacademy.service.IrasuRedaguotojas;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -54,7 +54,7 @@ public class BiudzetasTest {
     IrasaiHandler.pridetiIrasa(islaidos, biudzetas);
 
     try {
-      LocalIrasuRedaguotojas.setNewValue(Irasas.class, IrasaiHandler.gautiIrasa(1L, biudzetas), float.class, "setSuma", 300F);
+      IrasuRedaguotojas.setNewValue(Irasas.class, IrasaiHandler.gautiIrasa(1L, biudzetas), float.class, "setSuma", 300F);
     } catch (NoSuchMethodException e) {
       e.printStackTrace();
     } catch (InvocationTargetException | IllegalAccessException e) {

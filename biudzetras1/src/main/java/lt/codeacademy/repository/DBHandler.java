@@ -3,13 +3,11 @@ package lt.codeacademy.repository;
 import lt.codeacademy.irasai.Irasas;
 import lt.codeacademy.irasai.IslaiduIrasas;
 import lt.codeacademy.irasai.PajamuIrasas;
+import lt.codeacademy.service.IrasuRedaguotojas;
 import lt.codeacademy.utils.HibernateUtil;
-import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-import javax.persistence.criteria.CriteriaBuilder;
-import java.util.ArrayList;
 import java.util.List;
 
 public class DBHandler {
@@ -62,6 +60,16 @@ public class DBHandler {
         transaction.commit();
         session.close();
         return result == 1;
+    }
+
+    public void redaguotiIrasa(long unikalusNr){
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction transaction = session.beginTransaction();
+        Irasas redaguojamasIrasas = session.get(Irasas.class, unikalusNr);
+        IrasuRedaguotojas.redaguotiIrasa(redaguojamasIrasas);
+        session.update(redaguojamasIrasas);
+        transaction.commit();
+        session.close();
     }
 
 }

@@ -64,6 +64,11 @@ public class IrasaiHandler {
 
     public static boolean redaguotiIrasa(long unikalusNr, Biudzetas biudzetas) {
         Irasas redaguojamasIrasas = gautiIrasa(unikalusNr, biudzetas);
-        return LocalIrasuRedaguotojas.redaguotiIrasa(redaguojamasIrasas, biudzetas);
+        if (!biudzetas.getIrasai().contains(redaguojamasIrasas)) {
+            return false;
+        }
+        IrasuRedaguotojas.redaguotiIrasa(redaguojamasIrasas);
+        IrasuRedaguotojas.atnaujintiIrasa(redaguojamasIrasas, biudzetas);
+        return true;
     }
 }

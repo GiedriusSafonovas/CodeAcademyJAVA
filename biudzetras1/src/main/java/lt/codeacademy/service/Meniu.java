@@ -97,6 +97,11 @@ public class Meniu {
     }
   }
 
+  public static void redaguotiIrasaMeniu(DBHandler dbHandler) {
+    long unikalusNr = gautiIrasoNumeriIsVartotojo();
+    dbHandler.redaguotiIrasa(unikalusNr);
+  }
+
   public static boolean arRedaguoti(String duomenys) {
     while (true) {
       System.out.println(duomenys);

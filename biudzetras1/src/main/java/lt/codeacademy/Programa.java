@@ -42,7 +42,8 @@ public class Programa {
           Meniu.trintiIrasaMeniu(dbHandler);
           break;
         case "7":
-          Meniu.redaguotiIrasaMeniu(biudzetas);
+//          Meniu.redaguotiIrasaMeniu(biudzetas);
+          Meniu.redaguotiIrasaMeniu(dbHandler);
           break;
         case "8":
           Meniu.irasytiCSVMeniu(biudzetas);

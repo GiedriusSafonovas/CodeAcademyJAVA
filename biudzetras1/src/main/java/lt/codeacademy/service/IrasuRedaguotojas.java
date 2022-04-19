@@ -9,23 +9,18 @@ import java.lang.reflect.Method;
 import java.util.List;
 import java.util.Locale;
 
-public class LocalIrasuRedaguotojas {
+public class IrasuRedaguotojas {
 
 
-    public static boolean redaguotiIrasa(Irasas redaguojamasIrasas, Biudzetas biudzetas) {
-        if (!biudzetas.getIrasai().contains(redaguojamasIrasas)) {
-            return false;
-        }
+    public static void redaguotiIrasa(Irasas redaguojamasIrasas) {
 
         Class klase = redaguojamasIrasas.getClass();
         Class superKlase = klase.getSuperclass();
 
         redaguotiIrasaPagalKlase(redaguojamasIrasas, superKlase);
         redaguotiIrasaPagalKlase(redaguojamasIrasas, klase);
-
-        atnaujintiIrasa(redaguojamasIrasas, biudzetas);
-        return true;
     }
+
 
     private static void redaguotiIrasaPagalKlase(Irasas redaguojamasIrasas, Class klase) {
         List<Field> klasesLaukai = List.of(klase.getDeclaredFields());
