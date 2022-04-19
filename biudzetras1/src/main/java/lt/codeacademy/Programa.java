@@ -38,7 +38,8 @@ public class Programa {
           Meniu.spausdintiVisusIrasus(dbHandler);
           break;
         case "6":
-          Meniu.trintiIrasaMeniu(biudzetas);
+//          Meniu.trintiIrasaMeniu(biudzetas);
+          Meniu.trintiIrasaMeniu(dbHandler);
           break;
         case "7":
           Meniu.redaguotiIrasaMeniu(biudzetas);

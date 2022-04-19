@@ -72,7 +72,16 @@ public class Meniu {
 
   public static void trintiIrasaMeniu(Biudzetas biudzetas) {
     long unikalusNr = gautiIrasoNumeriIsVartotojo();
-    if (IrasaiHandler.trintiIrasa(unikalusNr, biudzetas)) {
+    deletionResult(IrasaiHandler.trintiIrasa(unikalusNr, biudzetas),unikalusNr);
+  }
+
+  public static void trintiIrasaMeniu(DBHandler dbHandler) {
+    long unikalusNr = gautiIrasoNumeriIsVartotojo();
+    deletionResult(dbHandler.trintiIrasa(unikalusNr), unikalusNr);
+  }
+
+  private static void deletionResult(boolean result, long unikalusNr){
+    if(result){
       System.out.println("Irasas " + unikalusNr + " istrintas");
     } else {
       System.out.println("Tokio iraso nera");
