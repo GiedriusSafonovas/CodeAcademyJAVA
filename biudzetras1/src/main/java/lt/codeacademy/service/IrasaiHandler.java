@@ -1,6 +1,6 @@
 package lt.codeacademy.service;
 
-import lt.codeacademy.biudzetas.Biudzetas;
+import lt.codeacademy.repository.Biudzetas;
 import lt.codeacademy.irasai.Irasas;
 import lt.codeacademy.irasai.IslaiduIrasas;
 import lt.codeacademy.irasai.PajamuIrasas;
@@ -14,7 +14,7 @@ public class IrasaiHandler {
         biudzetas.getIrasai().add(irasas);
     }
 
-    public static Irasas gautiIrasa(String unikalusNr, Biudzetas biudzetas) {
+    public static Irasas gautiIrasa(long unikalusNr, Biudzetas biudzetas) {
         List<Irasas> irasai = biudzetas.getIrasai();
         Irasas ieskomasIrasas = new Irasas(unikalusNr);
         if (irasai.contains(ieskomasIrasas)) {
@@ -52,7 +52,7 @@ public class IrasaiHandler {
         return result;
     }
 
-    public static boolean trintiIrasa(String trinamoIrasoUnikalusNr, Biudzetas biudzetas) {
+    public static boolean trintiIrasa(long trinamoIrasoUnikalusNr, Biudzetas biudzetas) {
         Irasas trinamasIrasas = new Irasas(trinamoIrasoUnikalusNr);
         List<Irasas> irasai = biudzetas.getIrasai();
         if (irasai.contains(trinamasIrasas)) {
@@ -62,8 +62,13 @@ public class IrasaiHandler {
         return false;
     }
 
-    public static boolean redaguotiIrasa(String unikalusNr, Biudzetas biudzetas) {
+    public static boolean redaguotiIrasa(long unikalusNr, Biudzetas biudzetas) {
         Irasas redaguojamasIrasas = gautiIrasa(unikalusNr, biudzetas);
-        return LocalIrasuRedaguotojas.redaguotiIrasa(redaguojamasIrasas, biudzetas);
+        if (!biudzetas.getIrasai().contains(redaguojamasIrasas)) {
+            return false;
+        }
+        IrasuRedaguotojas.redaguotiIrasa(redaguojamasIrasas);
+        IrasuRedaguotojas.atnaujintiIrasa(redaguojamasIrasas, biudzetas);
+        return true;
     }
 }

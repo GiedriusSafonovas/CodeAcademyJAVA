@@ -27,6 +27,19 @@ public class Scan {
     }
   }
 
+  public static long scanLong() {
+    while (true) {
+      try {
+        long result = sc.nextLong();
+        sc.nextLine();
+        return result;
+      } catch (InputMismatchException e) {
+        System.out.println("Klaida! Ivestas ne skaicius, bandykite dar karta");
+        sc.nextLine();
+      }
+    }
+  }
+
   public static boolean scanBoolean() {
     while (true) {
       try {

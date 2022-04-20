@@ -1,20 +1,29 @@
 package lt.codeacademy.service;
 
-import lt.codeacademy.biudzetas.Biudzetas;
+import lt.codeacademy.repository.Biudzetas;
 import lt.codeacademy.irasai.Irasas;
 import lt.codeacademy.irasai.IslaiduIrasas;
 import lt.codeacademy.irasai.PajamuIrasas;
+import lt.codeacademy.repository.DBHandler;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class Meniu {
 
-  public static String pagrindinisMeniu() {
+  public static String pagrindinisMeniuCSV() {
     System.out.println(
         "[1] - prideti pajamas\n[2] - prideti islaidas\n[3] - gauti irasa\n"
             + "[4] - balansas\n[5] - visi irasai\n[6] - trinti irasa\n[7] - redaguoti irasa\n"
             + "[8] - irasyti i CSV\n[x] - baigti");
+    return Scan.scanLine();
+  }
+
+  public static String pagrindinisMeniuDB() {
+    System.out.println(
+            "[1] - prideti pajamas\n[2] - prideti islaidas\n[3] - gauti irasa\n"
+                    + "[4] - balansas\n[5] - visi irasai\n[6] - trinti irasa\n[7] - redaguoti irasa\n"
+                    + "[x] - baigti");
     return Scan.scanLine();
   }
 
@@ -46,23 +55,41 @@ public class Meniu {
     return new IslaiduIrasas(suma, dataSuLaiku, kategorija, atsiskaitymoBudas, papildomaInfo);
   }
 
-  private static String gautiIrasoNumeriIsVartotojo() {
+  private static long gautiIrasoNumeriIsVartotojo() {
     System.out.println("Iveskite iraso unikalu numeri");
-    return Scan.scanLine();
+    return Scan.scanLong();
   }
 
   public static Irasas gautiIrasaMeniu(Biudzetas biudzetas) {
-    String unikalusNr = gautiIrasoNumeriIsVartotojo();
+    long unikalusNr = gautiIrasoNumeriIsVartotojo();
     return IrasaiHandler.gautiIrasa(unikalusNr, biudzetas);
+  }
+
+  public static Irasas gautiIrasaMeniu(DBHandler dbHandler) {
+    long unikalusNr = gautiIrasoNumeriIsVartotojo();
+    return dbHandler.gautiIrasa(unikalusNr);
   }
 
   public static void spausdintiVisusIrasus(Biudzetas biudzetas) {
     System.out.println(biudzetas.getIrasai());
   }
 
+  public static void spausdintiVisusIrasus(DBHandler dbHandler) {
+    System.out.println(dbHandler.gautiVisusIrasus());
+  }
+
   public static void trintiIrasaMeniu(Biudzetas biudzetas) {
-    String unikalusNr = gautiIrasoNumeriIsVartotojo();
-    if (IrasaiHandler.trintiIrasa(unikalusNr, biudzetas)) {
+    long unikalusNr = gautiIrasoNumeriIsVartotojo();
+    deletionResult(IrasaiHandler.trintiIrasa(unikalusNr, biudzetas),unikalusNr);
+  }
+
+  public static void trintiIrasaMeniu(DBHandler dbHandler) {
+    long unikalusNr = gautiIrasoNumeriIsVartotojo();
+    deletionResult(dbHandler.trintiIrasa(unikalusNr), unikalusNr);
+  }
+
+  private static void deletionResult(boolean result, long unikalusNr){
+    if(result){
       System.out.println("Irasas " + unikalusNr + " istrintas");
     } else {
       System.out.println("Tokio iraso nera");
@@ -70,12 +97,17 @@ public class Meniu {
   }
 
   public static void redaguotiIrasaMeniu(Biudzetas biudzetas) {
-    String unikalusNr = gautiIrasoNumeriIsVartotojo();
+    long unikalusNr = gautiIrasoNumeriIsVartotojo();
     if (IrasaiHandler.redaguotiIrasa(unikalusNr, biudzetas)) {
       System.out.println("Iraso duomenys pakeisti");
     } else {
       System.out.println("Tokio iraso nera");
     }
+  }
+
+  public static void redaguotiIrasaMeniu(DBHandler dbHandler) {
+    long unikalusNr = gautiIrasoNumeriIsVartotojo();
+    dbHandler.redaguotiIrasa(unikalusNr);
   }
 
   public static boolean arRedaguoti(String duomenys) {
