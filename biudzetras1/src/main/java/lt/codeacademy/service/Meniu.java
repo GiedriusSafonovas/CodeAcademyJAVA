@@ -11,11 +11,19 @@ import java.time.LocalDateTime;
 
 public class Meniu {
 
-  public static String pagrindinisMeniu() {
+  public static String pagrindinisMeniuCSV() {
     System.out.println(
         "[1] - prideti pajamas\n[2] - prideti islaidas\n[3] - gauti irasa\n"
             + "[4] - balansas\n[5] - visi irasai\n[6] - trinti irasa\n[7] - redaguoti irasa\n"
             + "[8] - irasyti i CSV\n[x] - baigti");
+    return Scan.scanLine();
+  }
+
+  public static String pagrindinisMeniuDB() {
+    System.out.println(
+            "[1] - prideti pajamas\n[2] - prideti islaidas\n[3] - gauti irasa\n"
+                    + "[4] - balansas\n[5] - visi irasai\n[6] - trinti irasa\n[7] - redaguoti irasa\n"
+                    + "[x] - baigti");
     return Scan.scanLine();
   }
 
