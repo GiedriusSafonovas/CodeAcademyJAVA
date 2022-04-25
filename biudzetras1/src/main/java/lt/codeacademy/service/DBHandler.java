@@ -1,4 +1,4 @@
-package lt.codeacademy.repository;
+package lt.codeacademy.service;
 
 import lt.codeacademy.irasai.Irasas;
 import lt.codeacademy.irasai.IslaiduIrasas;

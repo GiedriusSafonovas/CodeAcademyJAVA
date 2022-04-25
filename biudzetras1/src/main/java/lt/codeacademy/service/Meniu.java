@@ -4,7 +4,6 @@ import lt.codeacademy.repository.Biudzetas;
 import lt.codeacademy.irasai.Irasas;
 import lt.codeacademy.irasai.IslaiduIrasas;
 import lt.codeacademy.irasai.PajamuIrasas;
-import lt.codeacademy.repository.DBHandler;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -60,9 +59,9 @@ public class Meniu {
     return Scan.scanLong();
   }
 
-  public static Irasas gautiIrasaMeniu(Biudzetas biudzetas) {
+  public static Irasas gautiIrasaMeniu(IrasaiHandler irasaiHandler) {
     long unikalusNr = gautiIrasoNumeriIsVartotojo();
-    return IrasaiHandler.gautiIrasa(unikalusNr, biudzetas);
+    return irasaiHandler.gautiIrasa(unikalusNr);
   }
 
   public static Irasas gautiIrasaMeniu(DBHandler dbHandler) {
@@ -70,17 +69,17 @@ public class Meniu {
     return dbHandler.gautiIrasa(unikalusNr);
   }
 
-  public static void spausdintiVisusIrasus(Biudzetas biudzetas) {
-    System.out.println(biudzetas.getIrasai());
+  public static void spausdintiVisusIrasus(IrasaiHandler irasaiHandler) {
+    System.out.println(irasaiHandler.gautiVisusIrasus());
   }
 
   public static void spausdintiVisusIrasus(DBHandler dbHandler) {
     System.out.println(dbHandler.gautiVisusIrasus());
   }
 
-  public static void trintiIrasaMeniu(Biudzetas biudzetas) {
+  public static void trintiIrasaMeniu(IrasaiHandler irasaiHandler) {
     long unikalusNr = gautiIrasoNumeriIsVartotojo();
-    deletionResult(IrasaiHandler.trintiIrasa(unikalusNr, biudzetas),unikalusNr);
+    deletionResult(irasaiHandler.trintiIrasa(unikalusNr),unikalusNr);
   }
 
   public static void trintiIrasaMeniu(DBHandler dbHandler) {
@@ -96,9 +95,9 @@ public class Meniu {
     }
   }
 
-  public static void redaguotiIrasaMeniu(Biudzetas biudzetas) {
+  public static void redaguotiIrasaMeniu(IrasaiHandler irasaiHandler) {
     long unikalusNr = gautiIrasoNumeriIsVartotojo();
-    if (IrasaiHandler.redaguotiIrasa(unikalusNr, biudzetas)) {
+    if (irasaiHandler.redaguotiIrasa(unikalusNr)) {
       System.out.println("Iraso duomenys pakeisti");
     } else {
       System.out.println("Tokio iraso nera");
@@ -125,7 +124,7 @@ public class Meniu {
     }
   }
 
-  public static void irasytiCSVMeniu(Biudzetas biudzetas) {
-    CSVHandler.writeToCsv(IrasaiHandler.gautiPajamuIrasus(biudzetas), IrasaiHandler.gautiIslaiduIrasus(biudzetas));
+  public static void irasytiCSVMeniu(IrasaiHandler irasaiHandler) {
+    CSVHandler.writeToCsv(irasaiHandler.gautiPajamuIrasus(), irasaiHandler.gautiIslaiduIrasus());
   }
 }

@@ -8,8 +8,8 @@ import lt.codeacademy.service.Meniu;
 public class ProgramaCSV {
 
     public static void run() {
-        Biudzetas biudzetas = new Biudzetas();
-        CSVHandler.readFromCSV(biudzetas);
+        IrasaiHandler irasaiHandler = new IrasaiHandler(new Biudzetas());
+        CSVHandler.readFromCSV(irasaiHandler);
 
         while (true) {
             String selectedChoice = Meniu.pagrindinisMeniuCSV();
@@ -18,28 +18,28 @@ public class ProgramaCSV {
             }
             switch (selectedChoice) {
                 case "1":
-                    IrasaiHandler.pridetiIrasa(Meniu.pridetiPajamasMeniu(), biudzetas);
+                    irasaiHandler.pridetiIrasa(Meniu.pridetiPajamasMeniu());
                     break;
                 case "2":
-                    IrasaiHandler.pridetiIrasa(Meniu.pridetiIslaidasMeniu(), biudzetas);
+                    irasaiHandler.pridetiIrasa(Meniu.pridetiIslaidasMeniu());
                     break;
                 case "3":
-                    System.out.println(Meniu.gautiIrasaMeniu(biudzetas));
+                    System.out.println(Meniu.gautiIrasaMeniu(irasaiHandler));
                     break;
                 case "4":
-                    System.out.println("Balansas: " + biudzetas.balansas());
+                    System.out.println("Balansas: " + irasaiHandler.balansas());
                     break;
                 case "5":
-                    Meniu.spausdintiVisusIrasus(biudzetas);
+                    Meniu.spausdintiVisusIrasus(irasaiHandler);
                     break;
                 case "6":
-                    Meniu.trintiIrasaMeniu(biudzetas);
+                    Meniu.trintiIrasaMeniu(irasaiHandler);
                     break;
                 case "7":
-                    Meniu.redaguotiIrasaMeniu(biudzetas);
+                    Meniu.redaguotiIrasaMeniu(irasaiHandler);
                     break;
                 case "8":
-                    Meniu.irasytiCSVMeniu(biudzetas);
+                    Meniu.irasytiCSVMeniu(irasaiHandler);
                     break;
                 default:
                     System.out.println("Neteisinga komanda");

@@ -1,6 +1,6 @@
 package lt.codeacademy;
 
-import lt.codeacademy.repository.DBHandler;
+import lt.codeacademy.service.DBHandler;
 import lt.codeacademy.service.Meniu;
 
 public class ProgramaDB {

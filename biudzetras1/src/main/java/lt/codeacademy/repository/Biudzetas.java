@@ -13,17 +13,7 @@ public class Biudzetas {
     UniqueNumberTracker.resetCounter();
   }
 
-  public float balansas() {
-    float sum = 0;
-    for (Irasas irasas : irasai) {
-      if (irasas instanceof PajamuIrasas) {
-        sum += irasas.getSuma();
-      } else {
-        sum -= irasas.getSuma();
-      }
-    }
-    return sum;
-  }
+
 
   public ArrayList<Irasas> getIrasai() {
     return irasai;

@@ -10,11 +10,17 @@ import java.util.List;
 
 public class IrasaiHandler {
 
-    public static void pridetiIrasa(Irasas irasas, Biudzetas biudzetas) {
+    Biudzetas biudzetas;
+
+    public IrasaiHandler(Biudzetas biudzetas){
+        this.biudzetas = biudzetas;
+    }
+
+    public void pridetiIrasa(Irasas irasas) {
         biudzetas.getIrasai().add(irasas);
     }
 
-    public static Irasas gautiIrasa(long unikalusNr, Biudzetas biudzetas) {
+    public Irasas gautiIrasa(long unikalusNr) {
         List<Irasas> irasai = biudzetas.getIrasai();
         Irasas ieskomasIrasas = new Irasas(unikalusNr);
         if (irasai.contains(ieskomasIrasas)) {
@@ -24,8 +30,12 @@ public class IrasaiHandler {
         return null;
     }
 
-    public static ArrayList<PajamuIrasas> gautiPajamuIrasus(Biudzetas biudzetas) {
-        List<Irasas> irasuSarasas = getIrasasByClass(PajamuIrasas.class, biudzetas);
+    public ArrayList<Irasas> gautiVisusIrasus(){
+        return biudzetas.getIrasai();
+    }
+
+    public ArrayList<PajamuIrasas> gautiPajamuIrasus() {
+        List<Irasas> irasuSarasas = getIrasasByClass(PajamuIrasas.class);
         ArrayList<PajamuIrasas> pajamuIrasai = new ArrayList<>();
         for (Irasas irasas : irasuSarasas) {
             pajamuIrasai.add((PajamuIrasas) irasas);
@@ -33,8 +43,8 @@ public class IrasaiHandler {
         return pajamuIrasai;
     }
 
-    public static ArrayList<IslaiduIrasas> gautiIslaiduIrasus(Biudzetas biudzetas) {
-        List<Irasas> irasuSarasas = getIrasasByClass(IslaiduIrasas.class, biudzetas);
+    public ArrayList<IslaiduIrasas> gautiIslaiduIrasus() {
+        List<Irasas> irasuSarasas = getIrasasByClass(IslaiduIrasas.class);
         ArrayList<IslaiduIrasas> islaiduIrasai = new ArrayList<>();
         for (Irasas irasas : irasuSarasas) {
             islaiduIrasai.add((IslaiduIrasas) irasas);
@@ -42,7 +52,7 @@ public class IrasaiHandler {
         return islaiduIrasai;
     }
 
-    public static List<Irasas> getIrasasByClass(Class<? extends Irasas> klase, Biudzetas biudzetas) {
+    public List<Irasas> getIrasasByClass(Class<? extends Irasas> klase) {
         List<Irasas> result = new ArrayList<>();
         for (Irasas irasas : biudzetas.getIrasai()) {
             if (irasas.getClass() == klase) {
@@ -52,7 +62,20 @@ public class IrasaiHandler {
         return result;
     }
 
-    public static boolean trintiIrasa(long trinamoIrasoUnikalusNr, Biudzetas biudzetas) {
+    public float balansas() {
+        float sum = 0;
+        ArrayList<Irasas> irasai = biudzetas.getIrasai();
+        for (Irasas irasas : irasai) {
+            if (irasas instanceof PajamuIrasas) {
+                sum += irasas.getSuma();
+            } else {
+                sum -= irasas.getSuma();
+            }
+        }
+        return sum;
+    }
+
+    public boolean trintiIrasa(long trinamoIrasoUnikalusNr) {
         Irasas trinamasIrasas = new Irasas(trinamoIrasoUnikalusNr);
         List<Irasas> irasai = biudzetas.getIrasai();
         if (irasai.contains(trinamasIrasas)) {
@@ -62,8 +85,8 @@ public class IrasaiHandler {
         return false;
     }
 
-    public static boolean redaguotiIrasa(long unikalusNr, Biudzetas biudzetas) {
-        Irasas redaguojamasIrasas = gautiIrasa(unikalusNr, biudzetas);
+    public boolean redaguotiIrasa(long unikalusNr) {
+        Irasas redaguojamasIrasas = gautiIrasa(unikalusNr);
         if (!biudzetas.getIrasai().contains(redaguojamasIrasas)) {
             return false;
         }

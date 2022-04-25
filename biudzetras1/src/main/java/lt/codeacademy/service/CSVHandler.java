@@ -52,13 +52,14 @@ public class CSVHandler {
         writer.append(irasas.getAtsiskaitymoBudas());
         writer.append("\n");
       }
+      System.out.println("Irasyta i CSV");
 
     } catch (IOException e) {
       System.out.println(e.getMessage());
     }
   }
 
-  public static void readFromCSV(Biudzetas biudzetas) {
+  public static void readFromCSV(IrasaiHandler irasaiHandler) {
 
     try (BufferedReader reader = new BufferedReader((new FileReader("Biudzeto irasai.csv")))) {
       String line;
@@ -66,21 +67,21 @@ public class CSVHandler {
       while ((line = reader.readLine()) != null) {
         String[] duomenys = line.split(DELIMITER);
         if (duomenys[0].charAt(0) == 'P') {
-          IrasaiHandler.pridetiIrasa(
+          irasaiHandler.pridetiIrasa(
               new PajamuIrasas(
                   Float.parseFloat(duomenys[1]),
                   Scan.stringToDate(duomenys[4]),
                   duomenys[2],
                   Boolean.getBoolean(duomenys[5]),
-                  duomenys[3]), biudzetas);
+                  duomenys[3]));
         } else {
-          IrasaiHandler.pridetiIrasa(
+          irasaiHandler.pridetiIrasa(
               new IslaiduIrasas(
                   Float.parseFloat(duomenys[1]),
                   Scan.stringToDateTime(duomenys[6]),
                   duomenys[2],
                   duomenys[7],
-                  duomenys[3]), biudzetas);
+                  duomenys[3]));
         }
       }
     } catch (FileNotFoundException e) {

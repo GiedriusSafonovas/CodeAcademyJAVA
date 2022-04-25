@@ -17,49 +17,49 @@ public class BiudzetasTest {
 
   @Test
   public void balansasTest() {
-    Biudzetas biudzetas = new Biudzetas();
+    IrasaiHandler irasaiHandler = new IrasaiHandler(new Biudzetas());
     LocalDate data = LocalDate.now();
     LocalDateTime dataSuLaiku = LocalDateTime.now();
     PajamuIrasas pajamos = new PajamuIrasas(20.5F, data, "Pardavimai", true, "nera");
     IslaiduIrasas islaidos = new IslaiduIrasas(10.5F, dataSuLaiku, "Pirkimai", "kortele", "nera");
-    IrasaiHandler.pridetiIrasa(pajamos, biudzetas);
-    IrasaiHandler.pridetiIrasa(islaidos, biudzetas);
+    irasaiHandler.pridetiIrasa(pajamos);
+    irasaiHandler.pridetiIrasa(islaidos);
 
-    float result = biudzetas.balansas();
+    float result = irasaiHandler.balansas();
     Assert.assertEquals(10.0F, result, 0);
   }
 
   @Test
   public void gautiIrasaTest(){
-    Biudzetas biudzetas = new Biudzetas();
+    IrasaiHandler irasaiHandler = new IrasaiHandler(new Biudzetas());
     LocalDate data = LocalDate.now();
     LocalDateTime dataSuLaiku = LocalDateTime.now();
     PajamuIrasas pajamos = new PajamuIrasas(20.5F, data, "Pardavimai", true, "nera");
     IslaiduIrasas islaidos = new IslaiduIrasas(10.5F, dataSuLaiku, "Pirkimai", "kortele", "nera");
-    IrasaiHandler.pridetiIrasa(pajamos, biudzetas);
-    IrasaiHandler.pridetiIrasa(islaidos, biudzetas);
+    irasaiHandler.pridetiIrasa(pajamos);
+    irasaiHandler.pridetiIrasa(islaidos);
 
-    Irasas result = IrasaiHandler.gautiIrasa(1L, biudzetas);
+    Irasas result = irasaiHandler.gautiIrasa(1L);
     Assert.assertEquals(20.5F,result.getSuma(),0);
   }
 
   @Test
   public void setNewValueTest() {
-    Biudzetas biudzetas = new Biudzetas();
+    IrasaiHandler irasaiHandler = new IrasaiHandler(new Biudzetas());
     LocalDate data = LocalDate.now();
     LocalDateTime dataSuLaiku = LocalDateTime.now();
     PajamuIrasas pajamos = new PajamuIrasas(20.5F, data, "Pardavimai", true, "nera");
     IslaiduIrasas islaidos = new IslaiduIrasas(10.5F, dataSuLaiku, "Pirkimai", "kortele", "nera");
-    IrasaiHandler.pridetiIrasa(pajamos, biudzetas);
-    IrasaiHandler.pridetiIrasa(islaidos, biudzetas);
+    irasaiHandler.pridetiIrasa(pajamos);
+    irasaiHandler.pridetiIrasa(islaidos);
 
     try {
-      IrasuRedaguotojas.setNewValue(Irasas.class, IrasaiHandler.gautiIrasa(1L, biudzetas), float.class, "setSuma", 300F);
+      IrasuRedaguotojas.setNewValue(Irasas.class, irasaiHandler.gautiIrasa(1L), float.class, "setSuma", 300F);
     } catch (NoSuchMethodException e) {
       e.printStackTrace();
     } catch (InvocationTargetException | IllegalAccessException e) {
       e.printStackTrace();
     }
-    Assert.assertEquals(300F, IrasaiHandler.gautiIrasa(1L, biudzetas).getSuma(), 0);
+    Assert.assertEquals(300F, irasaiHandler.gautiIrasa(1L).getSuma(), 0);
   }
 }
