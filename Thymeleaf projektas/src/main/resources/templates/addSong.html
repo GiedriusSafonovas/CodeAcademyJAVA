@@ -7,18 +7,18 @@
 </head>
 <body>
 <h3>Add a song</h3>
-<form method="post">
+<form method="post" th:object="${song}">
     <label>Song Name:</label>
-    <input type="text" placeholder="Song Name" name="name"><br/>
+    <input type="text" placeholder="Song Name" th:field="*{songName}"><br/>
 
     <label>Album:</label>
-    <input type="text" placeholder="Album" name="album"><br/>
+    <input type="text" placeholder="Album" th:field="*{album}"><br/>
 
     <label>Author:</label>
-    <input type="text" placeholder="Author" name="author"><br/>
+    <input type="text" placeholder="Author" th:field="*{author}"><br/>
 
     <label>Playtime:</label>
-    <input type="text" placeholder="Playtime" name="playtime"><br/><br/>
+    <input type="text" placeholder="Playtime" th:field="*{playtime}"><br/><br/>
 
     <button type="submit">Submit</button>
 </form>
