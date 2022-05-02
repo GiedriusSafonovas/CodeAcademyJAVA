@@ -26,4 +26,10 @@ public class SongController {
         model.addAttribute("song", new Song());
         return "addSong";
     }
+
+    @GetMapping("/songs")
+    public String getSongList(Model model){
+        model.addAttribute("songs", songRepository.getAllSongs());
+        return "songs";
+    }
 }

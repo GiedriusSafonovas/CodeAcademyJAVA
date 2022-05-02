@@ -19,4 +19,8 @@ public class SongRepository {
         songs.add(song);
         System.out.println(songs);
     }
+
+    public List<Song> getAllSongs(){
+        return songs;
+    }
 }

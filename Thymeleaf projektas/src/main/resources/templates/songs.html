@@ -7,5 +7,26 @@
 </head>
 <body>
     <h1>List of songs</h1>
+    <div>
+        <table>
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="song: ${songs}">
+                <td th:text="${song.songName}"></td>
+                <td th:text="${song.album}"></td>
+                <td th:text="${song.author}"></td>
+                <td th:text="${song.playtime}"></td>
+                <td>Delete</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
 </body>
 </html>
