@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import lt.codeacademy.thymeleafprojektas.Repository.SongRepository;
 import lt.codeacademy.thymeleafprojektas.model.Song;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -19,5 +20,15 @@ public class SongService {
 
     public List<Song> getAllSongs(){
         return songRepository.findAll();
+    }
+
+    public Song getSongByID(Long id){
+        return songRepository.findById(id).orElseThrow();
+    }
+
+    @Transactional
+    public void updateSong(Song song, Long id){
+        song.setId(id);
+        songRepository.save(song);
     }
 }
