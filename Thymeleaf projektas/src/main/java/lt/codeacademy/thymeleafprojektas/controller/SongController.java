@@ -30,7 +30,7 @@ public class SongController {
 
     @GetMapping("/songs")
     public String getSongList(Model model){
-//        model.addAttribute("songs", songService.getAllSongs());
+        model.addAttribute("songs", songService.getAllSongs());
         return "songs";
     }
 }
