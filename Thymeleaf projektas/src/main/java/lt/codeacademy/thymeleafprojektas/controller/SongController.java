@@ -47,4 +47,11 @@ public class SongController {
         model.addAttribute("songs", songService.getAllSongs());
         return "songs";
     }
+
+    @GetMapping("/songs/delete/{id}")
+    public String deleteSong(Model model, @PathVariable Long id){
+        songService.deleteSongById(id);
+        model.addAttribute("songs", songService.getAllSongs());
+        return "songs";
+    }
 }

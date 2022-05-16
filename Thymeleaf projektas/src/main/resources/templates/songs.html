@@ -23,7 +23,7 @@
                 <td th:text="${song.author}"></td>
                 <td th:text="${song.playtime}"></td>
                 <td><a class="btn btn-info" th:href="@{/songs/update/{songId}(songId=${song.id})}">Update</a></td>
-                <td>Delete</td>
+                <td><a class="btn btn-danger" th:href="@{/songs/delete/{songId}(songId=${song.id})}">Delete</a></td>
             </tr>
             </tbody>
         </table>
