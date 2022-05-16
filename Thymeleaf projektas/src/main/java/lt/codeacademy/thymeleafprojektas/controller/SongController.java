@@ -23,10 +23,9 @@ public class SongController {
     }
 
     @PostMapping("/addsong")
-    public String addSong(Model model, Song song){
+    public String addSong(Song song){
         songService.addSong(song);
-        model.addAttribute("song", new Song());
-        return "addSong";
+        return "redirect:/addsong";
     }
 
     @GetMapping("/songs")
@@ -42,16 +41,14 @@ public class SongController {
     }
 
     @PostMapping("/songs/update/{id}")
-    public String updateSong(Model model, Song song, @PathVariable Long id){
+    public String updateSong(Song song, @PathVariable Long id){
         songService.updateSong(song, id);
-        model.addAttribute("songs", songService.getAllSongs());
-        return "songs";
+        return "redirect:/songs";
     }
 
     @GetMapping("/songs/delete/{id}")
-    public String deleteSong(Model model, @PathVariable Long id){
+    public String deleteSong(@PathVariable Long id){
         songService.deleteSongById(id);
-        model.addAttribute("songs", songService.getAllSongs());
-        return "songs";
+        return "redirect:/songs";
     }
 }
