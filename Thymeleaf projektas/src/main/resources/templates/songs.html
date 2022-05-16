@@ -15,10 +15,12 @@
                 <th scope="col">Album</th>
                 <th scope="col">Author</th>
                 <th scope="col">Playtime</th>
+                <th scope="col"></th>
+                <th scope="col"></th>
             </tr>
             </thead>
             <tbody>
-            <tr th:each="song, i: ${songs}">
+            <tr th:each="song, i: ${songPage}">
                 <td th:text="${i.index + 1}"></td>
                 <td th:text="${song.songName}"></td>
                 <td th:text="${song.album}"></td>
@@ -29,6 +31,17 @@
             </tr>
             </tbody>
         </table>
+    </div>
+    <nav aria-label="Page navigation example">
+        <ul class="pagination">
+            <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+            <li class="page-item"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">Next</a></li>
+        </ul>
+    </nav>
+    <div>
+        <p style="color: white" th:text="'Total songs: ' + ${songPage.totalElements}"></p>
+        <p style="color: white" th:text="'Total pages: ' + ${songPage.totalPages}"></p>
     </div>
 </body>
 </html>

@@ -3,6 +3,8 @@ package lt.codeacademy.thymeleafprojektas.service;
 import lombok.RequiredArgsConstructor;
 import lt.codeacademy.thymeleafprojektas.Repository.SongRepository;
 import lt.codeacademy.thymeleafprojektas.model.Song;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -20,6 +22,10 @@ public class SongService {
 
     public List<Song> getAllSongs(){
         return songRepository.findAll();
+    }
+
+    public Page<Song> getSongsPageable(Pageable pageable){
+        return songRepository.findAll(pageable);
     }
 
     public Song getSongByID(Long id){

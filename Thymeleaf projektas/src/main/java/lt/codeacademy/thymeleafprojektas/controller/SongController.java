@@ -4,6 +4,9 @@ import lombok.RequiredArgsConstructor;
 import lt.codeacademy.thymeleafprojektas.Repository.SongRepository;
 import lt.codeacademy.thymeleafprojektas.model.Song;
 import lt.codeacademy.thymeleafprojektas.service.SongService;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,8 +32,9 @@ public class SongController {
     }
 
     @GetMapping("/songs")
-    public String getSongList(Model model){
-        model.addAttribute("songs", songService.getAllSongs());
+    public String getSongList(Model model,
+                              @PageableDefault(size = 10) Pageable pageable){
+        model.addAttribute("songPage", songService.getSongsPageable(pageable));
         return "songs";
     }
 
