@@ -11,7 +11,9 @@
             <thead>
             <tr>
                 <th scope="col">No</th>
-                <th scope="col">Name</th>
+                <th scope="col" th:with="sortDirection=${songPage.sort.getOrderFor('songName')?.direction}">
+                    <a th:href="@{/songs(page = ${param.page}, sort='songName,' + ${sortDirection?.name() eq 'ASC' ? 'DESC' : 'ASC'} + ',ignorecase')}">Name</a>
+                </th>
                 <th scope="col">Album</th>
                 <th scope="col">Author</th>
                 <th scope="col">Playtime</th>
@@ -50,18 +52,15 @@
                 <a class="page-link" th:text="${pages}" th:href="@{/songs(page=${pages - 1})}"></a>
             </li>
 
-<!--            <li class="page-item" th:each="pages : ${#numbers.sequence(-1 + songPage.number, 3 + songPage.number)}">-->
-<!--                <a th:if="${pages > 0 && pages <= songPage.totalPages + 1}" class="page-link" th:text="${pages}" th:href="@{/songs(page=${pages - 1})}"></a>-->
-<!--            </li>-->
-
             <li class="page-item" th:classappend="${!songPage.hasNext()} ? 'disabled'">
-                <a class="page-link"  th:href="@{/songs(page=${songPage.number + 1})}">Next</a>
+                <a class="page-link"  th:href="@{/songs(page=${songPage.number + 1},sort=${param.sort})}">Next</a>
             </li>
         </ul>
     </nav>
     <div>
         <p style="color: white" th:text="'Total songs: ' + ${songPage.totalElements}"></p>
         <p style="color: white" th:text="'Total pages: ' + ${songPage.totalPages}"></p>
+        <p th:text="${param.sort}"></p>
     </div>
 </body>
 </html>

@@ -33,7 +33,7 @@ public class SongController {
 
     @GetMapping("/songs")
     public String getSongList(Model model,
-                              @PageableDefault(size = 10) Pageable pageable){
+                              @PageableDefault(size = 10, sort = {"songName"}, direction = Sort.Direction.ASC) Pageable pageable){
         model.addAttribute("songPage", songService.getSongsPageable(pageable));
         return "songs";
     }
