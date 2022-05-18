@@ -9,21 +9,19 @@
 <div>
     <table class="table table-striped table-dark table-hover">
         <thead>
-        <tr>
+        <tr th:with="sortIconDown=${'fa-sort-down'}, sortIconUp=${'fa-sort-up'}">
             <th scope="col">No</th>
-            <th scope="col">
-<!--                <a th:with="sortDirection=${songPage.sort.getOrderFor('songName')?.direction}"-->
-<!--                   th:href="@{/songs(page = ${param.page}, sort='songName,' + ${sortDirection?.name() eq 'ASC' ? 'DESC' : 'ASC'} + ',ignorecase')}">Name</a>-->
-                <a th:replace="fragments :: sortedColumn(pageData=${songPage}, sortedParamName='songName', rootPath=@{/songs}, columnName='Name')"></a>
+            <th scope="col" >
+                <a th:replace="fragments :: sortedColumn(pageData=${songPage}, sortedParamName='songName', rootPath=@{/songs}, columnName='Name', sortIconDown=${sortIconDown}, sortIconUp=${sortIconUp})"></a>
             </th>
             <th scope="col">
-                <a th:replace="fragments :: sortedColumn(pageData=${songPage}, sortedParamName='album', rootPath=@{/songs}, columnName='Album')"></a>
+                <a th:replace="fragments :: sortedColumn(pageData=${songPage}, sortedParamName='album', rootPath=@{/songs}, columnName='Album', sortIconDown=${sortIconDown}, sortIconUp=${sortIconUp})"></a>
             </th>
             <th scope="col">
-                <a th:replace="fragments :: sortedColumn(pageData=${songPage}, sortedParamName='author', rootPath=@{/songs}, columnName='Author')"></a>
+                <a th:replace="fragments :: sortedColumn(pageData=${songPage}, sortedParamName='author', rootPath=@{/songs}, columnName='Author', sortIconDown=${sortIconDown}, sortIconUp=${sortIconUp})"></a>
             </th>
             <th scope="col">
-                <a th:replace="fragments :: sortedColumn(pageData=${songPage}, sortedParamName='playtime', rootPath=@{/songs}, columnName='Playtime')"></a>
+                <a th:replace="fragments :: sortedColumn(pageData=${songPage}, sortedParamName='playtime', rootPath=@{/songs}, columnName='Playtime', sortIconDown=${sortIconDown}, sortIconUp=${sortIconUp})"></a>
             </th>
             <th scope="col"></th>
             <th scope="col"></th>
@@ -74,7 +72,6 @@
 <div>
     <p style="color: white" th:text="'Total songs: ' + ${songPage.totalElements}"></p>
     <p style="color: white" th:text="'Total pages: ' + ${songPage.totalPages}"></p>
-    <p th:text="${param.sort}"></p>
 </div>
 </body>
 </html>

@@ -10,10 +10,14 @@
     <title th:text="*{title}"></title>
 </head>
 
-<a th:fragment="sortedColumn(pageData, sortedParamName, rootPath, columnName)"
+<a th:fragment="sortedColumn(pageData, sortedParamName, rootPath, columnName, sortIconDown, sortIconUp)"
    th:with="sortDirection=${pageData.sort.getOrderFor(sortedParamName)?.direction}"
-   th:href="@{*{rootPath}(page = ${param.page}, sort=*{sortedParamName} + ',' + ${sortDirection?.name() eq 'ASC' ? 'DESC' : 'ASC'} + ',ignorecase')}" th:text="*{columnName}">
-
+   th:href="@{*{rootPath}(page = ${param.page}, sort=*{sortedParamName} + ',' + ${sortDirection?.name() eq 'ASC' ? 'DESC' : 'ASC'} + ',ignorecase')}">
+    <span th:text="*{columnName}"></span>
+    <i th:if="${sortDirection ne null}"
+       class="fa-solid"
+       th:classappend="${sortDirection?.name() eq 'ASC'} ? *{sortIconDown} : *{sortIconUp}">
+    </i>
 </a>
 
 </html>
