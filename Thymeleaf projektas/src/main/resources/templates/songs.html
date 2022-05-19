@@ -43,25 +43,25 @@
 <nav aria-label="Page navigation example">
     <ul class="pagination">
         <li class="page-item" th:classappend="${!songPage.hasPrevious()} ? 'disabled'">
-            <a class="page-link" th:href="@{/songs(page=${songPage.number - 1})}">Previous</a>
+            <a class="page-link" th:href="@{/songs(page=${songPage.number - 1},sort=${param.sort})}">Previous</a>
         </li>
 
         <li class="page-item" th:classappend="${songPage.number == (pages - 1)} ? 'active'"
             th:if="${songPage.number < 3}"
             th:each="pages : ${#numbers.sequence(1, (songPage.totalPages < 5 ? songPage.totalPages : 5))}">
-            <a class="page-link" th:text="${pages}" th:href="@{/songs(page=${pages - 1})}"></a>
+            <a class="page-link" th:text="${pages}" th:href="@{/songs(page=${pages - 1},sort=${param.sort})}"></a>
         </li>
 
         <li class="page-item" th:classappend="${songPage.number == (pages - 1)} ? 'active'"
             th:if="${songPage.number >= 3 && songPage.number > (songPage.totalPages - 3)}"
             th:each="pages : ${#numbers.sequence((songPage.totalPages < 5 ? 1 : songPage.totalPages - 4), songPage.totalPages)}">
-            <a class="page-link" th:text="${pages}" th:href="@{/songs(page=${pages - 1})}"></a>
+            <a class="page-link" th:text="${pages}" th:href="@{/songs(page=${pages - 1},sort=${param.sort})}"></a>
         </li>
 
         <li class="page-item" th:classappend="${songPage.number == (pages - 1)} ? 'active'"
             th:if="${songPage.number >= 3 && songPage.number <= (songPage.totalPages - 3)}"
             th:each="pages : ${#numbers.sequence(-1 + songPage.number, 3 + songPage.number)}">
-            <a class="page-link" th:text="${pages}" th:href="@{/songs(page=${pages - 1})}"></a>
+            <a class="page-link" th:text="${pages}" th:href="@{/songs(page=${pages - 1},sort=${param.sort})}"></a>
         </li>
 
         <li class="page-item" th:classappend="${!songPage.hasNext()} ? 'disabled'">
