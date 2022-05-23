@@ -32,7 +32,4 @@ public class Album {
 
     private String year;
 
-    @ManyToMany
-    private List<Song> songs;
-
 }

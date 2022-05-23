@@ -32,13 +32,12 @@ public class Song {
     @Column(name = "song_name")
     private String songName;
 
-    private String album;
-
-    private String author;
-
     private String playtime;
 
     @ManyToMany
     private List<Author> authors;
+
+    @ManyToMany
+    private List<Album> albums;
 
 }
