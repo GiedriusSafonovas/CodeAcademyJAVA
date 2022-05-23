@@ -13,7 +13,7 @@ public class AuthorService {
 
     private final AuthorRepository authorRepository;
 
-    public Optional<Author> getAlbumByName(String authorName){
-        return authorRepository.findAuthorByNameIsLikeIgnoreCase(authorName);
+    public Optional<Author> getAuthorByName(String authorName){
+        return authorRepository.findAuthorByName(authorName);
     }
 }

@@ -7,6 +7,8 @@ import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -24,6 +26,7 @@ import java.util.List;
 @Builder(toBuilder = true)
 @AllArgsConstructor
 @NoArgsConstructor
+
 public class Song {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -35,9 +38,11 @@ public class Song {
     private String playtime;
 
     @ManyToMany
+    @Cascade(CascadeType.ALL)
     private List<Author> authors;
 
     @ManyToMany
+    @Cascade(CascadeType.ALL)
     private List<Album> albums;
 
 }

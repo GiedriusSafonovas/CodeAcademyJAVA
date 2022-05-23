@@ -15,7 +15,7 @@ public class AlbumService {
     private final AlbumRepository albumRepository;
 
     public Optional<Album> getAlbumByName(String albumName){
-        return albumRepository.findAlbumByNameIsLikeIgnoreCase(albumName);
+        return albumRepository.findAlbumByName(albumName);
     }
 
 }

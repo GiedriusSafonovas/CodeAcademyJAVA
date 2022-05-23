@@ -32,8 +32,8 @@
         <tr th:each="song, i: ${songPage}">
             <td th:text="${i.index + 1}"></td>
             <td th:text="${song.songName}"></td>
-            <td th:text="${song.album}"></td>
-            <td th:text="${song.author}"></td>
+            <td th:text="${song.albums.get(0)}"></td>
+            <td th:text="${song.authors.get(0)}"></td>
             <td th:text="${song.playtime}"></td>
             <td><a class="btn btn-info" th:href="@{/songs/update/{songId}(songId=${song.id})}">Update</a></td>
             <td><a class="btn btn-danger" th:href="@{/songs/delete/{songId}(songId=${song.id})}">Delete</a></td>

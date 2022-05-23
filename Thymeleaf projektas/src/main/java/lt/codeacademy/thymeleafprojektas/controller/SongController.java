@@ -2,6 +2,7 @@ package lt.codeacademy.thymeleafprojektas.controller;
 
 import lombok.RequiredArgsConstructor;
 import lt.codeacademy.thymeleafprojektas.Repository.SongRepository;
+import lt.codeacademy.thymeleafprojektas.dto.SongDto;
 import lt.codeacademy.thymeleafprojektas.model.Song;
 import lt.codeacademy.thymeleafprojektas.service.SongService;
 import org.springframework.data.domain.Pageable;
@@ -21,13 +22,13 @@ public class SongController {
 
     @GetMapping("/addsong")
     public String openAddSongForm(Model model){
-        model.addAttribute("song", new Song());
+        model.addAttribute("song", SongDto.builder().build());
         return "addSong";
     }
 
     @PostMapping("/addsong")
-    public String addSong(Song song){
-        songService.addSong(song);
+    public String addSong(SongDto songDto){
+        songService.addSong(songDto);
         return "redirect:/addsong";
     }
 

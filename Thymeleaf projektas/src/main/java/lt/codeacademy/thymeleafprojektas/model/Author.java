@@ -30,8 +30,8 @@ public class Author {
 
     private String name;
 
-    @ManyToMany
-    private List<Album> albums;
+//    @ManyToMany
+//    private List<Album> albums;
 
 
 

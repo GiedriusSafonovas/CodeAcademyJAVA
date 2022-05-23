@@ -9,6 +9,6 @@ import java.util.Optional;
 @Repository
 public interface AlbumRepository extends JpaRepository<Album, Long> {
 
-    Optional<Album> findAlbumByNameIsLikeIgnoreCase(String albumName);
+    Optional<Album> findAlbumByName(String albumName);
 
 }
