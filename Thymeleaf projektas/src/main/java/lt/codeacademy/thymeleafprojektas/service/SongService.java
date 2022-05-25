@@ -70,8 +70,6 @@ public class SongService {
 
     @Transactional
     public void deleteSongById(Long id) {
-        songRepository.deleteByIdSongAlbum(id);
-        songRepository.deleteByIdSongAuthor(id);
-        songRepository.deleteByIdSong(id);
+        songRepository.deleteById(id);
     }
 }

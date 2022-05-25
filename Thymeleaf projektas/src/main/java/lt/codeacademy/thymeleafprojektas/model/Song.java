@@ -42,12 +42,10 @@ public class Song {
 
     @ManyToMany
     @Cascade(CascadeType.ALL)
-    @OnDelete(action = OnDeleteAction.CASCADE)
     private List<Author> authors;
 
     @ManyToMany
     @Cascade(CascadeType.ALL)
-    @OnDelete(action = OnDeleteAction.CASCADE)
     private Set<Album> albums;
 
 }
