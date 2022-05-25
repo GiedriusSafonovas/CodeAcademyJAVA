@@ -16,10 +16,12 @@
                 <a th:replace="fragments :: sortedColumn(pageData=${songPage}, sortedParamName='songName', rootPath=@{/songs}, columnName='Name', sortIconDown=${sortIconDown}, sortIconUp=${sortIconUp})"></a>
             </th>
             <th scope="col">
-                <a th:replace="fragments :: sortedColumn(pageData=${songPage}, sortedParamName='albumString', rootPath=@{/songs}, columnName='Album', sortIconDown=${sortIconDown}, sortIconUp=${sortIconUp})"></a>
+<!--                <a th:replace="fragments :: sortedColumn(pageData=${songPage}, sortedParamName='albumString', rootPath=@{/songs}, columnName='Album', sortIconDown=${sortIconDown}, sortIconUp=${sortIconUp})"></a>-->
+                Album
             </th>
             <th scope="col">
-                <a th:replace="fragments :: sortedColumn(pageData=${songPage}, sortedParamName='authorString', rootPath=@{/songs}, columnName='Author', sortIconDown=${sortIconDown}, sortIconUp=${sortIconUp})"></a>
+<!--                <a th:replace="fragments :: sortedColumn(pageData=${songPage}, sortedParamName='authorString', rootPath=@{/songs}, columnName='Author', sortIconDown=${sortIconDown}, sortIconUp=${sortIconUp})"></a>-->
+                Author
             </th>
             <th scope="col">
                 <a th:replace="fragments :: sortedColumn(pageData=${songPage}, sortedParamName='playtime', rootPath=@{/songs}, columnName='Playtime', sortIconDown=${sortIconDown}, sortIconUp=${sortIconUp})"></a>
