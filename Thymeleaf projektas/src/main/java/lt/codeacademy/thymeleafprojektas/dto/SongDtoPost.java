@@ -6,7 +6,7 @@ import lombok.Data;
 
 @Data
 @Builder
-public class SongDto {
+public class SongDtoPost {
 
     private Long id;
 
@@ -14,7 +14,7 @@ public class SongDto {
 
     private String playtime;
 
-    private String authors;
+    private String authorString;
 
-    private String albums;
+    private String albumString;
 }
