@@ -6,6 +6,7 @@ import lt.codeacademy.thymeleafprojektas.model.Album;
 import lt.codeacademy.thymeleafprojektas.model.Author;
 
 import java.util.List;
+import java.util.Set;
 
 @Data
 @Builder
@@ -21,7 +22,7 @@ public class SongDtoGet {
 
     private String albumString;
 
-    private List<Album> albumList;
+    private Set<Album> albumList;
 
     private List<Author> authorList;
 }

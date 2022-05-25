@@ -14,11 +14,11 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Getter
 @Setter
-@ToString
 @Builder(toBuilder = true)
 @AllArgsConstructor
 @NoArgsConstructor
@@ -30,8 +30,8 @@ public class Author {
 
     private String name;
 
-//    @ManyToMany
-//    private List<Album> albums;
+    @ManyToMany
+    private Set<Album> albums;
 
 
 

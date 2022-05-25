@@ -20,6 +20,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -47,6 +48,6 @@ public class Song {
     @ManyToMany
     @Cascade(CascadeType.ALL)
     @OnDelete(action = OnDeleteAction.CASCADE)
-    private List<Album> albums;
+    private Set<Album> albums;
 
 }

@@ -18,7 +18,6 @@ import java.util.List;
 @Entity
 @Getter
 @Setter
-@ToString
 @Builder(toBuilder = true)
 @AllArgsConstructor
 @NoArgsConstructor
@@ -31,5 +30,8 @@ public class Album {
     private String name;
 
     private String year;
+
+    @ManyToMany(mappedBy = "albums")
+    List<Song> songs;
 
 }
