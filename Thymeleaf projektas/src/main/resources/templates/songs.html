@@ -16,10 +16,10 @@
                 <a th:replace="fragments :: sortedColumn(pageData=${songPage}, sortedParamName='songName', rootPath=@{/songs}, columnName='Name', sortIconDown=${sortIconDown}, sortIconUp=${sortIconUp})"></a>
             </th>
             <th scope="col">
-                <a th:replace="fragments :: sortedColumn(pageData=${songPage}, sortedParamName='album', rootPath=@{/songs}, columnName='Album', sortIconDown=${sortIconDown}, sortIconUp=${sortIconUp})"></a>
+                <a th:replace="fragments :: sortedColumn(pageData=${songPage}, sortedParamName='albumString', rootPath=@{/songs}, columnName='Album', sortIconDown=${sortIconDown}, sortIconUp=${sortIconUp})"></a>
             </th>
             <th scope="col">
-                <a th:replace="fragments :: sortedColumn(pageData=${songPage}, sortedParamName='author', rootPath=@{/songs}, columnName='Author', sortIconDown=${sortIconDown}, sortIconUp=${sortIconUp})"></a>
+                <a th:replace="fragments :: sortedColumn(pageData=${songPage}, sortedParamName='authorString', rootPath=@{/songs}, columnName='Author', sortIconDown=${sortIconDown}, sortIconUp=${sortIconUp})"></a>
             </th>
             <th scope="col">
                 <a th:replace="fragments :: sortedColumn(pageData=${songPage}, sortedParamName='playtime', rootPath=@{/songs}, columnName='Playtime', sortIconDown=${sortIconDown}, sortIconUp=${sortIconUp})"></a>
@@ -32,8 +32,12 @@
         <tr th:each="song, i: ${songPage}">
             <td th:text="${i.index + 1}"></td>
             <td th:text="${song.songName}"></td>
-            <td th:text="${song.albums.get(0)}"></td>
-            <td th:text="${song.authors.get(0)}"></td>
+            <td>
+                <span th:each="album : ${song.albumList}" th:text="${album.name} + ' '"></span>
+            </td>
+            <td>
+                <span th:each="author : ${song.authorList}" th:text="${author.name} + ' '"></span>
+            </td>
             <td th:text="${song.playtime}"></td>
             <td><a class="btn btn-info" th:href="@{/songs/update/{songId}(songId=${song.id})}">Update</a></td>
             <td><a class="btn btn-danger" th:href="@{/songs/delete/{songId}(songId=${song.id})}">Delete</a></td>
