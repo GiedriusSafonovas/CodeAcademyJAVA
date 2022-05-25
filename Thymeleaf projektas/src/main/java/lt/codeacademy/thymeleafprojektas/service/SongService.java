@@ -32,20 +32,22 @@ public class SongService {
     public void addSong(SongDtoPost songDtoPost) {
         System.out.println(songDtoPost);
 
-        List<Author> authorList = Arrays.stream(songDtoPost.getAuthorString().split(";"))
-                .map(authorName -> authorRepository.findAuthorByName(authorName.strip()).orElse(Author.builder().name(authorName.strip()).build()))
-                .collect(Collectors.toList());
+//        List<Album> albumList = Arrays.stream(songDtoPost.getAlbumString().split(";"))
+//                .map(albumName -> albumRepository.findAlbumByName(albumName.strip()).orElse(Album.builder().name(albumName.strip()).build()))
+//                .collect(Collectors.toList());
+//
+//        List<Author> authorList = Arrays.stream(songDtoPost.getAuthorString().split(";"))
+//                .map(authorName -> authorRepository.findAuthorByName(authorName.strip()).orElse(Author.builder().name(authorName.strip()).build()))
+//                .collect(Collectors.toList());
+//
+//        Song song = Song.builder()
+//                .songName(songDtoPost.getSongName())
+//                .playtime(songDtoPost.getPlaytime())
+//                .albums(albumList)
+//                .authors(authorList)
+//                .build();
 
-        List<Album> albumList = Arrays.stream(songDtoPost.getAlbumString().split(";"))
-                .map(albumName -> albumRepository.findAlbumByName(albumName.strip()).orElse(Album.builder().name(albumName.strip()).build()))
-                .collect(Collectors.toList());
-
-        Song song = Song.builder()
-                .songName(songDtoPost.getSongName())
-                .playtime(songDtoPost.getPlaytime())
-                .albums(albumList)
-                .authors(authorList)
-                .build();
+        Song song = songDtoPostToSongMapper.map(songDtoPost);
 
         System.out.println(song);
 

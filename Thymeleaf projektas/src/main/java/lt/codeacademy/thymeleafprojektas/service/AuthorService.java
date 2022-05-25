@@ -16,4 +16,8 @@ public class AuthorService {
     public Optional<Author> getAuthorByName(String authorName){
         return authorRepository.findAuthorByName(authorName);
     }
+
+    public Author getAuthorById(Long id){
+        return authorRepository.findById(id).orElseThrow();
+    }
 }

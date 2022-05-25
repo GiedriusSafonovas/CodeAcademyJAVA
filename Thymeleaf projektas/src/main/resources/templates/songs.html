@@ -7,76 +7,80 @@
 <body style="background-color: black">
 <nav th:replace="fragments :: menuBar"></nav>
 <h1 style="color: white">List of songs</h1>
-<div>
-    <table class="table table-striped table-dark table-hover">
-        <thead>
-        <tr th:with="sortIconDown=${'fa-sort-down'}, sortIconUp=${'fa-sort-up'}">
-            <th scope="col">No</th>
-            <th scope="col" >
-                <a th:replace="fragments :: sortedColumn(pageData=${songPage}, sortedParamName='songName', rootPath=@{/songs}, columnName='Name', sortIconDown=${sortIconDown}, sortIconUp=${sortIconUp})"></a>
-            </th>
-            <th scope="col">
-<!--                <a th:replace="fragments :: sortedColumn(pageData=${songPage}, sortedParamName='albumString', rootPath=@{/songs}, columnName='Album', sortIconDown=${sortIconDown}, sortIconUp=${sortIconUp})"></a>-->
-                Album
-            </th>
-            <th scope="col">
-<!--                <a th:replace="fragments :: sortedColumn(pageData=${songPage}, sortedParamName='authorString', rootPath=@{/songs}, columnName='Author', sortIconDown=${sortIconDown}, sortIconUp=${sortIconUp})"></a>-->
-                Author
-            </th>
-            <th scope="col">
-                <a th:replace="fragments :: sortedColumn(pageData=${songPage}, sortedParamName='playtime', rootPath=@{/songs}, columnName='Playtime', sortIconDown=${sortIconDown}, sortIconUp=${sortIconUp})"></a>
-            </th>
-            <th scope="col"></th>
-            <th scope="col"></th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="song, i: ${songPage}">
-            <td th:text="${i.index + 1}"></td>
-            <td th:text="${song.songName}"></td>
-            <td>
-                <span th:each="album : ${song.albumList}" th:text="${album.name} + ' '"></span>
-            </td>
-            <td>
-                <span th:each="author : ${song.authorList}" th:text="${author.name} + ' '"></span>
-            </td>
-            <td th:text="${song.playtime}"></td>
-            <td><a class="btn btn-info" th:href="@{/songs/update/{songId}(songId=${song.id})}">Update</a></td>
-            <td><a class="btn btn-danger" th:href="@{/songs/delete/{songId}(songId=${song.id})}">Delete</a></td>
-        </tr>
-        </tbody>
-    </table>
+<h4 style="color: white" th:if="${songPage.totalElements == 0}">Nothing found</h4>
+<div th:unless="${songPage.totalElements == 0}">
+    <div>
+        <table class="table table-striped table-dark table-hover">
+            <thead>
+            <tr th:with="sortIconDown=${'fa-sort-down'}, sortIconUp=${'fa-sort-up'}">
+                <th scope="col">No</th>
+                <th scope="col">
+                    <a th:replace="fragments :: sortedColumn(pageData=${songPage}, sortedParamName='songName', rootPath=@{/songs}, columnName='Name', sortIconDown=${sortIconDown}, sortIconUp=${sortIconUp})"></a>
+                </th>
+                <th scope="col">
+                    <!--                <a th:replace="fragments :: sortedColumn(pageData=${songPage}, sortedParamName='albumString', rootPath=@{/songs}, columnName='Album', sortIconDown=${sortIconDown}, sortIconUp=${sortIconUp})"></a>-->
+                    Album
+                </th>
+                <th scope="col">
+                    <!--                <a th:replace="fragments :: sortedColumn(pageData=${songPage}, sortedParamName='authorString', rootPath=@{/songs}, columnName='Author', sortIconDown=${sortIconDown}, sortIconUp=${sortIconUp})"></a>-->
+                    Author
+                </th>
+                <th scope="col">
+                    <a th:replace="fragments :: sortedColumn(pageData=${songPage}, sortedParamName='playtime', rootPath=@{/songs}, columnName='Playtime', sortIconDown=${sortIconDown}, sortIconUp=${sortIconUp})"></a>
+                </th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="song, i: ${songPage}">
+                <td th:text="${i.index + 1}"></td>
+                <td th:text="${song.songName}"></td>
+                <td>
+                    <span th:each="album : ${song.albumList}" th:text="${album.name} + ' '"></span>
+                </td>
+                <td>
+                    <a th:each="author : ${song.authorList}" th:text="${author.name} + ' '"
+                       th:href="@{/author/{authorId}(authorId=${author.id})}"></a>
+                </td>
+                <td th:text="${song.playtime}"></td>
+                <td><a class="btn btn-info" th:href="@{/songs/update/{songId}(songId=${song.id})}">Update</a></td>
+                <td><a class="btn btn-danger" th:href="@{/songs/delete/{songId}(songId=${song.id})}">Delete</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <nav aria-label="Page navigation example" th:with="URI=${#httpServletRequest.requestURI}">
+        <ul class="pagination">
+            <li class="page-item" th:classappend="${!songPage.hasPrevious()} ? 'disabled'">
+                <a class="page-link" th:href="@{${URI}(page=${songPage.number - 1},sort=${param.sort})}">Previous</a>
+            </li>
+
+            <li class="page-item" th:classappend="${songPage.number == (pages - 1)} ? 'active'"
+                th:if="${songPage.number < 3}"
+                th:each="pages : ${#numbers.sequence(1, (songPage.totalPages < 5 ? songPage.totalPages : 5))}">
+                <a class="page-link" th:text="${pages}" th:href="@{${URI}(page=${pages - 1},sort=${param.sort})}"></a>
+            </li>
+
+            <li class="page-item" th:classappend="${songPage.number == (pages - 1)} ? 'active'"
+                th:if="${songPage.number >= 3 && songPage.number > (songPage.totalPages - 3)}"
+                th:each="pages : ${#numbers.sequence((songPage.totalPages < 5 ? 1 : songPage.totalPages - 4), songPage.totalPages)}">
+                <a class="page-link" th:text="${pages}" th:href="@{${URI}(page=${pages - 1},sort=${param.sort})}"></a>
+            </li>
+
+            <li class="page-item" th:classappend="${songPage.number == (pages - 1)} ? 'active'"
+                th:if="${songPage.number >= 3 && songPage.number <= (songPage.totalPages - 3)}"
+                th:each="pages : ${#numbers.sequence(-1 + songPage.number, 3 + songPage.number)}">
+                <a class="page-link" th:text="${pages}" th:href="@{${URI}(page=${pages - 1},sort=${param.sort})}"></a>
+            </li>
+
+            <li class="page-item" th:classappend="${!songPage.hasNext()} ? 'disabled'">
+                <a class="page-link" th:href="@{${URI}(page=${songPage.number + 1},sort=${param.sort})}">Next</a>
+            </li>
+        </ul>
+    </nav>
 </div>
-
-<nav aria-label="Page navigation example" th:with="URI=${#httpServletRequest.requestURI}">
-    <ul class="pagination">
-        <li class="page-item" th:classappend="${!songPage.hasPrevious()} ? 'disabled'">
-            <a class="page-link" th:href="@{${URI}(page=${songPage.number - 1},sort=${param.sort})}">Previous</a>
-        </li>
-
-        <li class="page-item" th:classappend="${songPage.number == (pages - 1)} ? 'active'"
-            th:if="${songPage.number < 3}"
-            th:each="pages : ${#numbers.sequence(1, (songPage.totalPages < 5 ? songPage.totalPages : 5))}">
-            <a class="page-link" th:text="${pages}" th:href="@{${URI}(page=${pages - 1},sort=${param.sort})}"></a>
-        </li>
-
-        <li class="page-item" th:classappend="${songPage.number == (pages - 1)} ? 'active'"
-            th:if="${songPage.number >= 3 && songPage.number > (songPage.totalPages - 3)}"
-            th:each="pages : ${#numbers.sequence((songPage.totalPages < 5 ? 1 : songPage.totalPages - 4), songPage.totalPages)}">
-            <a class="page-link" th:text="${pages}" th:href="@{${URI}(page=${pages - 1},sort=${param.sort})}"></a>
-        </li>
-
-        <li class="page-item" th:classappend="${songPage.number == (pages - 1)} ? 'active'"
-            th:if="${songPage.number >= 3 && songPage.number <= (songPage.totalPages - 3)}"
-            th:each="pages : ${#numbers.sequence(-1 + songPage.number, 3 + songPage.number)}">
-            <a class="page-link" th:text="${pages}" th:href="@{${URI}(page=${pages - 1},sort=${param.sort})}"></a>
-        </li>
-
-        <li class="page-item" th:classappend="${!songPage.hasNext()} ? 'disabled'">
-            <a class="page-link" th:href="@{${URI}(page=${songPage.number + 1},sort=${param.sort})}">Next</a>
-        </li>
-    </ul>
-</nav>
 <div>
     <p style="color: white" th:text="'Total songs: ' + ${songPage.totalElements}"></p>
     <p style="color: white" th:text="'Total pages: ' + ${songPage.totalPages}"></p>
