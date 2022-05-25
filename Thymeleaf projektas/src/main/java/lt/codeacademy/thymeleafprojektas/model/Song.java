@@ -9,6 +9,8 @@ import lombok.Setter;
 import lombok.ToString;
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -39,10 +41,12 @@ public class Song {
 
     @ManyToMany
     @Cascade(CascadeType.ALL)
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private List<Author> authors;
 
     @ManyToMany
     @Cascade(CascadeType.ALL)
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private List<Album> albums;
 
 }

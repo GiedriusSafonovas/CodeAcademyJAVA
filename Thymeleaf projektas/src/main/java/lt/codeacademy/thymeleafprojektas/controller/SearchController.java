@@ -25,12 +25,12 @@ public class SearchController {
         return "forward:/search/" + songName;
     }
 
-    @GetMapping("/search/{songName}")
-    public String searchResult(Model model, @PathVariable String songName, @PageableDefault(size = 10, sort = {"songName"}, direction = Sort.Direction.ASC) Pageable pageable){
-        Page<Song> songPage = searchService.searchSongByname(songName, pageable);
-        model.addAttribute("songPage", songPage);
-        return "songs";
-    }
+//    @GetMapping("/search/{songName}")
+//    public String searchResult(Model model, @PathVariable String songName, @PageableDefault(size = 10, sort = {"songName"}, direction = Sort.Direction.ASC) Pageable pageable){
+//        Page<Song> songPage = searchService.searchSongByname(songName, pageable);
+//        model.addAttribute("songPage", songPage);
+//        return "songs";
+//    }
 
 
 }

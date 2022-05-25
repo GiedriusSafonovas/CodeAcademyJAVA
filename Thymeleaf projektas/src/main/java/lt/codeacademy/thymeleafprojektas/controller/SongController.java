@@ -1,10 +1,10 @@
 package lt.codeacademy.thymeleafprojektas.controller;
 
 import lombok.RequiredArgsConstructor;
-import lt.codeacademy.thymeleafprojektas.Repository.SongRepository;
-import lt.codeacademy.thymeleafprojektas.dto.SongDto;
-import lt.codeacademy.thymeleafprojektas.model.Song;
+import lt.codeacademy.thymeleafprojektas.dto.SongDtoGet;
+import lt.codeacademy.thymeleafprojektas.dto.SongDtoPost;
 import lt.codeacademy.thymeleafprojektas.service.SongService;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
@@ -22,31 +22,32 @@ public class SongController {
 
     @GetMapping("/addsong")
     public String openAddSongForm(Model model){
-        model.addAttribute("song", SongDto.builder().build());
+        model.addAttribute("song", SongDtoPost.builder().build());
         return "addSong";
     }
 
     @PostMapping("/addsong")
-    public String addSong(SongDto songDto){
-        songService.addSong(songDto);
+    public String addSong(SongDtoPost songDtoPost){
+        songService.addSong(songDtoPost);
         return "redirect:/addsong";
     }
 
     @GetMapping("/songs")
     public String getSongList(Model model,
                               @PageableDefault(size = 10, sort = {"songName"}, direction = Sort.Direction.ASC) Pageable pageable){
-        model.addAttribute("songPage", songService.getSongsPageable(pageable));
+        Page<SongDtoGet> page = songService.getSongsPageable(pageable);
+        model.addAttribute("songPage", page);
         return "songs";
     }
 
     @GetMapping("/songs/update/{id}")
     public String getUpdatableSong(Model model, @PathVariable Long id){
-        model.addAttribute("song", songService.getSongByID(id));
+        model.addAttribute("song", songService.getSongDtoGetByID(id));
         return "addSong";
     }
 
     @PostMapping("/songs/update/{id}")
-    public String updateSong(Song song, @PathVariable Long id){
+    public String updateSong(SongDtoPost song, @PathVariable Long id){
         songService.updateSong(song, id);
         return "redirect:/songs";
     }
