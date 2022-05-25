@@ -1,6 +1,7 @@
 package lt.codeacademy.thymeleafprojektas.controller;
 
 import lombok.RequiredArgsConstructor;
+import lt.codeacademy.thymeleafprojektas.dto.SongDtoGet;
 import lt.codeacademy.thymeleafprojektas.model.Song;
 import lt.codeacademy.thymeleafprojektas.service.SearchService;
 import org.springframework.data.domain.Page;
@@ -25,12 +26,12 @@ public class SearchController {
         return "forward:/search/" + songName;
     }
 
-//    @GetMapping("/search/{songName}")
-//    public String searchResult(Model model, @PathVariable String songName, @PageableDefault(size = 10, sort = {"songName"}, direction = Sort.Direction.ASC) Pageable pageable){
-//        Page<Song> songPage = searchService.searchSongByname(songName, pageable);
-//        model.addAttribute("songPage", songPage);
-//        return "songs";
-//    }
+    @GetMapping("/search/{songName}")
+    public String searchResult(Model model, @PathVariable String songName, @PageableDefault(size = 10, sort = {"songName"}, direction = Sort.Direction.ASC) Pageable pageable){
+        Page<SongDtoGet> songPage = searchService.searchSongByname(songName, pageable);
+        model.addAttribute("songPage", songPage);
+        return "songs";
+    }
 
 
 }
