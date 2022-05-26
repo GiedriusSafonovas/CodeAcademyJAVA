@@ -3,6 +3,7 @@ package lt.codeacademy.thymeleafprojektas.controller;
 import lombok.RequiredArgsConstructor;
 import lt.codeacademy.thymeleafprojektas.dto.UserDto;
 import lt.codeacademy.thymeleafprojektas.service.UserService;
+import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;

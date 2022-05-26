@@ -7,7 +7,7 @@
 <body>
 <nav th:replace="fragments :: menuBar"></nav>
 <h1>Register New User</h1>
-<form method="post" th:object="${userDto}">
+<form method="post" th:object="${userDto}" th:action="@{/register}">
     <div class="container">
         <div class="mb-3">
             <label for="UserName" class="form-label">User Name</label>
