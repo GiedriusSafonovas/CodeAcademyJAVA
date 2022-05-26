@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      lang="en">
+<head th:replace="fragments :: head('Song list')">
+
+</head>
+<body>
+<nav th:replace="fragments :: menuBar"></nav>
+<h1>Register New User</h1>
+<form>
+    <div class="container">
+        <div class="mb-3">
+            <label for="UserName" class="form-label">User Name</label>
+            <input type="email" class="form-control" id="UserName">
+        </div>
+        <div class="mb-3">
+            <label for="Password" class="form-label">Password</label>
+            <input type="password" class="form-control" id="Password">
+        </div>
+        <div class="mb-3">
+            <label for="RepeatPassword" class="form-label">Repeat Password</label>
+            <input type="password" class="form-control" id="RepeatPassword">
+        </div>
+        <button type="submit" class="btn btn-primary">Register</button>
+    </div>
+
+</form>
+</body>
+</html>
