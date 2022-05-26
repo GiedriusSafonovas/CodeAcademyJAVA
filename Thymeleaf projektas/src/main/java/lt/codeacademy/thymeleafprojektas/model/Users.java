@@ -19,8 +19,8 @@ import javax.persistence.Id;
 public class Users {
 
     @Id
-    String Name;
+    private String Name;
 
     @Column
-    String Password;
+    private String Password;
 }

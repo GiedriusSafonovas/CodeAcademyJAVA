@@ -7,19 +7,19 @@
 <body>
 <nav th:replace="fragments :: menuBar"></nav>
 <h1>Register New User</h1>
-<form>
+<form method="post" th:object="${userDto}">
     <div class="container">
         <div class="mb-3">
             <label for="UserName" class="form-label">User Name</label>
-            <input type="email" class="form-control" id="UserName">
+            <input type="text" class="form-control" id="UserName" th:field="*{userName}">
         </div>
         <div class="mb-3">
             <label for="Password" class="form-label">Password</label>
-            <input type="password" class="form-control" id="Password">
+            <input type="password" class="form-control" id="Password" th:field="*{password}">
         </div>
         <div class="mb-3">
             <label for="RepeatPassword" class="form-label">Repeat Password</label>
-            <input type="password" class="form-control" id="RepeatPassword">
+            <input type="password" class="form-control" id="RepeatPassword" th:field="*{repeatedPassword}">
         </div>
         <button type="submit" class="btn btn-primary">Register</button>
     </div>
