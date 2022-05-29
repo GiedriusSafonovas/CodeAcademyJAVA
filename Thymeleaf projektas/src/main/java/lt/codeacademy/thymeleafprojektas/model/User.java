@@ -13,6 +13,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.util.Collection;
 import java.util.List;
@@ -35,6 +36,9 @@ public class User implements UserDetails {
 
     @ManyToMany
     private Set<Authority> authorities;
+
+    @OneToMany
+    private Set<Playlist> playlists;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

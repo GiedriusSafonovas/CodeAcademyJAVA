@@ -5,6 +5,7 @@ import lt.codeacademy.thymeleafprojektas.Repository.AuthorityRepository;
 import lt.codeacademy.thymeleafprojektas.Repository.UserRepository;
 import lt.codeacademy.thymeleafprojektas.dto.UserDto;
 import lt.codeacademy.thymeleafprojektas.model.Authority;
+import lt.codeacademy.thymeleafprojektas.model.Playlist;
 import lt.codeacademy.thymeleafprojektas.model.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -13,6 +14,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.stereotype.Service;
 
+import java.util.HashSet;
 import java.util.Set;
 
 @Service
@@ -21,6 +23,8 @@ import java.util.Set;
 public class UserService implements UserDetailsService {
     private final UserRepository userRepository;
     private final AuthorityRepository authorityRepository;
+    private final PlaylistService playlistService;
+
 
     public void registerNewUser(UserDto userDto){
 
@@ -28,10 +32,13 @@ public class UserService implements UserDetailsService {
 
         authorityRepository.save(authority);
 
+        Playlist playlist = playlistService.createNewLikedSongPlaylist();
+
         userRepository.save(User.builder()
                 .Username(userDto.getUserName())
                 .Password(PasswordEncoderFactories.createDelegatingPasswordEncoder().encode(userDto.getPassword()))
                         .authorities(Set.of(authority))
+                        .playlists(Set.of(playlist))
                 .build());
     }
 
