@@ -47,7 +47,7 @@
                 <td th:text="${song.playtime}"></td>
                 <td>
                     <div class="d-flex justify-content-between">
-                        <form method="post" th:action="@{/addToPlaylist/{songId}(songId=${song.id})}">
+                        <form method="post" th:action="@{/LikeSong/{songId}(songId=${song.id})}">
                             <button class="btn btn-primary">
                                 <i class="fa-brands fa-gratipay"></i>
 <!--                                <i class="fa-solid fa-heart"></i>-->

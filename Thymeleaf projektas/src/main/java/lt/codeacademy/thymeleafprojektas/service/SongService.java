@@ -52,6 +52,10 @@ public class SongService {
         return songToSongDtoGetMapper.map(song);
     }
 
+    public Song getSongByID(Long id) {
+        return songRepository.findById(id).orElseThrow();
+    }
+
     @Transactional
     public void updateSong(SongDtoPost songDtoPost, Long id) {
         songDtoPost.setId(id);
