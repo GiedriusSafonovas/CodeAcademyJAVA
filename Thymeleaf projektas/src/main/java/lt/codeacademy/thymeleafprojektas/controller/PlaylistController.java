@@ -18,8 +18,8 @@ public class PlaylistController {
     @PostMapping("/LikeSong/{songId}")
     public String likeSong(Principal principal, @PathVariable Long songId){
 
-
-        playlistService.addSongToPLaylist(songId, 1L);
+        Long playlistId = userService.getLikedSongPlaylistId(principal.getName());
+        playlistService.addSongToPLaylist(songId, playlistId);
         return "redirect:/songs";
     }
 

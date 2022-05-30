@@ -42,6 +42,12 @@ public class UserService implements UserDetailsService {
                 .build());
     }
 
+    public Long getLikedSongPlaylistId(String userName){
+        User user = userRepository.findById(userName).orElseThrow();
+        Playlist playlist = user.getPlaylists().stream().filter(p -> p.getName().equals("Liked Songs")).findAny().orElseThrow();
+        return playlist.getId();
+    }
+
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         return userRepository.findUsersByUsernameWithAuthorities(username).orElseThrow();
