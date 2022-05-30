@@ -25,7 +25,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authenticated()
                 .and()
                 .formLogin()
-                .permitAll();
+                .permitAll()
+                .defaultSuccessUrl("/songs")
+                .and()
+                .logout()
+                .logoutSuccessUrl("/login");
     }
 
     @Override
