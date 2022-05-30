@@ -2,6 +2,7 @@ package lt.codeacademy.thymeleafprojektas.service;
 
 import lombok.RequiredArgsConstructor;
 import lt.codeacademy.thymeleafprojektas.Repository.AuthorityRepository;
+import lt.codeacademy.thymeleafprojektas.Repository.PlaylistRepository;
 import lt.codeacademy.thymeleafprojektas.Repository.UserRepository;
 import lt.codeacademy.thymeleafprojektas.dto.UserDto;
 import lt.codeacademy.thymeleafprojektas.model.Authority;
@@ -23,7 +24,7 @@ import java.util.Set;
 public class UserService implements UserDetailsService {
     private final UserRepository userRepository;
     private final AuthorityRepository authorityRepository;
-    private final PlaylistService playlistService;
+    private final PlaylistRepository playlistRepository;
 
 
     public void registerNewUser(UserDto userDto){
@@ -32,7 +33,7 @@ public class UserService implements UserDetailsService {
 
         authorityRepository.save(authority);
 
-        Playlist playlist = playlistService.createNewLikedSongPlaylist();
+        Playlist playlist = createNewLikedSongPlaylist();
 
         userRepository.save(User.builder()
                 .Username(userDto.getUserName())
@@ -42,10 +43,14 @@ public class UserService implements UserDetailsService {
                 .build());
     }
 
-    public Long getLikedSongPlaylistId(String userName){
-        User user = userRepository.findById(userName).orElseThrow();
-        Playlist playlist = user.getPlaylists().stream().filter(p -> p.getName().equals("Liked Songs")).findAny().orElseThrow();
-        return playlist.getId();
+    private Playlist createNewLikedSongPlaylist(){
+        Playlist playlist = Playlist.builder().name("Liked Songs").build();
+        playlistRepository.save(playlist);
+        return playlist;
+    }
+
+    public User getUserByName(String userName){
+        return userRepository.findById(userName).orElseThrow();
     }
 
     @Override
