@@ -49,13 +49,13 @@
                 <td>
                     <div class="d-flex justify-content-between" sec:authorize="isAuthenticated()">
                         <form th:if="${likedSongs.contains(song)}" method="post"
-                              th:action="@{/UnLikeSong/{songId}(songId=${song.id})}">
+                              th:action="@{/UnLikeSong/{songId}/{page}/{sort}(songId=${song.id}, page=${songPage.number}, sort=${param.sort == null ? 'songName,ASC,ignorecase' : param.sort})}">
                             <button class="btn btn-primary">
                                 <i class="fa-solid fa-heart"></i>
                             </button>
                         </form>
                         <form th:unless="${likedSongs.contains(song)}" method="post"
-                              th:action="@{/LikeSong/{songId}(songId=${song.id})}">
+                              th:action="@{/LikeSong/{songId}/{page}/{sort}(songId=${song.id}, page=${songPage.number}, sort=${param.sort == null ? 'songName,ASC,ignorecase' : param.sort})}">
                             <button class="btn btn-primary">
                                 <i class="fa-brands fa-gratipay"></i>
                             </button>
@@ -69,32 +69,32 @@
         </table>
     </div>
 
-    <nav aria-label="Page navigation example" th:with="URI=${#httpServletRequest.requestURI}">
+    <nav aria-label="Page navigation example" th:with="URI=${#httpServletRequest.requestURI}, sort=${param.sort == null ? 'songName,ASC,ignorecase' : param.sort}">
         <ul class="pagination">
             <li class="page-item" th:classappend="${!songPage.hasPrevious()} ? 'disabled'">
-                <a class="page-link" th:href="@{${URI}(page=${songPage.number - 1},sort=${param.sort})}">Previous</a>
+                <a class="page-link" th:href="@{${URI}(page=${songPage.number - 1},sort=${sort})}">Previous</a>
             </li>
 
             <li class="page-item" th:classappend="${songPage.number == (pages - 1)} ? 'active'"
                 th:if="${songPage.number < 3}"
                 th:each="pages : ${#numbers.sequence(1, (songPage.totalPages < 5 ? songPage.totalPages : 5))}">
-                <a class="page-link" th:text="${pages}" th:href="@{${URI}(page=${pages - 1},sort=${param.sort})}"></a>
+                <a class="page-link" th:text="${pages}" th:href="@{${URI}(page=${pages - 1},sort=${sort})}"></a>
             </li>
 
             <li class="page-item" th:classappend="${songPage.number == (pages - 1)} ? 'active'"
                 th:if="${songPage.number >= 3 && songPage.number > (songPage.totalPages - 3)}"
                 th:each="pages : ${#numbers.sequence((songPage.totalPages < 5 ? 1 : songPage.totalPages - 4), songPage.totalPages)}">
-                <a class="page-link" th:text="${pages}" th:href="@{${URI}(page=${pages - 1},sort=${param.sort})}"></a>
+                <a class="page-link" th:text="${pages}" th:href="@{${URI}(page=${pages - 1},sort=${sort})}"></a>
             </li>
 
             <li class="page-item" th:classappend="${songPage.number == (pages - 1)} ? 'active'"
                 th:if="${songPage.number >= 3 && songPage.number <= (songPage.totalPages - 3)}"
                 th:each="pages : ${#numbers.sequence(-1 + songPage.number, 3 + songPage.number)}">
-                <a class="page-link" th:text="${pages}" th:href="@{${URI}(page=${pages - 1},sort=${param.sort})}"></a>
+                <a class="page-link" th:text="${pages}" th:href="@{${URI}(page=${pages - 1},sort=${sort})}"></a>
             </li>
 
             <li class="page-item" th:classappend="${!songPage.hasNext()} ? 'disabled'">
-                <a class="page-link" th:href="@{${URI}(page=${songPage.number + 1},sort=${param.sort})}">Next</a>
+                <a class="page-link" th:href="@{${URI}(page=${songPage.number + 1},sort=${sort})}">Next</a>
             </li>
         </ul>
     </nav>
