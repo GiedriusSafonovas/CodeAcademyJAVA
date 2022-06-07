@@ -28,4 +28,12 @@ public class PlaylistController {
         return "redirect:/songs" + "?page=" + page + "&sort=" + sort;
     }
 
+    @PostMapping("/UnLikeSong/{songId}")
+    public String unLikeSong(Principal principal, @PathVariable Long songId){
+
+        Long playlistId = playlistService.getLikedSongPlaylistId(principal.getName());
+        playlistService.removeSongFromPlaylist(songId, playlistId);
+        return "redirect:/";
+    }
+
 }
