@@ -29,7 +29,7 @@
                 <li class="nav-item">
                     <a class="nav-link" aria-current="page" th:href="@{/}" th:text="#{nav.home}"></a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item" sec:authorize="hasRole('ADMIN')">
                     <a class="nav-link" th:href="@{/addsong}" th:text="#{nav.add_song}"></a>
                 </li>
                 <li class="nav-item">
