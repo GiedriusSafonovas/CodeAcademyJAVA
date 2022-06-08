@@ -5,22 +5,27 @@
 
 </head>
 <body>
-<nav th:replace="fragments :: menuBar('/addSong')"></nav>
+<nav th:replace="fragments :: menuBar('/addsong')"></nav>
 <h3>Add a song</h3>
-<form method="post" th:object="${song}" th:action="@{/addsong}">
+<form method="post" th:object="${songDtoPost}" th:action="@{/addsong}">
+
     <label>Song Name:</label>
-    <input type="text" placeholder="Song Name" th:field="*{songName}"><br/>
+    <input type="text" placeholder="Song Name" th:field="*{songName}">
+    <span th:if="${#fields.hasErrors('songName')}" th:errors="*{songName}"></span><br/>
 
     <label>Album:</label>
-    <input type="text" placeholder="Album" th:field="*{albumString}"><br/>
+    <input type="text" placeholder="Album" th:field="*{albumString}">
+    <span th:if="${#fields.hasErrors('albumString')}" th:errors="*{albumString}"></span><br/>
     <p>Add multiple albums with (";")</p>
 
     <label>Author:</label>
-    <input type="text" placeholder="Author" th:field="*{authorString}"><br/>
+    <input type="text" placeholder="Author" th:field="*{authorString}">
+    <span th:if="${#fields.hasErrors('authorString')}" th:errors="*{authorString}"></span><br/>
     <p>Add multiple authors with (";")</p>
 
     <label>Playtime:</label>
-    <input type="text" placeholder="Playtime" th:field="*{playtime}"><br/><br/>
+    <input type="text" placeholder="Playtime" th:field="*{playtime}">
+    <span th:if="${#fields.hasErrors('playtime')}" th:errors="*{playtime}"></span><br/>
 
     <button type="submit">Submit</button>
 </form>
