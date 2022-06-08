@@ -17,6 +17,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -29,16 +30,18 @@ public class UserService implements UserDetailsService {
 
     public void registerNewUser(UserDto userDto){
 
-        Authority authority = Authority.builder().name("USER").build();
+        Set<Authority> authorities = authorityRepository.findAll().stream().filter(auth -> auth.getName().equals("USER")).collect(Collectors.toUnmodifiableSet());
 
-        authorityRepository.save(authority);
+//        Authority authority = Authority.builder().name("USER").build();
+//
+//        authorityRepository.save(authority);
 
         Playlist playlist = createNewLikedSongPlaylist();
 
         userRepository.save(User.builder()
                 .Username(userDto.getUserName())
                 .Password(PasswordEncoderFactories.createDelegatingPasswordEncoder().encode(userDto.getPassword()))
-                        .authorities(Set.of(authority))
+                        .authorities(authorities)
                         .playlists(Set.of(playlist))
                 .build());
     }
