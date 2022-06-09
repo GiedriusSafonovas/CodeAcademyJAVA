@@ -35,8 +35,9 @@ public class SongController {
     }
 
     @PostMapping("/addsong")
-    public String addSong(Model model, @Valid SongDtoPost songDtoPost, BindingResult errors){
+    public String addSong(@Valid SongDtoPost songDtoPost, BindingResult errors){
 
+        System.out.println("CREATE");
         if(errors.hasErrors()){
             return "addSong";
         }
@@ -68,7 +69,8 @@ public class SongController {
     }
 
     @PostMapping("/songs/update/{id}")
-    public String updateSong(SongDtoPost song, @PathVariable Long id){
+    public String updateSong(@Valid SongDtoPost song, @PathVariable Long id, BindingResult errors){
+        System.out.println("UPDATE");
         songService.updateSong(song, id);
         return "redirect:/songs";
     }

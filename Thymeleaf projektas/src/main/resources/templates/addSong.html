@@ -7,7 +7,7 @@
 <body>
 <nav th:replace="fragments :: menuBar('/addsong')"></nav>
 <h3>Add a song</h3>
-<form method="post" th:object="${songDtoPost}" th:action="@{/addsong}">
+<form method="post" th:object="${songDtoPost}" th:action="@{/{path}(path=${songDtoPost.id == null ? 'addsong' : 'songs/update/' + songDtoPost.id})}">
 
     <label>Song Name:</label>
     <input type="text" placeholder="Song Name" th:field="*{songName}">
