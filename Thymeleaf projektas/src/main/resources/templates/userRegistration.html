@@ -18,11 +18,13 @@
             <label for="Password" class="form-label">Password</label>
             <input type="password" class="form-control" id="Password" th:field="*{password}">
             <span th:errors="*{password}" th:if="${#fields.hasErrors('password')}"></span>
+            <span th:errors="*{global}" th:if="${#fields.hasErrors('global')}"></span>
         </div>
         <div class="mb-3">
             <label for="RepeatPassword" class="form-label">Repeat Password</label>
             <input type="password" class="form-control" id="RepeatPassword" th:field="*{repeatedPassword}">
             <span th:errors="*{repeatedPassword}" th:if="${#fields.hasErrors('repeatedPassword')}"></span>
+            <span th:errors="*{global}" th:if="${#fields.hasErrors('global')}"></span>
         </div>
         <button type="submit" class="btn btn-primary">Register</button>
     </div>

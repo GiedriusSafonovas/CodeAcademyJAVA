@@ -2,12 +2,14 @@ package lt.codeacademy.thymeleafprojektas.dto;
 
 import lombok.Builder;
 import lombok.Data;
+import lt.codeacademy.thymeleafprojektas.validation.PasswordCompare;
 import lt.codeacademy.thymeleafprojektas.validation.UniqueUsername;
 
 import javax.validation.constraints.NotBlank;
 
 @Data
 @Builder
+@PasswordCompare
 public class UserDto {
 
     @NotBlank
