@@ -15,4 +15,16 @@ public interface SongRepository extends JpaRepository<Song, Long> {
 
     Page<Song> findSongBySongNameIsLikeIgnoreCase(String songName, Pageable pageable);
 
+    @Query(value = "DELETE FROM song_albums WHERE songs_id = ?1",nativeQuery = true)
+    @Modifying
+    void deleteByIdSongAlbum(Long id);
+
+    @Query(value = "DELETE FROM song_authors WHERE song_id = ?1",nativeQuery = true)
+    @Modifying
+    void deleteByIdSongAuthor(Long id);
+
+    @Query(value = "DELETE FROM song WHERE id = ?1",nativeQuery = true)
+    @Modifying
+    void deleteByIdSong(Long id);
+
 }
