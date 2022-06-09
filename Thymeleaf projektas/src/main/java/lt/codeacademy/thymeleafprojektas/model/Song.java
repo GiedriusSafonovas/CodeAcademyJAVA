@@ -25,7 +25,6 @@ import java.util.Set;
 @Entity
 @Getter
 @Setter
-@ToString
 @Builder(toBuilder = true)
 @AllArgsConstructor
 @NoArgsConstructor

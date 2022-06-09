@@ -29,10 +29,13 @@ public class SearchController {
 
     @GetMapping("/search")
     public String search(@RequestParam String songName){
-        return "forward:/search/" + songName;
+        if(songName.equals("")){
+            return "redirect:/songs";
+        }
+        return "forward:/search/result/" + songName;
     }
 
-    @GetMapping("/search/{songName}")
+    @GetMapping("/search/result/{songName}")
     public String searchResult(Model model, Principal principal, @PathVariable String songName, @PageableDefault(size = 10, sort = {"songName"}, direction = Sort.Direction.ASC) Pageable pageable){
 
         List<SongDtoGet> likedSongs = new ArrayList<>();
