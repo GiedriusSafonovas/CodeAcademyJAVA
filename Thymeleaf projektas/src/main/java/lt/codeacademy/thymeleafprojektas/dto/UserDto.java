@@ -12,13 +12,13 @@ import javax.validation.constraints.NotBlank;
 @PasswordCompare
 public class UserDto {
 
-    @NotBlank
+    @NotBlank(message = "{validate.blank}")
     @UniqueUsername
     private String userName;
 
-    @NotBlank
+    @NotBlank(message = "{validate.blank}")
     private String password;
 
-    @NotBlank
+    @NotBlank(message = "{validate.blank}")
     private String repeatedPassword;
 }
