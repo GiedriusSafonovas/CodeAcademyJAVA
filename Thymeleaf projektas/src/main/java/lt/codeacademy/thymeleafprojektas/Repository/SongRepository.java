@@ -23,6 +23,10 @@ public interface SongRepository extends JpaRepository<Song, Long> {
     @Modifying
     void deleteByIdSongAuthor(Long id);
 
+    @Query(value = "DELETE FROM playlist_songs WHERE songs_id = ?1",nativeQuery = true)
+    @Modifying
+    void deleteByIdSongPlaylist(Long id);
+
     @Query(value = "DELETE FROM song WHERE id = ?1",nativeQuery = true)
     @Modifying
     void deleteByIdSong(Long id);

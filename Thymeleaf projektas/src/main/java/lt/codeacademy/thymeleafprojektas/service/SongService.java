@@ -77,6 +77,7 @@ public class SongService {
 //        songRepository.deleteById(id);
         songRepository.deleteByIdSongAlbum(id);
         songRepository.deleteByIdSongAuthor(id);
+        songRepository.deleteByIdSongPlaylist(id);
         songRepository.deleteByIdSong(id);
     }
 }
