@@ -16,6 +16,7 @@ import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -38,6 +39,10 @@ public class UserService implements UserDetailsService {
 
         Playlist playlist = createNewLikedSongPlaylist();
 
+        if(userRepository.findUsersByUsernameWithAuthorities(userDto.getUserName()).isPresent()){
+            throw new RuntimeException();
+        }
+
         userRepository.save(User.builder()
                 .Username(userDto.getUserName())
                 .Password(PasswordEncoderFactories.createDelegatingPasswordEncoder().encode(userDto.getPassword()))
@@ -54,6 +59,10 @@ public class UserService implements UserDetailsService {
 
     public User getUserByName(String userName){
         return userRepository.findById(userName).orElseThrow();
+    }
+
+    public Optional<User> getUserByNameOptional(String userName){
+        return userRepository.findById(userName);
     }
 
     @Override
