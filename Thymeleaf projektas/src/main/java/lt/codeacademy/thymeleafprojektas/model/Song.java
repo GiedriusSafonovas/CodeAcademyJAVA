@@ -40,11 +40,9 @@ public class Song {
     private String playtime;
 
     @ManyToMany
-    @Cascade(CascadeType.ALL)
     private List<Author> authors;
 
     @ManyToMany
-    @Cascade(CascadeType.ALL)
     private Set<Album> albums;
 
 }

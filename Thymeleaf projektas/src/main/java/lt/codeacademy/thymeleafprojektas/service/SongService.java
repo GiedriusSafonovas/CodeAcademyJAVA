@@ -74,10 +74,10 @@ public class SongService {
 
     @Transactional
     public void deleteSongById(Long id) {
-//        songRepository.deleteById(id);
-        songRepository.deleteByIdSongAlbum(id);
-        songRepository.deleteByIdSongAuthor(id);
-        songRepository.deleteByIdSongPlaylist(id);
-        songRepository.deleteByIdSong(id);
+        songRepository.deleteById(id);
+//        songRepository.deleteByIdSongAlbum(id);
+//        songRepository.deleteByIdSongAuthor(id);
+//        songRepository.deleteByIdSongPlaylist(id);
+//        songRepository.deleteByIdSong(id);
     }
 }
