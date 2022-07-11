@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      lang="en">
+<head th:replace="fragments :: head('Add Song')">
+
+</head>
+<body>
+<nav th:replace="fragments :: menuBar('/addsong')"></nav>
+<h3>Add a song</h3>
+<form method="post" th:object="${songDtoPost}" th:action="@{/{path}(path=${songDtoPost.id == null ? 'addsong' : 'songs/update/' + songDtoPost.id})}">
+
+    <label>Song Name:</label>
+    <input type="text" placeholder="Song Name" th:field="*{songName}">
+    <span th:if="${#fields.hasErrors('songName')}" th:errors="*{songName}"></span><br/>
+
+    <label>Album:</label>
+    <input type="text" placeholder="Album" th:field="*{albumString}">
+    <span th:if="${#fields.hasErrors('albumString')}" th:errors="*{albumString}"></span><br/>
+    <p>Add multiple albums with (";")</p>
+
+    <label>Author:</label>
+    <input type="text" placeholder="Author" th:field="*{authorString}">
+    <span th:if="${#fields.hasErrors('authorString')}" th:errors="*{authorString}"></span><br/>
+    <p>Add multiple authors with (";")</p>
+
+    <label>Playtime:</label>
+    <input type="text" placeholder="Playtime" th:field="*{playtime}">
+    <span th:if="${#fields.hasErrors('playtime')}" th:errors="*{playtime}"></span><br/>
+
+    <button type="submit">Submit</button>
+</form>
+</body>
+</html>
